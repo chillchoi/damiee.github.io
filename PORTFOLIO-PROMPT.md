@@ -140,9 +140,16 @@ layout must respond to that painting's format and temperament. Never reuse one
 template eight times; instead design ONE consistent grid + metadata system, and
 vary the image staging within it:
 
+**ARTWORK SCALE RULE (client mandate, overrides everything else):** every
+painting must be reproduced AS LARGE AS THE PAGE/VIEWPORT PHYSICALLY ALLOWS
+while remaining fully visible and uncropped. Nothing — no text, no numerals, no
+panels, no UI — may ever sit on top of a painting. Metadata and descriptions
+live strictly in the space beside/below/around the artwork. If a layout choice
+trades artwork size for typographic drama, artwork size wins.
+
 | Work | Format | Staging |
 |---|---|---|
-| 모란보자기 | near-square, allover | Full-bleed. Let the pattern run off all four edges like cloth; metadata sits in a small hanji-colored panel knocked out of the pattern. Accent: peony coral `#E8A08A`. |
+| 모란보자기 | near-square, allover | The pattern shown complete and huge — near full-width, breathing off the edges like unfolded cloth. ALL metadata/description sits fully outside the painting (below or beside), never on it. Accent: peony coral `#E8A08A`. |
 | Blooming Mind | tall 1:2 | Object-like: centered on generous cream field, casting the faintest shadow, like a catalog plate. Metadata stacked beside it in a thin column echoing the book spines. Accent: lacquer green `#2E4B3F`. |
 | Summer Lotus | 35×65 vertical | Asymmetric: image right-of-center, KR title oversized and vertical (writing-mode: vertical-rl) on the left like a hanging scroll inscription. Accent: lotus pink `#D77E9B`. |
 | 무제-1 / 무제-2 | extreme 39×120 scrolls | THE signature spread/section. Pair them as a diptych with a canyon of white between; in HTML they reveal top-to-bottom with a slow clip-path wipe, like unrolling a scroll. In the PDF, give the pair a full spread where the paintings run nearly the full page height. Accent: rock teal `#5E8078`. |
@@ -150,7 +157,7 @@ vary the image staging within it:
 | Hedgehog | small 27×40 | The palate cleanser. Small image, huge whitespace, witty oversized title typography — let the humor come from scale contrast. Accent: cucumber green `#7A8B4C`. |
 | Teal Prelude | 30×30 square | The quiet coda. Cool grey section background (the only non-cream page) matching the painting's ground, so the artwork floats in its own atmosphere. Accent: teal `#3E6E6A`. |
 
-### Color
+### Color & paper texture
 
 Ground everything in hanji paper, not white: page/base `#F6F1E6`, deep ink text
 `#1F1D1A`, warm mid-grey captions `#8A8378`. Accents only from the paintings
@@ -158,6 +165,15 @@ Ground everything in hanji paper, not white: page/base `#F6F1E6`, deep ink text
 number, a hover state. Never place two accents on one page. The Teal Prelude
 section alone shifts to cool grey `#DCDCD8`. No gradients, no pure black, no
 pure white.
+
+**The background must feel like actual paper, not a flat hex fill (client
+mandate).** Give every background real hanji materiality: a subtle fiber-grain
+texture (inline SVG `feTurbulence` noise at low opacity, multiply-blended over
+the base color — no external image requests), faint mulberry-fiber flecks,
+delicate traditional pattern watermarks (e.g. a whisper-opacity 문양/lattice or
+cloud motif in section corners), and soft deckle-edge treatments on dividers.
+Keep it quiet — texture should read subliminally, at arm's length it's still
+clean hanji — but up close the page has tooth and life.
 
 ### Typography
 
@@ -185,8 +201,9 @@ pure white.
    Teal Prelude (quiet ending).
 4. **Exhibitions** — the full when/where/what table set as an elegant timeline,
    with thumbnail chips of the works shown.
-5. **About** — profile.jpg (treated as duotone or with hanji-toned overlay to
-   sit in the palette), education, CV, 사사 credit.
+5. **About** — profile photo in FULL COLOR, exactly as shot (client mandate:
+   never duotone, never black-and-white, no desaturating overlays — at most a
+   plain hairline frame), education, CV, 사사 credit.
 6. **Back cover** — hedgehog silhouette walking off the page edge + contact line
    (`(+82) 10-3165-1008 · damiee@gmail.com`).
 
@@ -230,6 +247,20 @@ Performance & craft bar: lazy-load all images below the fold with
 keyboard-navigable lightbox; Lighthouse ≥ 90 across the board. The site must
 still look composed with JS disabled.
 
+### Creative ambition (client escalation — read this twice)
+
+The client reviewed a first pass and said: *"you're not being creative enough."*
+Safe, template-adjacent layouts are a failure state. Within the hard rules
+(artwork maximal and never covered, palette, one-accent discipline), take real
+compositional risks: asymmetric grids that respond to each painting's internal
+composition, dramatic scale jumps between sections, type that behaves like an
+object in space (vertical scroll-inscriptions, folios that echo 낙관 seal
+stamps), section transitions that feel like turning hanji pages or unrolling
+scrolls, editorial moments borrowed from the boldest Awwwards work (huge
+numerals in the margins, split-second reveals, scroll-linked pacing shifts).
+Every page should make a designer ask "how did they think of that?" — while the
+artwork stays the undisputed main character.
+
 ### What "done" looks like
 
 Print the PDF small and squint: you should see a rhythm — dense / airy / vertical
@@ -242,8 +273,14 @@ template, redesign that page.
 ### Notes & guardrails
 
 - Never crop a painting except for deliberate, captioned detail shots.
-- Never place text over a painting (모란보자기's knocked-out panel is the one
-  sanctioned exception).
+- Never place ANYTHING over a painting — no text, no panels, no numerals, no
+  cursor effects that obscure it. Zero exceptions (the previously sanctioned
+  모란보자기 panel is revoked by the client). Descriptions and metadata always
+  sit outside the artwork.
+- Every painting as large as its page/viewport allows, fully visible. The
+  artwork is the main character on every page; the layout serves it.
+- The profile photo stays in full color — never black-and-white, duotone, or
+  color-washed.
 - Respect the double-space in `이다미  120x39cm-*.jpg` filenames.
 - All KR text verbatim from this brief — do not re-romanize titles.
 - Mark every description you author as DRAFT in comments for artist review.

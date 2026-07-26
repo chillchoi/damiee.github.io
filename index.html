@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>이다미 · Dami Lee — 민화, 지금 여기 / Minhwa, Present Tense</title>
+<meta name="description" content="이다미(Dami Lee)의 민화 포트폴리오 — 전통 민화를 동시대적 시선으로 재해석한 작품들. Dami Lee's contemporary reinterpretation of Korean folk painting (minhwa).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* ============================================================
+   RESET
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+ul,dl,dd{margin:0;padding:0;list-style:none;}
+h1,h2,h3,p,figure{margin:0;}
+button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;padding:0;}
+
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --cream:#F6F1E6;
+  --ink:#1F1D1A;
+  --grey:#8A8378;
+  --grey-cool:#DCDCD8;
+
+  --a-moran:#E8A08A;
+  --a-bloom:#2E4B3F;
+  --a-lotus:#D77E9B;
+  --a-untitled:#5E8078;
+  --a-garden:#C96F3B;
+  --a-hedgehog:#7A8B4C;
+  --a-teal:#3E6E6A;
+
+  --ease: cubic-bezier(0.22,1,0.36,1);
+  --font-kr: 'Noto Serif KR', serif;
+  --font-en: 'Cormorant Garamond', serif;
+  --font-meta: 'Noto Sans KR', sans-serif;
+}
+
+html{background:var(--cream);scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+
+body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:var(--font-meta);
+  font-weight:300;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* section-scoped selection color, default fallback */
+::selection{ background:var(--ink); color:var(--cream); }
+
+.section-label{
+  font-family:var(--font-meta);
+  font-size:.72rem;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--grey);
+  font-weight:500;
+}
+
+.rule{
+  border:none;
+  height:1px;
+  background:var(--accent, var(--ink));
+  opacity:.55;
+  width:100%;
+  margin:1.1em 0;
+}
+
+.visually-hidden{
+  position:absolute!important;
+  width:1px;height:1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  white-space:nowrap;
+}
+
+/* ============================================================
+   PROGRESSIVE ENHANCEMENT — hidden states only apply with .js
+   (page stays fully visible & composed if JS is disabled)
+   ============================================================ */
+.js .reveal{opacity:0; transform:translateY(28px); transition:opacity .9s var(--ease), transform .9s var(--ease);}
+.js .reveal.in-view{opacity:1; transform:translateY(0);}
+@media (prefers-reduced-motion: reduce){
+  .js .reveal{opacity:1;transform:none;transition:none;}
+}
+
+/* ============================================================
+   CUSTOM CURSOR (desktop / fine pointer only, JS-enabled)
+   ============================================================ */
+.cursor-dot{
+  position:fixed; top:0; left:0; width:10px; height:10px;
+  border-radius:50%;
+  background:var(--ink);
+  pointer-events:none;
+  z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:width .25s var(--ease), height .25s var(--ease), background-color .25s var(--ease), opacity .25s var(--ease);
+  opacity:0;
+  mix-blend-mode:difference;
+  background-color:var(--cream);
+}
+html.cursor-ready .cursor-dot{opacity:1;}
+.cursor-dot.is-active{width:34px;height:34px;}
+html.cursor-ready, html.cursor-ready *{cursor:none;}
+@media (hover:none), (pointer:coarse){
+  .cursor-dot{display:none!important;}
+  html.cursor-ready, html.cursor-ready *{cursor:auto;}
+}
+
+/* ============================================================
+   LOADER
+   ============================================================ */
+.loader{display:none;}
+.js .loader{
+  display:flex;
+  position:fixed; inset:0; z-index:9998;
+  align-items:center; justify-content:center;
+  background:var(--cream);
+  transition:opacity .8s var(--ease), visibility .8s var(--ease);
+}
+.js .loader::before,
+.js .loader::after{
+  content:"";
+  position:absolute; top:0; bottom:0; width:52%;
+  background:var(--cream);
+  transition:transform 1s var(--ease);
+  transition-delay:.15s;
+}
+.js .loader::before{left:0;}
+.js .loader::after{right:0;}
+.js .loader.is-done::before{transform:translateX(-100%);}
+.js .loader.is-done::after{transform:translateX(100%);}
+.js .loader.is-done{opacity:0; visibility:hidden;}
+.loader-title{
+  position:relative; z-index:2;
+  display:flex; gap:.15em;
+  font-family:var(--font-kr);
+  font-weight:200;
+  font-size:clamp(2.4rem,7vw,4.2rem);
+  letter-spacing:.05em;
+  color:var(--ink);
+}
+.loader-title span{
+  display:inline-block;
+  opacity:0;
+  transform:translateY(10px);
+  transition:opacity .6s var(--ease), transform .6s var(--ease);
+}
+.loader.is-inked .loader-title span{opacity:1; transform:translateY(0);}
+@media (prefers-reduced-motion: reduce){
+  .js .loader{transition:opacity .3s linear;}
+  .js .loader::before,.js .loader::after{display:none;}
+  .loader-title span{transition:none;}
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:500;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1.4rem clamp(1.2rem,4vw,3rem);
+  font-family:var(--font-meta);
+  font-size:.78rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  mix-blend-mode:difference;
+  color:var(--cream);
+  pointer-events:none;
+}
+.nav *{pointer-events:auto;}
+.nav-mark{
+  font-family:var(--font-kr);
+  font-size:1rem;
+  letter-spacing:.06em;
+  text-transform:none;
+}
+.nav-links{display:flex; gap:clamp(1rem,2.5vw,2.2rem); align-items:center;}
+.nav-links a{padding:.3em 0; position:relative;}
+.nav-links a::after{
+  content:""; position:absolute; left:0; bottom:0; width:0; height:1px;
+  background:currentColor; transition:width .4s var(--ease);
+}
+.nav-links a:hover::after,
+.nav-links a:focus-visible::after{width:100%;}
+.lang-toggle{
+  display:flex; align-items:center; gap:.4em;
+  border:1px solid currentColor; border-radius:999px;
+  padding:.35em .8em;
+  font-size:.72rem; letter-spacing:.12em;
+}
+.lang-toggle span{opacity:.5;}
+.lang-toggle span.is-active{opacity:1; font-weight:600;}
+.lang-toggle:focus-visible{outline:2px solid currentColor; outline-offset:3px;}
+
+/* ============================================================
+   COVER
+   ============================================================ */
+.cover{
+  min-height:100svh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center;
+  position:relative;
+  padding:6rem 1.5rem 4rem;
+  background:var(--cream);
+}
+.cover-kicker{
+  font-family:var(--font-meta);
+  font-size:.78rem;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--grey);
+  margin-bottom:1.6rem;
+}
+.cover-title{
+  font-family:var(--font-kr);
+  font-weight:200;
+  font-size:clamp(4.5rem,15vw,11rem);
+  line-height:1;
+  letter-spacing:.03em;
+  color:var(--ink);
+}
+.cover-sub{
+  margin-top:1.4rem;
+  font-family:var(--font-en);
+  font-style:italic;
+  font-size:clamp(1rem,2vw,1.35rem);
+  color:var(--grey);
+  letter-spacing:.02em;
+}
+.cover-motif{
+  margin:2.6rem auto 0;
+  width:46px; height:46px;
+  opacity:.85;
+}
+.cover-scroll{
+  margin-top:3.2rem;
+  font-family:var(--font-meta);
+  font-size:.78rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--ink);
+  border-bottom:1px solid var(--ink);
+  padding-bottom:.3em;
+  transition:opacity .4s var(--ease), letter-spacing .4s var(--ease);
+}
+.cover-scroll:hover, .cover-scroll:focus-visible{letter-spacing:.28em; opacity:.65;}
+
+/* ============================================================
+   STATEMENT
+   ============================================================ */
+.statement{
+  padding:clamp(5rem,12vw,9rem) clamp(1.5rem,6vw,5rem);
+  max-width:1400px; margin:0 auto;
+}
+.statement .section-label{margin-bottom:2.4rem; text-align:center;}
+.statement-grid{
+  display:grid;
+  grid-template-columns:1.7fr 1fr;
+  gap:clamp(2rem,6vw,6rem);
+  align-items:start;
+}
+.statement-kr p{
+  font-family:var(--font-kr);
+  font-weight:200;
+  font-size:clamp(1.5rem,3.4vw,2.5rem);
+  line-height:1.62;
+  letter-spacing:.01em;
+  margin-bottom:1.4em;
+}
+.statement-kr p:last-child{margin-bottom:0;}
+.statement-en{
+  border-left:1px solid var(--grey);
+  padding-left:clamp(1.2rem,2.5vw,2rem);
+  align-self:center;
+}
+.statement-en p{
+  font-family:var(--font-en);
+  font-style:italic;
+  font-size:clamp(.95rem,1.3vw,1.1rem);
+  line-height:1.75;
+  color:var(--grey);
+  margin-bottom:1.3em;
+}
+.statement-en p:last-child{margin-bottom:0;}
+@media (max-width:820px){
+  .statement-grid{grid-template-columns:1fr;}
+  .statement-en{border-left:none; border-top:1px solid var(--grey); padding-left:0; padding-top:1.5rem;}
+}
+
+/* ============================================================
+   WORKS — shared system
+   ============================================================ */
+#works{position:relative;}
+.work{
+  position:relative;
+  padding:clamp(4rem,9vw,7rem) clamp(1.2rem,5vw,4rem);
+  min-height:100svh;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+}
+.work ::selection{ background:var(--accent); color:var(--cream); }
+.ghost-num{
+  position:absolute;
+  top:clamp(1rem,4vw,2.5rem);
+  font-family:var(--font-en);
+  font-weight:600;
+  font-size:clamp(6rem,20vw,15rem);
+  line-height:1;
+  color:var(--ink);
+  opacity:.06;
+  z-index:0;
+  pointer-events:none;
+  user-select:none;
+  will-change:transform;
+}
+.work-title{
+  font-family:var(--font-kr);
+  font-weight:200;
+  font-size:clamp(3rem,8vw,7rem);
+  line-height:1.03;
+  letter-spacing:.01em;
+  color:var(--ink);
+}
+.work-title .ch{
+  display:inline-block;
+  opacity:0; transform:translateY(.4em);
+  transition:opacity .7s var(--ease), transform .7s var(--ease);
+  transition-delay:calc(var(--i,0) * 45ms);
+}
+.js .work-title .ch{opacity:0;}
+.in-view .work-title .ch{opacity:1; transform:translateY(0);}
+@media (prefers-reduced-motion: reduce){
+  .work-title .ch{opacity:1!important; transform:none!important; transition:none!important;}
+}
+.work-subtitle{
+  font-family:var(--font-en);
+  font-style:italic;
+  font-weight:500;
+  font-size:clamp(1rem,1.8vw,1.35rem);
+  color:var(--accent);
+  margin-top:.5rem;
+}
+.work-specs{display:flex; flex-wrap:wrap; gap:1.6rem 2.2rem; margin:1.1rem 0 1.4rem;}
+.work-specs>div{display:flex; flex-direction:column; gap:.25rem;}
+.work-specs dt{
+  font-size:.66rem; letter-spacing:.22em; text-transform:uppercase; color:var(--grey);
+}
+.work-specs dd{font-family:var(--font-meta); font-size:.85rem; color:var(--ink);}
+.work-desc{
+  font-family:var(--font-meta);
+  font-weight:300;
+  font-size:.98rem;
+  line-height:1.85;
+  color:var(--ink);
+  max-width:38em;
+}
+
+/* lens / hover-magnifier + lightbox trigger wrapper */
+.lens-wrap{
+  position:relative;
+  cursor:pointer;
+  overflow:hidden;
+}
+.lens-wrap img{width:100%; height:auto; background-size:cover; background-position:center;}
+.lens{
+  position:absolute;
+  width:190px; height:190px;
+  border-radius:50%;
+  border:1px solid rgba(246,241,230,.85);
+  box-shadow:0 0 0 1px rgba(31,29,26,.25), 0 10px 30px rgba(31,29,26,.35);
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .25s var(--ease);
+  background-repeat:no-repeat;
+  z-index:5;
+}
+.lens.is-active{opacity:1;}
+@media (hover:none), (pointer:coarse){ .lens{display:none;} }
+
+/* ---- 01 moran — full-bleed pattern ---- */
+.work--moran{
+  --accent:var(--a-moran);
+  padding:0;
+  min-height:100vh;
+}
+.work--moran .work-media{
+  position:absolute; inset:0; width:100%; height:100%;
+}
+.work--moran .work-media picture,
+.work--moran .work-media img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+}
+.js .work--moran .work-media::after{
+  content:""; position:absolute; inset:-10%;
+  background-image:var(--moran-bg);
+  background-size:60%;
+  background-repeat:repeat;
+  opacity:.16;
+  mix-blend-mode:multiply;
+  animation:moranDrift 60s linear infinite alternate;
+}
+@keyframes moranDrift{ from{background-position:0 0;} to{background-position:180px 120px;} }
+@media (prefers-reduced-motion: reduce){ .js .work--moran .work-media::after{animation:none;} }
+.work--moran .work-panel{
+  position:relative; z-index:2;
+  background:var(--cream);
+  padding:clamp(1.6rem,3.5vw,2.6rem);
+  max-width:min(430px,86vw);
+  margin-left:auto;
+  box-shadow:0 20px 60px rgba(31,29,26,.28);
+}
+.work--moran .work-media{cursor:pointer;}
+
+/* ---- 02 blooming-mind — catalog plate ---- */
+.work--bloom{
+  --accent:var(--a-bloom);
+  background:var(--cream);
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  gap:clamp(1.5rem,4vw,4rem);
+  align-items:center;
+}
+.work--bloom .work-media{
+  grid-column:2;
+  max-height:78vh;
+  box-shadow:0 30px 70px -20px rgba(31,29,26,.35);
+}
+.work--bloom .work-media img{max-height:78vh; width:auto; margin:0 auto;}
+.work--bloom .work-meta{grid-column:3; max-width:26em; border-left:1px solid var(--grey); padding-left:clamp(1.4rem,2.5vw,2.2rem);}
+.work--bloom .work-title{font-size:clamp(2.2rem,4.4vw,4.2rem);}
+@media (max-width:980px){
+  .work--bloom{grid-template-columns:1fr;}
+  .work--bloom .work-media{grid-column:1; max-height:60vh;}
+  .work--bloom .work-media img{max-height:60vh;}
+  .work--bloom .work-meta{grid-column:1; border-left:none; padding-left:0; border-top:1px solid var(--grey); padding-top:1.5rem;}
+}
+
+/* ---- 03 summer-lotus — asymmetric / vertical scroll title ---- */
+.work--lotus{
+  --accent:var(--a-lotus);
+  background:var(--cream);
+  display:grid;
+  grid-template-columns:auto 1fr 1.3fr;
+  gap:clamp(1rem,3vw,3rem);
+  align-items:center;
+}
+.work--lotus .work-title-vertical{
+  writing-mode:vertical-rl;
+  text-orientation:mixed;
+  font-family:var(--font-kr);
+  font-weight:200;
+  font-size:clamp(2.2rem,6vw,4.5rem);
+  letter-spacing:.14em;
+  color:var(--ink);
+  height:min(70vh,620px);
+}
+.work--lotus .work-meta{max-width:24em;}
+.work--lotus .work-media{max-height:78vh; justify-self:end;}
+.work--lotus .work-media img{max-height:78vh; width:auto;}
+@media (max-width:980px){
+  .work--lotus{grid-template-columns:1fr;}
+  .work--lotus .work-title-vertical{writing-mode:horizontal-tb; height:auto;}
+  .work--lotus .work-media{justify-self:center; max-height:60vh;}
+  .work--lotus .work-media img{max-height:60vh;}
+}
+
+/* ---- 04/05 untitled diptych — signature unroll moment ---- */
+.work--untitled{
+  --accent:var(--a-untitled);
+  background:var(--cream);
+  flex-direction:column;
+  gap:2.5rem;
+  min-height:auto;
+  padding-top:clamp(5rem,10vw,7rem);
+  padding-bottom:clamp(5rem,10vw,7rem);
+}
+.untitled-head{text-align:center; position:relative; z-index:2;}
+.untitled-head .work-subtitle{display:block; margin-top:.6rem;}
+.untitled-note{
+  font-family:var(--font-meta);
+  font-size:.78rem;
+  color:var(--grey);
+  max-width:34em;
+  margin:1rem auto 0;
+  line-height:1.7;
+}
+.diptych{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(3rem,8vw,7rem);
+  align-items:start;
+  max-width:1100px;
+  margin:2rem auto 0;
+  position:relative;
+  z-index:2;
+}
+.diptych-panel{position:relative;}
+.diptych-panel .panel-num{
+  font-family:var(--font-en);
+  font-weight:600;
+  font-size:.85rem;
+  color:var(--accent);
+  letter-spacing:.1em;
+  margin-bottom:.8rem;
+  display:block;
+}
+.diptych-wipe{overflow:hidden;}
+.diptych-wipe img{width:100%; height:auto;}
+.js .diptych-wipe{clip-path:inset(0 0 100% 0); transition:clip-path 1.4s var(--ease);}
+.js .diptych-wipe.in-view{clip-path:inset(0 0 0% 0);}
+@media (prefers-reduced-motion: reduce){
+  .js .diptych-wipe{clip-path:none; transition:none;}
+}
+.diptych-panel .panel-rule{
+  max-width:6em;
+  margin:1rem auto 0;
+}
+.diptych-panel .panel-caption{
+  margin-top:.9rem;
+  font-family:var(--font-meta);
+  font-size:.8rem;
+  color:var(--grey);
+  text-align:center;
+}
+.diptych-panel .panel-desc{
+  font-family:var(--font-meta);
+  font-weight:300;
+  font-size:.86rem;
+  line-height:1.75;
+  color:var(--ink);
+  text-align:center;
+  max-width:30em;
+  margin:.7rem auto 0;
+}
+@media (max-width:820px){ .diptych{grid-template-columns:1fr; gap:3rem;} }
+
+/* ---- 06 garden-wishes — crescendo ---- */
+.work--garden{
+  --accent:var(--a-garden);
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:1.5rem;
+}
+.work--garden .work-media{max-width:min(760px,88vw); margin:1.5rem auto 0; box-shadow:0 40px 90px -25px rgba(31,29,26,.4);}
+.work--garden .work-media img{width:100%; height:auto;}
+.work--garden .work-meta{max-width:40em; margin:0 auto;}
+.work--garden .work-desc{margin:0 auto;}
+.garden-detail{
+  margin-top:2.4rem;
+  display:flex; flex-direction:column; align-items:center; gap:.7rem;
+}
+.garden-detail .detail-frame{
+  width:min(340px,70vw); aspect-ratio:16/10; overflow:hidden;
+  box-shadow:0 20px 45px -15px rgba(31,29,26,.35);
+}
+.garden-detail img{width:100%; height:100%; object-fit:cover; object-position:35% 70%;}
+.garden-detail figcaption{
+  font-family:var(--font-en); font-style:italic; font-size:.85rem; color:var(--grey);
+}
+
+/* ---- 07 hedgehog — palate cleanser ---- */
+.work--hedgehog{
+  --accent:var(--a-hedgehog);
+  display:grid;
+  grid-template-columns:1.4fr .8fr;
+  align-items:center;
+  gap:clamp(1.5rem,4vw,4rem);
+}
+.work--hedgehog .work-title{font-size:clamp(3.4rem,10vw,9rem);}
+.work--hedgehog .work-media{
+  max-width:230px; margin:0 auto;
+  box-shadow:0 20px 45px -15px rgba(31,29,26,.3);
+}
+.work--hedgehog .work-media img{width:100%; height:auto;}
+@media (max-width:900px){
+  .work--hedgehog{grid-template-columns:1fr;}
+  .work--hedgehog .work-media{order:-1; max-width:180px;}
+}
+
+/* ---- 08 teal-prelude — quiet coda, cool grey ---- */
+.work--teal{
+  --accent:var(--a-teal);
+  background:var(--grey-cool);
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:1.4rem;
+}
+.work--teal .work-media{max-width:min(480px,80vw); margin:1.5rem auto 0; box-shadow:0 30px 60px -20px rgba(31,29,26,.25);}
+.work--teal .work-media img{width:100%; height:auto;}
+.work--teal .work-meta{max-width:36em; margin:0 auto;}
+.work--teal .work-desc{margin:0 auto;}
+.work--teal .ghost-num{color:var(--ink);}
+
+/* generic media placeholder / LQIP blur-up */
+.lens-wrap img{
+  background-repeat:no-repeat; background-size:cover; background-position:center;
+  transition:filter .6s var(--ease);
+}
+.lens-wrap img.is-loaded{filter:none;}
+.lens-wrap img:not(.is-loaded){filter:blur(14px) saturate(1.1);}
+
+/* ============================================================
+   EXHIBITION TIMELINE
+   ============================================================ */
+.exhibitions{
+  padding:clamp(5rem,10vw,8rem) 0;
+  background:var(--cream);
+}
+.exhibitions .section-head{
+  padding:0 clamp(1.5rem,6vw,5rem);
+  margin-bottom:2.6rem;
+  display:flex; align-items:baseline; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+}
+.exhibitions h2{
+  font-family:var(--font-kr); font-weight:200;
+  font-size:clamp(2rem,5vw,3.4rem);
+}
+.timeline-hint{font-family:var(--font-en); font-style:italic; font-size:.85rem; color:var(--grey);}
+.timeline-track{
+  display:flex;
+  gap:1.6rem;
+  overflow-x:auto;
+  padding:1rem clamp(1.5rem,6vw,5rem) 2.5rem;
+  scroll-snap-type:x proximity;
+  scrollbar-width:thin;
+  scrollbar-color:var(--grey) transparent;
+}
+.timeline-track::-webkit-scrollbar{height:6px;}
+.timeline-track::-webkit-scrollbar-thumb{background:var(--grey); border-radius:3px;}
+.tl-card{
+  scroll-snap-align:start;
+  flex:0 0 auto;
+  width:min(300px,72vw);
+  background:#fff0;
+  border:1px solid rgba(138,131,120,.35);
+  padding:1.4rem 1.3rem;
+  transition:transform .5s var(--ease), box-shadow .5s var(--ease), border-color .5s var(--ease);
+}
+.tl-card:hover, .tl-card:focus-within{
+  transform:translateY(-8px);
+  border-color:var(--ink);
+  box-shadow:0 20px 40px -18px rgba(31,29,26,.35);
+}
+.tl-date{
+  font-family:var(--font-en); font-style:italic; font-weight:500;
+  color:var(--grey); font-size:.9rem; margin-bottom:.6rem; display:block;
+}
+.tl-title{font-family:var(--font-meta); font-size:.94rem; font-weight:500; line-height:1.5; margin-bottom:.7rem;}
+.tl-city{
+  display:inline-block;
+  font-size:.66rem; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink); background:rgba(31,29,26,.06);
+  padding:.2em .55em; border-radius:2px; margin:.15rem .3rem .15rem 0;
+}
+.tl-chip{
+  margin-top:.9rem;
+  font-family:var(--font-en); font-style:italic; font-size:.82rem;
+  color:var(--ink); opacity:.75;
+  border-top:1px dashed rgba(138,131,120,.5);
+  padding-top:.7rem;
+}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about{
+  padding:clamp(5rem,10vw,8rem) clamp(1.5rem,6vw,5rem);
+  max-width:1300px; margin:0 auto;
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:clamp(2.5rem,6vw,5rem);
+  align-items:start;
+}
+.about-portrait{
+  position:relative;
+  filter:sepia(.18) saturate(.85) contrast(1.02);
+}
+.about-portrait::after{
+  content:"";
+  position:absolute; inset:0;
+  background:rgba(31,29,26,.09);
+  mix-blend-mode:multiply;
+}
+.about-portrait img{width:100%; height:auto;}
+.about h2{
+  font-family:var(--font-kr); font-weight:200; font-size:clamp(2.2rem,5vw,3.4rem); margin-bottom:.3rem;
+}
+.about .about-en-name{
+  font-family:var(--font-en); font-style:italic; color:var(--grey); font-size:1.1rem; margin-bottom:1.8rem; display:block;
+}
+.about-block{margin-bottom:2rem;}
+.about-block h3{
+  font-size:.7rem; letter-spacing:.24em; text-transform:uppercase; color:var(--grey); margin-bottom:.9rem;
+}
+.about-block li{
+  font-size:.92rem; line-height:1.8; padding-left:1.1em; position:relative; margin-bottom:.35rem;
+}
+.about-block li::before{content:"—"; position:absolute; left:0; color:var(--grey);}
+.cv-list li{display:flex; gap:.8em; align-items:baseline; flex-wrap:wrap;}
+.cv-year{font-family:var(--font-en); font-style:italic; color:var(--grey); font-size:.85rem;}
+@media (max-width:900px){ .about{grid-template-columns:1fr;} .about-portrait{max-width:280px; margin:0 auto;} }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer{
+  position:relative;
+  background:var(--ink);
+  color:var(--cream);
+  padding:clamp(4rem,8vw,6rem) clamp(1.5rem,6vw,5rem) 2.5rem;
+  overflow:hidden;
+}
+.footer-inner{
+  display:flex; flex-wrap:wrap; justify-content:space-between; gap:2.5rem;
+  max-width:1300px; margin:0 auto;
+}
+.footer-mark{font-family:var(--font-kr); font-weight:200; font-size:clamp(2rem,5vw,3.2rem);}
+.footer-contact{font-family:var(--font-en); font-style:italic; font-size:1.05rem; line-height:2;}
+.footer-contact a{border-bottom:1px solid rgba(246,241,230,.4); transition:opacity .3s var(--ease);}
+.footer-contact a:hover{opacity:.6;}
+.footer-meta{
+  font-family:var(--font-meta); font-size:.72rem; letter-spacing:.08em; color:rgba(246,241,230,.5);
+  max-width:1300px; margin:3.5rem auto 0; padding-top:1.6rem;
+  border-top:1px solid rgba(246,241,230,.15);
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem;
+}
+.hedgehog-track{
+  position:relative; height:56px; max-width:1300px; margin:2.5rem auto 0; overflow:hidden;
+}
+.hedgehog-walk{
+  position:absolute; bottom:0; left:-60px; width:46px; height:46px;
+  opacity:.9;
+  transform:translateX(0);
+}
+.js .hedgehog-walk{ transition:transform 2.6s var(--ease), opacity .3s linear; }
+.js .hedgehog-track:not(.walked) .hedgehog-walk{ transform:translateX(0); }
+.js .hedgehog-track.walked .hedgehog-walk{
+  transform:translateX(calc(100vw));
+}
+@media (prefers-reduced-motion: reduce){
+  .js .hedgehog-walk{transition:none;}
+  .js .hedgehog-track.walked .hedgehog-walk{transform:translateX(40px);}
+}
+
+/* ============================================================
+   LIGHTBOX
+   ============================================================ */
+.lightbox{
+  position:fixed; inset:0; z-index:9990;
+  display:none;
+  align-items:center; justify-content:center;
+  background:rgba(31,29,26,.92);
+  padding:4vh 4vw;
+}
+.lightbox.is-open{display:flex;}
+.lightbox img{
+  max-width:100%; max-height:88vh; width:auto; height:auto; margin:0 auto;
+  box-shadow:0 30px 80px rgba(0,0,0,.5);
+}
+.lightbox-figure{max-width:92vw;}
+.lightbox-cap{
+  color:var(--cream); text-align:center; margin-top:1rem;
+  font-family:var(--font-en); font-style:italic; font-size:.95rem; opacity:.85;
+}
+.lightbox-close{
+  position:absolute; top:1.5rem; right:1.5rem;
+  width:44px; height:44px; border-radius:50%;
+  border:1px solid rgba(246,241,230,.5);
+  color:var(--cream);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.3rem;
+}
+.lightbox-close:hover, .lightbox-close:focus-visible{background:rgba(246,241,230,.12);}
+
+/* Utility for i18n crossfade */
+.i18n{ transition:opacity .3s ease; }
+.i18n.is-fading{opacity:0;}
+span.i18n{ display:inline; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     CUSTOM CURSOR
+     ============================================================ -->
+<div class="cursor-dot" aria-hidden="true"></div>
+
+<!-- ============================================================
+     LOADER
+     ============================================================ -->
+<div class="loader" id="loader" role="presentation" aria-hidden="true">
+  <div class="loader-title"><span>이</span><span>다</span><span>미</span></div>
+</div>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<header>
+<nav class="nav" aria-label="주 메뉴 / Main navigation">
+  <a href="#cover" class="nav-mark">이다미</a>
+  <div class="nav-links">
+    <a href="#works" class="i18n" data-kr="작품" data-en="Works">작품</a>
+    <a href="#exhibitions" class="i18n" data-kr="전시" data-en="Exhibitions">전시</a>
+    <a href="#about" class="i18n" data-kr="작가" data-en="About">작가</a>
+    <button type="button" class="lang-toggle" id="langToggle" aria-label="언어 전환 / Switch language">
+      <span data-lang-opt="ko" class="is-active">KR</span><span aria-hidden="true">/</span><span data-lang-opt="en">EN</span>
+    </button>
+  </div>
+</nav>
+</header>
+
+<main>
+
+<!-- ============================================================
+     COVER
+     ============================================================ -->
+<section id="cover" class="cover">
+  <div class="cover-inner">
+    <p class="cover-kicker i18n" data-kr="지금의 민화" data-en="MINHWA, PRESENT TENSE">지금의 민화</p>
+    <h1 class="cover-title">이다미</h1>
+    <p class="cover-sub i18n" data-kr="민화 · MINHWA WORKS 2025–2026" data-en="DAMI LEE — MINHWA WORKS 2025–2026">민화 · MINHWA WORKS 2025–2026</p>
+    <svg class="cover-motif" viewBox="0 0 48 48" aria-hidden="true">
+      <path d="M24 8c4 4 4 10 0 14-4-4-4-10 0-14z" fill="var(--ink)" opacity=".75"/>
+      <path d="M24 22c5 0 9 4 9 9s-4 9-9 9-9-4-9-9 4-9 9-9z" fill="none" stroke="var(--grey)" stroke-width="1.1" opacity=".6"/>
+    </svg>
+    <a href="#works" class="cover-scroll i18n" data-kr="작품 보기" data-en="View the Works">작품 보기</a>
+  </div>
+</section>
+
+<!-- ============================================================
+     ARTIST STATEMENT
+     (KR set large as typography; EN translation in a fixed side
+     column per the print-mirroring spread design — always shown
+     together rather than toggled, to match the museum-catalog
+     bilingual convention used throughout this site)
+     ============================================================ -->
+<section id="statement" class="statement reveal" aria-labelledby="statement-label">
+  <h2 class="section-label" id="statement-label" style="text-align:center;">
+    <span class="i18n" data-kr="작가노트" data-en="ARTIST STATEMENT">작가노트</span>
+  </h2>
+  <div class="statement-grid">
+    <div class="statement-kr" lang="ko">
+      <p>나의 작업은 전통의 흔적 속에서 현재의 호흡을 찾는 여정이다. 꽃과 새, 책과 기물, 그리고 연잎과 원앙은 오래전부터 길상과 삶의 지혜를 상징해 왔다. 나는 이 상징들을 빌려 오늘을 살아가는 우리가 여전히 꿈꾸는 풍요와 평안, 아름다움을 이야기하고자 한다.</p>
+      <p>나는 전통 회화의 문법을 따르면서도, 그것을 단순한 복원이 아니라 동시대적 시선 속에서 재해석하려 한다. 이는 과거와 현재가 서로 대화하고, 그 속에서 새로운 미감을 피워내는 과정이다.</p>
+      <p>나의 그림은 '현재의 나'를 비추는 거울이다. 익숙하면서도 낯선, 풍성한 이 그림 속에서 보는 이 또한 자신의 이야기를 발견하길 바란다.</p>
+    </div>
+    <aside class="statement-en" lang="en">
+      <p>My work is a journey to find the breath of the present within the traces of tradition. Flowers and birds, books and vessels, lotus leaves and mandarin ducks have long symbolized good fortune and the wisdom of life. Through these symbols I want to speak of the abundance, peace, and beauty we, living today, still dream of.</p>
+      <p>I follow the grammar of traditional painting, yet try to reinterpret it not as mere restoration but through a contemporary gaze — a process in which past and present converse, and from that conversation a new sensibility blooms.</p>
+      <p>My paintings are a mirror reflecting the "self of the present." Familiar yet unfamiliar, abundant in this way, I hope the viewer, too, discovers their own story within them.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- ============================================================
+     WORKS 01 – 08
+     ============================================================ -->
+<div id="works">
+
+  <!-- 01 · 모란보자기 · Peony Bojagi -->
+  <section class="work work--moran reveal" aria-labelledby="w01-title">
+    <span class="ghost-num" aria-hidden="true">01</span>
+    <div class="work-media lens-wrap" data-lightbox="assets/web/moran.jpg" data-cap-kr="모란보자기 · Peony Bojagi" data-cap-en="Peony Bojagi · 모란보자기" tabindex="0" role="button" aria-label="모란보자기 확대 보기 / View Peony Bojagi enlarged">
+      <picture>
+        <source srcset="assets/web/moran.webp" type="image/webp">
+        <img src="assets/web/moran.jpg" width="2400" height="2273" loading="lazy"
+             style="background-image:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAXABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC5tbYQwwM5zjpQxwAAFZT0J603I4DH+HjBp5KByAv8PPPHBrIoYXOwbxyx6mil2gbgxJwCORRQAofAXACsehFKRtY7j8w5wPeiigCMsWZjtK55wD1FFFFF7Af/2Q==');"
+             alt="모란보자기, 순지에 수간분채·봉채, 54×57cm, 2025 / Peony Bojagi, natural pigment and gum-based color on Korean sunji paper, 54×57cm, 2025">
+      </picture>
+    </div>
+    <div class="work-panel">
+      <div class="work-meta">
+        <h2 class="work-title kinetic" id="w01-title" data-kr="모란보자기" data-en="Peony Bojagi">모란보자기</h2>
+        <p class="work-subtitle i18n" data-kr="Peony Bojagi" data-en="모란보자기">Peony Bojagi</p>
+        <hr class="rule">
+        <dl class="work-specs">
+          <div><dt class="i18n" data-kr="크기" data-en="SIZE">크기</dt><dd>54 × 57 cm</dd></div>
+          <div><dt class="i18n" data-kr="년도" data-en="YEAR">년도</dt><dd>2025</dd></div>
+          <div><dt class="i18n" data-kr="재료" data-en="MEDIUM">재료</dt><dd class="i18n" data-kr="순지에 수간분채·봉채" data-en="Natural pigment & gum-based color on Korean sunji paper">순지에 수간분채·봉채</dd></div>
+        </dl>
+        <!-- DRAFT: description authored by design team, pending artist approval -->
+        <p class="work-desc i18n" data-kr="화면 가득 핀 모란과 새들이 보자기처럼 화면의 네 모서리까지 번져나간다. 예로부터 모란은 부귀와 영화를, 감싸는 보자기는 정성과 축복을 상징해 왔다. 전통 문양의 밀도를 현대적 색감으로 다시 짜낸 작업이다." data-en="Peonies and birds bloom edge to edge, spilling past all four corners like a wrapping cloth. The peony has long stood for wealth and honor, the bojagi for the care bundled inside it. Traditional density, rewoven here in a contemporary palette.">화면 가득 핀 모란과 새들이 보자기처럼 화면의 네 모서리까지 번져나간다. 예로부터 모란은 부귀와 영화를, 감싸는 보자기는 정성과 축복을 상징해 왔다. 전통 문양의 밀도를 현대적 색감으로 다시 짜낸 작업이다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 · 생각이 피어나는 자리 · Blooming Mind -->
+  <section class="work work--bloom reveal" aria-labelledby="w02-title">
+    <span class="ghost-num" aria-hidden="true">02</span>
+    <div class="work-media lens-wrap" data-lightbox="assets/web/blooming-mind.jpg" data-cap-kr="생각이 피어나는 자리 · Blooming Mind" data-cap-en="Blooming Mind · 생각이 피어나는 자리" tabindex="0" role="button" aria-label="생각이 피어나는 자리 확대 보기 / View Blooming Mind enlarged">
+      <picture>
+        <source srcset="assets/web/blooming-mind.webp" type="image/webp">
+        <img src="assets/web/blooming-mind.jpg" width="1376" height="2400" loading="lazy"
+             style="background-image:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAqABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDSklKSRqF3bv0pouFMuzB+8FzUjOEHJ/AdTVAXG4iSCNWbfnD/ACnisbFGhE4kViOzFfyOKKjssiNg6qp3k7VOQM80UwKepSNFNFtK/OD944Axj/GqEd6zSRyExKzZGd4GAPXiresEedbbtvR/vIXHbtUVltto7CT7OHc+YCuApP51SS3C7LelXP2qSZtoXAHAOf8APSiotEIMt04GCxzj05PFFSwH6n5yyQyQMwZQw+UHPOKgktbx4RPPO29OVXkkZ4rVzSg0XAzdHgkjeSV1KhhgZ7nNFaVFID//2Q==');"
+             alt="생각이 피어나는 자리, 순지에 수간분채·봉채, 50×100cm, 2025 / Blooming Mind, natural pigment and gum-based color on Korean sunji paper, 50×100cm, 2025">
+      </picture>
+    </div>
+    <div class="work-meta">
+      <h2 class="work-title kinetic" id="w02-title" data-kr="생각이 피어나는 자리" data-en="Blooming Mind">생각이 피어나는 자리</h2>
+      <p class="work-subtitle i18n" data-kr="Blooming Mind" data-en="생각이 피어나는 자리">Blooming Mind</p>
+      <hr class="rule">
+      <dl class="work-specs">
+        <div><dt class="i18n" data-kr="크기" data-en="SIZE">크기</dt><dd>50 × 100 cm</dd></div>
+        <div><dt class="i18n" data-kr="년도" data-en="YEAR">년도</dt><dd>2025</dd></div>
+        <div><dt class="i18n" data-kr="재료" data-en="MEDIUM">재료</dt><dd class="i18n" data-kr="순지에 수간분채·봉채" data-en="Natural pigment & gum-based color on Korean sunji paper">순지에 수간분채·봉채</dd></div>
+      </dl>
+      <!-- DRAFT: description authored by design team, pending artist approval -->
+      <p class="work-desc i18n" data-kr="책과 붓, 호박과 연봉오리 항아리가 층층이 쌓인 책거리 정물이다. 학문과 사유의 도구들이 마치 살아있는 식물처럼 자라난다. 생각이 뿌리내리고 피어나는 자리를 그렸다." data-en="Books, brushes, pumpkins, and a lotus-bud vessel stack in quiet tiers — a scholar's chaekgeori still life. The tools of study and thought grow here as if they were living plants: a painting of the place where an idea takes root and blooms.">책과 붓, 호박과 연봉오리 항아리가 층층이 쌓인 책거리 정물이다. 학문과 사유의 도구들이 마치 살아있는 식물처럼 자라난다. 생각이 뿌리내리고 피어나는 자리를 그렸다.</p>
+    </div>
+  </section>
+
+  <!-- 03 · 연못위의 대화 · Summer Lotus -->
+  <section class="work work--lotus reveal" aria-labelledby="w03-title">
+    <span class="ghost-num" aria-hidden="true">03</span>
+    <h2 class="work-title-vertical kinetic" id="w03-title" data-kr="연못위의 대화" data-en="Summer Lotus">연못위의 대화</h2>
+    <div class="work-meta">
+      <p class="work-subtitle i18n" data-kr="Summer Lotus" data-en="연못위의 대화" style="margin-top:0;">Summer Lotus</p>
+      <hr class="rule">
+      <dl class="work-specs">
+        <div><dt class="i18n" data-kr="크기" data-en="SIZE">크기</dt><dd>35 × 65 cm</dd></div>
+        <div><dt class="i18n" data-kr="년도" data-en="YEAR">년도</dt><dd>2025</dd></div>
+        <div><dt class="i18n" data-kr="재료" data-en="MEDIUM">재료</dt><dd class="i18n" data-kr="순지에 수간분채·봉채" data-en="Natural pigment & gum-based color on Korean sunji paper">순지에 수간분채·봉채</dd></div>
+      </dl>
+      <!-- DRAFT: description authored by design team, pending artist approval -->
+      <p class="work-desc i18n" data-kr="연꽃 아래 원앙 한 쌍이 나란히 헤엄친다. 원앙은 예로부터 변치 않는 동반자의 상징이었다. 2025년 갤러리 일백헌 와인라벨 공모에 선정된 작품이다." data-en="A pair of mandarin ducks glides side by side beneath the lotus blooms. Mandarin ducks have long symbolized devoted partnership. Selected for the Gallery Ilbaekheon wine-label commission, 2025.">연꽃 아래 원앙 한 쌍이 나란히 헤엄친다. 원앙은 예로부터 변치 않는 동반자의 상징이었다. 2025년 갤러리 일백헌 와인라벨 공모에 선정된 작품이다.</p>
+    </div>
+    <div class="work-media lens-wrap" data-lightbox="assets/web/summer-lotus.jpg" data-cap-kr="연못위의 대화 · Summer Lotus" data-cap-en="Summer Lotus · 연못위의 대화" tabindex="0" role="button" aria-label="연못위의 대화 확대 보기 / View Summer Lotus enlarged">
+      <picture>
+        <source srcset="assets/web/summer-lotus.webp" type="image/webp">
+        <img src="assets/web/summer-lotus.jpg" width="1181" height="2400" loading="lazy"
+             style="background-image:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAxABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDoJHWKNnc4VRkmo4J1uELoCBnvVa71GGGXy2Bb19D+FTRSqYlKqwU9AB0rKw1qT9aKajbh/LFFIZk3GkGW6Z3fcp5wDg/nUdxcXVgqCNt0YOCHHI/xpLPVV3zR3TMGLZVj+o9qtCW2vbVzI+EXk8cr6fzxVvR6krbQn066NzGxZQrA5wKKbYJHGSkSuQRnzGGAfYUVLHr1C9t4pw25ArHnJ9ajt1jWQbsKAOMdqs3IXcAc471QW3xIXEbswcAZmxlfXGMfhQnugZciV3nZ2uGZQ2Qg/l9KKfbKyl98YT5sLhs5HrRSGWW6U1uv40UUxB3ooopDP//Z');"
+             alt="연못위의 대화, 순지에 수간분채·봉채, 35×65cm, 2025 / Summer Lotus, natural pigment and gum-based color on Korean sunji paper, 35×65cm, 2025">
+      </picture>
+    </div>
+  </section>
+
+  <!-- 04/05 · 무제-1 / 무제-2 · Untitled I / II — DIPTYCH, signature moment
+       ============================================================
+       PENDING: title & description for both works are still being
+       decided by the artist. Placeholder "무제 / Untitled" is used
+       below. This entire block is isolated and clearly marked so it
+       is trivial to swap once final titles/copy are approved.
+       ============================================================ -->
+  <section class="work work--untitled reveal" aria-labelledby="w04-title">
+    <div class="untitled-head">
+      <span class="ghost-num" aria-hidden="true" style="position:static; display:inline-block; opacity:.1;">04 · 05</span>
+      <h2 class="work-title kinetic" id="w04-title" data-kr="무제" data-en="Untitled">무제</h2>
+      <p class="work-subtitle i18n" data-kr="Untitled" data-en="무제">Untitled</p>
+      <p class="untitled-note i18n"
+         data-kr="무제-1 · 무제-2 — 120×39cm 세로 두루마리 한 쌍. 최종 제목과 설명은 작가 확정 후 게시됩니다."
+         data-en="Untitled I · Untitled II — a pair of 120×39cm vertical scrolls. Final titles and descriptions pending the artist's approval.">무제-1 · 무제-2 — 120×39cm 세로 두루마리 한 쌍. 최종 제목과 설명은 작가 확정 후 게시됩니다.</p>
+    </div>
+    <div class="diptych">
+      <div class="diptych-panel">
+        <span class="panel-num">04</span>
+        <div class="diptych-wipe lens-wrap" data-lightbox="assets/web/untitled-1.jpg" data-cap-kr="무제-1 · Untitled I" data-cap-en="Untitled I · 무제-1" tabindex="0" role="button" aria-label="무제-1 확대 보기 / View Untitled I enlarged">
+          <picture>
+            <source srcset="assets/web/untitled-1.webp" type="image/webp">
+            <img src="assets/web/untitled-1.jpg" width="757" height="2400" loading="lazy"
+                 style="background-image:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCABMABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDoqSmzSiJckFucYFQpdCUMUjkOO2OazLLNFQQpNuDvIdpH3COfxooEL9nP2gys24dlI6GqkjSLKSAyj72eladQS7ZlwuGKsDyeKAIWuGjjXeG3FhuyMY+lFSXVzHGrK33ivA7UUrBcknlWJOcEnoPWq3mtFEjLGCjDj29quFQTkgE4xnFZdxqrpM8USLlGxkntQF7C3DPvYMxBzwfU/Siq9zdxTvhI2Em7BbqPwoo16C0ZtbgM+vpXOMzNdys425Jzjt6g1vythT1z2wKqSLb3CnzYlLHIJ7j8aBsyrZg8gdTnI5JH6UVJfwxQSxJFIzY5xu5FFPcRtTyIuN/TPNYi3M292VQAW+76VNPcSTN854z0HSmEFSuCct3rLnKsRzrumEnG/vxRVsIseMDk9SaKE5Dsj//Z');"
+                 alt="무제-1, 순지에 수간분채·봉채, 120×39cm, 2025 / Untitled I, natural pigment and gum-based color on Korean sunji paper, 120×39cm, 2025">
+          </picture>
+        </div>
+        <hr class="rule panel-rule">
+        <p class="panel-caption i18n" data-kr="무제-1 · 120 × 39cm · 2025" data-en="Untitled I · 120 × 39cm · 2025">무제-1 · 120 × 39cm · 2025</p>
+        <!-- DRAFT: description authored by design team, pending artist approval — title also pending, see untitled-note above -->
+        <p class="panel-desc i18n" data-kr="청록빛 괴석과 야생란 위로 분홍과 흰 모란이 두루마리 전체를 타고 피어오른다." data-en="Pink and white peonies rise over a blue-green scholar's rock and wild orchids, unfurling the scroll's full length.">청록빛 괴석과 야생란 위로 분홍과 흰 모란이 두루마리 전체를 타고 피어오른다.</p>
+      </div>
+      <div class="diptych-panel">
+        <span class="panel-num">05</span>
+        <div class="diptych-wipe lens-wrap" data-lightbox="assets/web/untitled-2.jpg" data-cap-kr="무제-2 · Untitled II" data-cap-en="Untitled II · 무제-2" tabindex="0" role="button" aria-label="무제-2 확대 보기 / View Untitled II enlarged">
+          <picture>
+            <source srcset="assets/web/untitled-2.webp" type="image/webp">
+            <img src="assets/web/untitled-2.jpg" width="757" height="2400" loading="lazy"
+                 style="background-image:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCABMABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDosUmQelVBczCQqygsOqgVPCwfJUAeo71jdF2ZJRS0UwKVzmO4WZFb0Ye1JFIftGIwAG7HtU1vcRzSMqOJOPXtUUUtrHeGEMwlHADDA/Co5eo+Z7FxW3Dpg9xRS45oqxGJpt6lnamOWKTJZnXAzk9MfX609rd7nUvPkZY9uBjvgepzVcab5SrKXYuGySDwDUl1qs0cIIt06gM2QR+VTzXdkJRSj7xrw3Uc8kkahwyddy4z9KKh0+5+0w+ZjbuPTHeiqAoxF4Z1EhJCk7W9R6GtC5sYLuMKwwODleM02KBZRufPbpxVupitBvsMiiWGJY0GFUYFFPoqhFCG6+RgmC3Y9hU0FxlAJXQv/s9K59ZHJ+8Rn0qRUIOd7Vnewk7nSZyKKp6cSYDkk896KtO6Gf/Z');"
+                 alt="무제-2, 순지에 수간분채·봉채, 120×39cm / Untitled II, natural pigment and gum-based color on Korean sunji paper, 120×39cm">
+          </picture>
+        </div>
+        <hr class="rule panel-rule">
+        <p class="panel-caption i18n" data-kr="무제-2 · 120 × 39cm" data-en="Untitled II · 120 × 39cm">무제-2 · 120 × 39cm</p>
+        <!-- DRAFT: description authored by design team, pending artist approval — title also pending, see untitled-note above -->
+        <p class="panel-desc i18n" data-kr="여름 풀 사이로 붉게 타오르는 연꽃과 흰 꽃 한 송이가 긴 두루마리를 따라 솟아오른다." data-en="Flame-tipped red lotus and a single white bloom rise from summer grass in a tall, breath-held column.">여름 풀 사이로 붉게 타오르는 연꽃과 흰 꽃 한 송이가 긴 두루마리를 따라 솟아오른다.</p>
+      </div>
+    </div>
+  </section>
+  <!-- END PENDING BLOCK 04/05 -->
+
+  <!-- 06 · 번영이 피어나는 소망의 정원 · The Garden of Prosperous Wishes -->
+  <section class="work work--garden reveal" aria-labelledby="w06-title">
+    <span class="ghost-num" aria-hidden="true">06</span>
+    <div class="work-meta">
+      <h2 class="work-title kinetic" id="w06-title" data-kr="번영이 피어나는 소망의 정원" data-en="The Garden of Prosperous Wishes">번영이 피어나는 소망의 정원</h2>
+      <p class="work-subtitle i18n" data-kr="The Garden of Prosperous Wishes" data-en="번영이 피어나는 소망의 정원">The Garden of Prosperous Wishes</p>
+      <hr class="rule" style="max-width:20em; margin-left:auto; margin-right:auto;">
+      <dl class="work-specs" style="justify-content:center;">
+        <div><dt class="i18n" data-kr="크기" data-en="SIZE">크기</dt><dd>119 × 60 cm</dd></div>
+        <div><dt class="i18n" data-kr="재료" data-en="MEDIUM">재료</dt><dd class="i18n" data-kr="순지에 수간분채·봉채" data-en="Natural pigment & gum-based color on Korean sunji paper">순지에 수간분채·봉채</dd></div>
+      </dl>
+      <!-- DRAFT: description authored by design team, pending artist approval -->
+      <p class="work-desc i18n" data-kr="안개 낀 물 위로 흰 연꽃과 산호빛 연꽃이 크게 피어오르고, 그 아래 원앙 한 쌍이 자리한다. 작가의 가장 야심 찬 정원 그림으로, 월간민화 아티스트 노트에 소개되었다. 2026년 주브라질 한국문화원 특별전에 출품되었다." data-en="White and coral lotus rise large over misty water, a pair of mandarin ducks resting below. Her most ambitious garden painting, featured in a Monthly Minhwa artist note and shown at the Korean Cultural Center Brazil's special exhibition, 2026.">안개 낀 물 위로 흰 연꽃과 산호빛 연꽃이 크게 피어오르고, 그 아래 원앙 한 쌍이 자리한다. 작가의 가장 야심 찬 정원 그림으로, 월간민화 아티스트 노트에 소개되었다. 2026년 주브라질 한국문화원 특별전에 출품되었다.</p>
+    </div>
+    <div class="work-media lens-wrap" data-lightbox="assets/web/garden-wishes.jpg" data-cap-kr="번영이 피어나는 소망의 정원 · The Garden of Prosperous Wishes" data-cap-en="The Garden of Prosperous Wishes · 번영이 피어나는 소망의 정원" tabindex="0" role="button" aria-label="번영이 피어나는 소망의 정원 확대 보기 / View The Garden of Prosperous Wishes enlarged">
+      <picture>
+        <source srcset="assets/web/garden-wishes.webp" type="image/webp">
+        <img src="assets/web/garden-wishes.jpg" width="1213" height="2400" loading="lazy"
+             style="background-image:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAvABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDoqQnnHenVBKyQI0r52jrgZP6VmUS0VUTUrd5Qil8HoxXiikAlxd3H2iSG3hB2AEsfQ+gqleXuyIAXSrM4wQGxt9eB3+tbR9Kz7SxisjL8vmFjksV5I9KLdRGZZW8Ed6Lq3unW2j++zn75+vpRTtQsZLiWUxgLwBFFjAHqR2zRT0Ytuhuyq7KQkmzPcDmmrvDYyNgHcksaSVZmP7p1Ue65owwXMm0/QUDK9xMIiPmA5ziimySW2fniUn6UVNguf//Z');"
+             alt="번영이 피어나는 소망의 정원, 순지에 수간분채·봉채, 119×60cm / The Garden of Prosperous Wishes, natural pigment and gum-based color on Korean sunji paper, 119×60cm">
+      </picture>
+    </div>
+    <figure class="garden-detail">
+      <div class="detail-frame">
+        <img src="assets/web/garden-wishes.jpg" width="1213" height="2400" loading="lazy" style="background-image:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAvABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDoqQnnHenVBKyQI0r52jrgZP6VmUS0VUTUrd5Qil8HoxXiikAlxd3H2iSG3hB2AEsfQ+gqleXuyIAXSrM4wQGxt9eB3+tbR9Kz7SxisjL8vmFjksV5I9KLdRGZZW8Ed6Lq3unW2j++zn75+vpRTtQsZLiWUxgLwBFFjAHqR2zRT0Ytuhuyq7KQkmzPcDmmrvDYyNgHcksaSVZmP7p1Ue65owwXMm0/QUDK9xMIiPmA5ziimySW2fniUn6UVNguf//Z');" alt="번영이 피어나는 소망의 정원, 원앙 부분 세부 / The Garden of Prosperous Wishes, detail of the mandarin duck pair">
+      </div>
+      <figcaption class="i18n" data-kr="세부 · 원앙 한 쌍" data-en="Detail · the mandarin duck pair">세부 · 원앙 한 쌍</figcaption>
+    </figure>
+  </section>
+
+  <!-- 07 · 오이를 등에 지고 가는 고슴도치 · A Hedgehog Carrying a Cucumber -->
+  <section class="work work--hedgehog reveal" aria-labelledby="w07-title">
+    <span class="ghost-num" aria-hidden="true">07</span>
+    <div class="work-meta">
+      <h2 class="work-title kinetic" id="w07-title" data-kr="오이를 등에 지고 가는 고슴도치" data-en="A Hedgehog Carrying a Cucumber" style="letter-spacing:-.01em;">오이를 등에 지고 가는 고슴도치</h2>
+      <p class="work-subtitle i18n" data-kr="A Hedgehog Carrying a Cucumber" data-en="오이를 등에 지고 가는 고슴도치">A Hedgehog Carrying a Cucumber</p>
+      <hr class="rule">
+      <dl class="work-specs">
+        <div><dt class="i18n" data-kr="크기" data-en="SIZE">크기</dt><dd>27 × 40 cm</dd></div>
+        <div><dt class="i18n" data-kr="년도" data-en="YEAR">년도</dt><dd>2026</dd></div>
+        <div><dt class="i18n" data-kr="재료" data-en="MEDIUM">재료</dt><dd class="i18n" data-kr="순지에 수간분채·봉채" data-en="Natural pigment & gum-based color on Korean sunji paper">순지에 수간분채·봉채</dd></div>
+      </dl>
+      <!-- DRAFT: description authored by design team, pending artist approval -->
+      <p class="work-desc i18n" data-kr="고슴도치 한 마리가 오이를 등에 지고 파란 들꽃 사이를 걸어간다. 진지함 속에 슬쩍 끼워 넣은 해학, 민화가 오래 지녀온 장난기다. 이 그림의 재치는 작은 캔버스와 큰 여백의 대비에서 온다." data-en="A hedgehog hauls a cucumber on its spines through a field of blue wildflowers. A wink of folk humor tucked inside all the seriousness — the kind minhwa has always carried. The joke lands in the gap between a small canvas and a great deal of room to breathe.">고슴도치 한 마리가 오이를 등에 지고 파란 들꽃 사이를 걸어간다. 진지함 속에 슬쩍 끼워 넣은 해학, 민화가 오래 지녀온 장난기다. 이 그림의 재치는 작은 캔버스와 큰 여백의 대비에서 온다.</p>
+    </div>
+    <div class="work-media lens-wrap" data-lightbox="assets/web/hedgehog.jpg" data-cap-kr="오이를 등에 지고 가는 고슴도치" data-cap-en="A Hedgehog Carrying a Cucumber" tabindex="0" role="button" aria-label="오이를 등에 지고 가는 고슴도치 확대 보기 / View A Hedgehog Carrying a Cucumber enlarged">
+      <picture>
+        <source srcset="assets/web/hedgehog.webp" type="image/webp">
+        <img src="assets/web/hedgehog.jpg" width="1579" height="2400" loading="lazy"
+             style="background-image:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAkABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDo6gV3M7Kdu3HAAyfzqK4vFhZm+dgnDADj60sEymMuqk5PHGCayKLNFRLOrAEnaT2PWigCnesyPJHHbli/O7GVzTIp23sA4cRpyqL0PcE09JvOlm81XSJjsAPBI9fapUimgTbGRIo/vDDfie9AiKzu2MixSRopJ4KjFFWAC5DsgSQdzRSuMlEESuXCKHPJOOabKm4g5YYPY0UUMB+BnNFFFAz/2Q==');"
+             alt="오이를 등에 지고 가는 고슴도치, 순지에 수간분채·봉채, 27×40cm, 2026 / A Hedgehog Carrying a Cucumber, natural pigment and gum-based color on Korean sunji paper, 27×40cm, 2026">
+      </picture>
+    </div>
+  </section>
+
+  <!-- 08 · 청록의 서곡 · The Teal Prelude -->
+  <section class="work work--teal reveal" aria-labelledby="w08-title">
+    <span class="ghost-num" aria-hidden="true">08</span>
+    <div class="work-meta">
+      <h2 class="work-title kinetic" id="w08-title" data-kr="청록의 서곡" data-en="The Teal Prelude">청록의 서곡</h2>
+      <p class="work-subtitle i18n" data-kr="The Teal Prelude" data-en="청록의 서곡">The Teal Prelude</p>
+      <hr class="rule" style="max-width:16em; margin-left:auto; margin-right:auto;">
+      <dl class="work-specs" style="justify-content:center;">
+        <div><dt class="i18n" data-kr="크기" data-en="SIZE">크기</dt><dd>30 × 30 cm</dd></div>
+        <div><dt class="i18n" data-kr="년도" data-en="YEAR">년도</dt><dd>2026</dd></div>
+        <div><dt class="i18n" data-kr="재료" data-en="MEDIUM">재료</dt><dd class="i18n" data-kr="순지에 수간분채·봉채" data-en="Natural pigment & gum-based color on Korean sunji paper">순지에 수간분채·봉채</dd></div>
+      </dl>
+      <!-- DRAFT: description authored by design team, pending artist approval -->
+      <p class="work-desc i18n" data-kr="청록빛 난초와 청자빛으로 씻어낸 화병이 차가운 회색 바탕 위에 놓인다. 작가의 작업 중 가장 동시대적인, 색조로 말하는 그림이다. 2026년 일백헌 소품전에서 선보였다." data-en="Teal orchids and a celadon-washed vase rest on a cool grey ground. Her most contemporary work, one that speaks almost entirely through tone. Shown at the Ilbaekheon small-works exhibition, 2026.">청록빛 난초와 청자빛으로 씻어낸 화병이 차가운 회색 바탕 위에 놓인다. 작가의 작업 중 가장 동시대적인, 색조로 말하는 그림이다. 2026년 일백헌 소품전에서 선보였다.</p>
+    </div>
+    <div class="work-media lens-wrap" data-lightbox="assets/web/teal-prelude.jpg" data-cap-kr="청록의 서곡 · The Teal Prelude" data-cap-en="The Teal Prelude · 청록의 서곡" tabindex="0" role="button" aria-label="청록의 서곡 확대 보기 / View The Teal Prelude enlarged">
+      <picture>
+        <source srcset="assets/web/teal-prelude.webp" type="image/webp">
+        <img src="assets/web/teal-prelude.jpg" width="1326" height="1440" loading="lazy"
+             style="background-image:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAaABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDWl/4+02AkgfQYqrPEzSNJ5wjAPPsauEkNnt356Vl3EExaVypCHk85BpomTNNSjLlXDYAzjnmiqFpctCgD4Ic/w9qKWw1qizPJyQMMOBikuTsjVw5x90AHCnPrUIGIjjjkVYs/9SR23GgW5Sw08SpEgYg7t+eR7UVpvxjHHzCipsVc/9k=');"
+             alt="청록의 서곡, 순지에 수간분채·봉채, 30×30cm, 2026 / The Teal Prelude, natural pigment and gum-based color on Korean sunji paper, 30×30cm, 2026">
+      </picture>
+    </div>
+  </section>
+
+</div><!-- /#works -->
+
+<!-- ============================================================
+     EXHIBITION TIMELINE
+     ============================================================ -->
+<section id="exhibitions" class="exhibitions reveal" aria-labelledby="exh-title">
+  <div class="section-head">
+    <h2 id="exh-title"><span class="i18n" data-kr="전시 이력" data-en="Exhibition History">전시 이력</span></h2>
+    <p class="timeline-hint i18n" data-kr="가로로 스크롤하세요 →" data-en="Scroll horizontally →">가로로 스크롤하세요 →</p>
+  </div>
+  <div class="timeline-track" id="timelineTrack" tabindex="0" role="region" aria-label="전시 이력 타임라인 / Exhibition history timeline">
+
+    <article class="tl-card">
+      <span class="tl-date">2025.03</span>
+      <p class="tl-title i18n" data-kr="한국채색화협회 단체전" data-en="Korean Society of Chaesaekhwa Artists — Group Exhibition">한국채색화협회 단체전</p>
+      <p class="tl-chip i18n" data-kr="모란보자기" data-en="Peony Bojagi">모란보자기</p>
+    </article>
+
+    <article class="tl-card">
+      <span class="tl-date">2025.03</span>
+      <span class="tl-city">Jeju</span>
+      <p class="tl-title i18n" data-kr="제주도 레미콘갤러리 전시 (fantastic K-Art 창신이능전)" data-en="Jeju Remicon Gallery Exhibition (\"Fantastic K-Art\" Chang-sin-i-neung Exhibition)">제주도 레미콘갤러리 전시 (fantastic K-Art 창신이능전)</p>
+      <p class="tl-chip i18n" data-kr="모란보자기" data-en="Peony Bojagi">모란보자기</p>
+    </article>
+
+    <article class="tl-card">
+      <span class="tl-date">2025.03.07–04.30</span>
+      <div><span class="tl-city">Bogotá</span><span class="tl-city">Medellín</span><span class="tl-city">Cali</span></div>
+      <p class="tl-title i18n" data-kr="콜롬비아 3개 도시 한국민화 특별전" data-en="Korean Minhwa Special Exhibition — Colombia (3 cities)" style="margin-top:.5rem;">콜롬비아 3개 도시 한국민화 특별전</p>
+      <p class="tl-chip i18n" data-kr="생각이 피어나는 자리" data-en="Blooming Mind">생각이 피어나는 자리</p>
+    </article>
+
+    <article class="tl-card">
+      <span class="tl-date">2025.06</span>
+      <span class="tl-city">Paris</span>
+      <p class="tl-title i18n" data-kr="파리 Galerie89 — Minhwa, Fortune from Korea" data-en="Galerie89, Paris — Minhwa, Fortune from Korea" style="margin-top:.5rem;">파리 Galerie89 — Minhwa, Fortune from Korea</p>
+      <p class="tl-chip i18n" data-kr="책거리 (생각이 피어나는 자리)" data-en="Chaekgeori (Blooming Mind)">책거리 (생각이 피어나는 자리)</p>
+    </article>
+
+    <article class="tl-card">
+      <span class="tl-date">2025.11</span>
+      <p class="tl-title i18n" data-kr="갤러리 일백헌 창작 프로젝트 와인라벨 공모 입상" data-en="Gallery Ilbaekheon Creative Project — Wine Label Competition, Selected">갤러리 일백헌 창작 프로젝트 와인라벨 공모 입상</p>
+      <p class="tl-chip i18n" data-kr="연못위의 대화" data-en="Summer Lotus">연못위의 대화</p>
+    </article>
+
+    <article class="tl-card">
+      <span class="tl-date">2026.01</span>
+      <p class="tl-title i18n" data-kr="월간민화 × 동덕아트갤러리 세화전 '물렀거라, 세화 나가신다'" data-en="Monthly Minhwa × Dongduk Art Gallery — \"Move Aside, Sehwa is Coming Through\"">월간민화 × 동덕아트갤러리 세화전 '물렀거라, 세화 나가신다'</p>
+      <p class="tl-chip i18n" data-kr="생각이 피어나는 자리" data-en="Blooming Mind">생각이 피어나는 자리</p>
+    </article>
+
+    <article class="tl-card">
+      <span class="tl-date">2026.03</span>
+      <span class="tl-city">Brazil</span>
+      <p class="tl-title i18n" data-kr="주브라질 한국문화원 초청 한국민화 특별전" data-en="Korean Cultural Center Brazil — Invitational Minhwa Exhibition" style="margin-top:.5rem;">주브라질 한국문화원 초청 한국민화 특별전</p>
+      <p class="tl-chip i18n" data-kr="번영이 피어나는 소망의 정원" data-en="The Garden of Prosperous Wishes">번영이 피어나는 소망의 정원</p>
+    </article>
+
+    <article class="tl-card">
+      <span class="tl-date">2026.04</span>
+      <p class="tl-title i18n" data-kr="일백헌 소품전" data-en="Ilbaekheon Small Works Exhibition">일백헌 소품전</p>
+      <p class="tl-chip i18n" data-kr="청록의 서곡" data-en="The Teal Prelude">청록의 서곡</p>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section id="about" class="about reveal" aria-labelledby="about-title">
+  <figure class="about-portrait">
+    <img src="assets/web/profile.jpg" width="1062" height="1480" loading="lazy" style="background-image:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAhABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDLxURuIgeW49ccVLKpaIqpwzYUH68VrzaLafYfKFs4deBJnk+/0qG7FqLZkYoqGyYmEqTko22imIfePsh4OCTxWjcX0o0pbjDhzHjr8uTXPzMZpGLE9eOe1OM0phERlcxjopbgUnG44ysS6exEkkZOcjdRVVT5bAqcEc5oqiQXqadRRQAw/e/CiiigD//Z');" alt="이다미 작가 초상 / Portrait of the artist, Dami Lee">
+  </figure>
+  <div>
+    <h2 id="about-title">이다미</h2>
+    <span class="about-en-name">Dami Lee</span>
+
+    <div class="about-block">
+      <h3 class="i18n" data-kr="학력" data-en="Education">학력</h3>
+      <ul>
+        <li class="i18n" data-kr="서울대학교 미술대학 산업디자인과 학사" data-en="BFA Industrial Design, Seoul National University">서울대학교 미술대학 산업디자인과 학사</li>
+        <li class="i18n" data-kr="Rhode Island School of Design, Graphic Design 전공 학사" data-en="BFA Graphic Design, Rhode Island School of Design (RISD)">Rhode Island School of Design, Graphic Design 전공 학사</li>
+      </ul>
+    </div>
+
+    <div class="about-block">
+      <h3 class="i18n" data-kr="사사" data-en="Studied Under">사사</h3>
+      <ul>
+        <li class="i18n" data-kr="줄리 김수진 작가 사사" data-en="Studied minhwa under artist Julie Soojin Kim">줄리 김수진 작가 사사</li>
+      </ul>
+    </div>
+
+    <div class="about-block">
+      <h3 class="i18n" data-kr="전시 이력" data-en="Exhibitions (CV)">전시 이력</h3>
+      <ul class="cv-list">
+        <li><span class="cv-year">2026</span><span class="i18n" data-kr="일백헌 마켓민화 소품전" data-en="Ilbaekheon Market Minhwa Small Works Exhibition">일백헌 마켓민화 소품전</span></li>
+        <li><span class="cv-year">2026</span><span class="i18n" data-kr="주브라질 한국문화원 초청 한국민화 특별전" data-en="Korean Cultural Center Brazil — Invitational Special Exhibition">주브라질 한국문화원 초청 한국민화 특별전</span></li>
+        <li><span class="cv-year">2026</span><span class="i18n" data-kr="세화전 '물렀거라, 세화 나가신다', 동덕아트갤러리" data-en="\"Move Aside, Sehwa is Coming Through,\" Dongduk Art Gallery">세화전 '물렀거라, 세화 나가신다', 동덕아트갤러리</span></li>
+        <li><span class="cv-year">2025</span><span class="i18n" data-kr="갤러리 일백헌 창작 프로젝트 와인라벨 공모 입상" data-en="Gallery Ilbaekheon Creative Project — Wine Label Competition, Selected">갤러리 일백헌 창작 프로젝트 와인라벨 공모 입상</span></li>
+        <li><span class="cv-year">2025</span><span class="i18n" data-kr="Galerie89, 파리 — Minhwa, Fortune from Korea" data-en="Galerie89, Paris — Minhwa, Fortune from Korea">Galerie89, 파리 — Minhwa, Fortune from Korea</span></li>
+        <li><span class="cv-year">2025</span><span class="i18n" data-kr="콜롬비아 3개 도시 한국민화 특별전" data-en="Korean Minhwa Special Exhibition — Bogotá, Medellín, Cali, Colombia">콜롬비아 3개 도시 한국민화 특별전</span></li>
+        <li><span class="cv-year">2025</span><span class="i18n" data-kr="제주 레미콘 갤러리 & 일백헌 fantastic K-Art 창신이능전" data-en="Jeju Remicon Gallery & Ilbaekheon — \"Fantastic K-Art\" Exhibition">제주 레미콘 갤러리 & 일백헌 fantastic K-Art 창신이능전</span></li>
+        <li><span class="cv-year">2025</span><span class="i18n" data-kr="한국 채색화협회 회원전" data-en="Korean Society of Chaesaekhwa Artists — Member Exhibition">한국 채색화협회 회원전</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer" id="siteFooter">
+  <div class="footer-inner">
+    <div class="footer-mark">이다미</div>
+    <div class="footer-contact">
+      <div><a href="tel:+821031651008">(+82) 10-3165-1008</a></div>
+      <div><a href="mailto:damiee@gmail.com">damiee@gmail.com</a></div>
+    </div>
+  </div>
+  <div class="hedgehog-track" id="hedgehogTrack">
+    <svg class="hedgehog-walk" id="hedgehogWalk" viewBox="0 0 64 48" aria-hidden="true">
+      <g fill="var(--cream)">
+        <path d="M6 34c0-10 8-20 20-20 9 0 16 5 19 12 3-1 6 0 7 3-2 1-5 1-7 0-1 5-6 9-12 10l1 5H29l-1-5c-3 0-5-1-8-3l-2 5H13l2-6c-5-2-9-6-9-10z"/>
+        <path d="M22 15l-3-7 6 4z"/><path d="M28 13l-1-8 6 6z"/><path d="M34 13l2-8 5 7z"/><path d="M39 15l4-6 4 6z"/>
+        <circle cx="16" cy="30" r="1.6" fill="var(--ink)"/>
+      </g>
+    </svg>
+  </div>
+  <div class="footer-meta">
+    <span class="i18n" data-kr="© 2026 이다미. 모든 이미지의 저작권은 작가에게 있습니다." data-en="© 2026 Dami Lee. All artwork images copyright the artist.">© 2026 이다미. 모든 이미지의 저작권은 작가에게 있습니다.</span>
+    <span class="i18n" data-kr="지금의 민화 — 순지에 수간분채·봉채" data-en="Minhwa, Present Tense — Natural pigment on Korean sunji paper">지금의 민화 — 순지에 수간분채·봉채</span>
+  </div>
+</footer>
+
+<!-- ============================================================
+     LIGHTBOX
+     ============================================================ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="작품 확대보기 / Artwork lightbox">
+  <button type="button" class="lightbox-close" id="lightboxClose" aria-label="닫기 / Close">×</button>
+  <figure class="lightbox-figure">
+    <img id="lightboxImg" src="" alt="">
+    <figcaption class="lightbox-cap" id="lightboxCap"></figcaption>
+  </figure>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var html = document.documentElement;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------------------------------------------------------
+     LANGUAGE TOGGLE
+     --------------------------------------------------------- */
+  var LANG_KEY = 'damiee-lang';
+  var currentLang = localStorage.getItem(LANG_KEY) || 'ko';
+
+  function applyLang(lang, animate){
+    var nodes = document.querySelectorAll('.i18n');
+    var doSwap = function(){
+      nodes.forEach(function(el){
+        var next = lang === 'ko' ? el.getAttribute('data-kr') : el.getAttribute('data-en');
+        if (next !== null) el.textContent = next;
+      });
+      document.querySelectorAll('.kinetic').forEach(function(el){
+        var next = lang === 'ko' ? el.getAttribute('data-kr') : el.getAttribute('data-en');
+        if (next !== null && !el.dataset.splitDone){ el.textContent = next; }
+        else if (next !== null && el.dataset.splitDone){
+          // rebuild spans for the new language text, preserving stagger CSS
+          buildKinetic(el, next);
+        }
+      });
+      html.lang = lang === 'ko' ? 'ko' : 'en';
+      document.body.setAttribute('data-lang', lang);
+      var opts = document.querySelectorAll('[data-lang-opt]');
+      opts.forEach(function(o){
+        o.classList.toggle('is-active', o.getAttribute('data-lang-opt') === lang);
+      });
+    };
+    if (animate && !reduceMotion){
+      nodes.forEach(function(el){ el.classList.add('is-fading'); });
+      window.setTimeout(function(){
+        doSwap();
+        nodes.forEach(function(el){ el.classList.remove('is-fading'); });
+      }, 300);
+    } else {
+      doSwap();
+    }
+    localStorage.setItem(LANG_KEY, lang);
+    currentLang = lang;
+  }
+
+  var langToggle = document.getElementById('langToggle');
+  if (langToggle){
+    langToggle.addEventListener('click', function(){
+      applyLang(currentLang === 'ko' ? 'en' : 'ko', true);
+    });
+  }
+
+  /* ---------------------------------------------------------
+     KINETIC PER-GLYPH TITLE STAGGER
+     --------------------------------------------------------- */
+  function buildKinetic(el, text){
+    el.textContent = '';
+    var frag = document.createDocumentFragment();
+    Array.from(text).forEach(function(ch, i){
+      var span = document.createElement('span');
+      span.className = 'ch';
+      span.style.setProperty('--i', i);
+      span.textContent = ch === ' ' ? ' ' : ch;
+      frag.appendChild(span);
+    });
+    el.appendChild(frag);
+    el.dataset.splitDone = '1';
+  }
+  document.querySelectorAll('.kinetic').forEach(function(el){
+    var text = el.getAttribute('data-kr') || el.textContent;
+    buildKinetic(el, text);
+  });
+
+  /* ---------------------------------------------------------
+     SCROLL REVEALS (+ kinetic titles + diptych wipe)
+     --------------------------------------------------------- */
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          // reveal any diptych panels together with their parent section,
+          // rather than observing each tall panel independently (avoids a
+          // race where one panel's intersection ratio lags the other's)
+          entry.target.querySelectorAll('.diptych-wipe').forEach(function(w){
+            w.classList.add('in-view');
+          });
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal, .work').forEach(function(el){ io.observe(el); });
+    // fallback: also observe diptych panels directly in case a panel is
+    // scrolled into view without its parent section re-triggering
+    document.querySelectorAll('.diptych-wipe').forEach(function(el){ io.observe(el); });
+
+    // hedgehog footer walk-on, once
+    var hTrack = document.getElementById('hedgehogTrack');
+    if (hTrack){
+      var hIO = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting){
+            hTrack.classList.add('walked');
+            hIO.unobserve(hTrack);
+          }
+        });
+      }, { threshold: 0.3 });
+      hIO.observe(hTrack);
+    }
+  } else {
+    document.querySelectorAll('.reveal, .work, .diptych-wipe').forEach(function(el){ el.classList.add('in-view'); });
+  }
+
+  /* ---------------------------------------------------------
+     GHOST NUMERAL PARALLAX
+     --------------------------------------------------------- */
+  var ghosts = Array.prototype.slice.call(document.querySelectorAll('.ghost-num'));
+  var ticking = false;
+  function updateParallax(){
+    var vh = window.innerHeight;
+    ghosts.forEach(function(g){
+      var r = g.getBoundingClientRect();
+      var center = r.top + r.height / 2 - vh / 2;
+      var y = center * -0.12;
+      g.style.transform = 'translateY(' + y.toFixed(1) + 'px)';
+    });
+    ticking = false;
+  }
+  function onScroll(){
+    if (!ticking && !reduceMotion){
+      window.requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }
+  if (!reduceMotion){
+    window.addEventListener('scroll', onScroll, { passive: true });
+    updateParallax();
+  }
+
+  /* ---------------------------------------------------------
+     MORAN DRIFT BACKGROUND (CSS var pointing at the tile image)
+     --------------------------------------------------------- */
+  var moranSection = document.querySelector('.work--moran');
+  if (moranSection){
+    moranSection.style.setProperty('--moran-bg', "url('assets/web/moran.webp')");
+  }
+
+  /* ---------------------------------------------------------
+     LQIP BLUR-UP: mark images loaded once decoded
+     --------------------------------------------------------- */
+  document.querySelectorAll('.lens-wrap img').forEach(function(img){
+    if (img.complete && img.naturalWidth){ img.classList.add('is-loaded'); }
+    else {
+      img.addEventListener('load', function(){ img.classList.add('is-loaded'); }, { once:true });
+    }
+  });
+
+  /* ---------------------------------------------------------
+     HOVER MAGNIFIER LENS (desktop / fine pointer only)
+     --------------------------------------------------------- */
+  var fineHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  if (fineHover){
+    document.querySelectorAll('.lens-wrap').forEach(function(wrap){
+      var img = wrap.querySelector('img');
+      if (!img) return;
+      var lens = document.createElement('div');
+      lens.className = 'lens';
+      lens.setAttribute('aria-hidden', 'true');
+      wrap.appendChild(lens);
+      var zoom = 2;
+
+      wrap.addEventListener('mouseenter', function(){
+        lens.style.backgroundImage = 'url(' + img.currentSrc + ')';
+        lens.classList.add('is-active');
+      });
+      wrap.addEventListener('mouseleave', function(){
+        lens.classList.remove('is-active');
+      });
+      wrap.addEventListener('mousemove', function(e){
+        var r = wrap.getBoundingClientRect();
+        var x = e.clientX - r.left;
+        var y = e.clientY - r.top;
+        var lensSize = lens.offsetWidth || 190;
+        lens.style.left = (x - lensSize/2) + 'px';
+        lens.style.top = (y - lensSize/2) + 'px';
+        lens.style.backgroundSize = (r.width * zoom) + 'px ' + (r.height * zoom) + 'px';
+        var bx = -(x * zoom - lensSize/2);
+        var by = -(y * zoom - lensSize/2);
+        lens.style.backgroundPosition = bx + 'px ' + by + 'px';
+      });
+    });
+  }
+
+  /* ---------------------------------------------------------
+     LIGHTBOX (tap / click / keyboard) — works on all devices
+     --------------------------------------------------------- */
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightboxImg');
+  var lightboxCap = document.getElementById('lightboxCap');
+  var lightboxClose = document.getElementById('lightboxClose');
+  var lastFocused = null;
+  var lightboxWraps = Array.prototype.slice.call(document.querySelectorAll('.lens-wrap[data-lightbox]'));
+  var currentWrapIndex = -1;
+  var hiddenLandmarks = Array.prototype.slice.call(document.querySelectorAll('body > header, body > main, body > footer'));
+
+  function openLightbox(wrap){
+    var src = wrap.getAttribute('data-lightbox');
+    var img = wrap.querySelector('img');
+    lastFocused = document.activeElement;
+    currentWrapIndex = lightboxWraps.indexOf(wrap);
+    lightboxImg.src = src;
+    lightboxImg.alt = img ? img.alt : '';
+    var cap = currentLang === 'ko' ? wrap.getAttribute('data-cap-kr') : wrap.getAttribute('data-cap-en');
+    lightboxCap.textContent = cap || '';
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    hiddenLandmarks.forEach(function(el){ el.setAttribute('aria-hidden', 'true'); });
+    lightboxClose.focus();
+  }
+  function showAtIndex(i){
+    if (!lightboxWraps.length) return;
+    var next = (i + lightboxWraps.length) % lightboxWraps.length;
+    openLightbox(lightboxWraps[next]);
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    lightboxImg.src = '';
+    hiddenLandmarks.forEach(function(el){ el.removeAttribute('aria-hidden'); });
+    if (lastFocused) lastFocused.focus();
+  }
+  lightboxWraps.forEach(function(wrap){
+    wrap.addEventListener('click', function(){ openLightbox(wrap); });
+    wrap.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        openLightbox(wrap);
+      }
+    });
+  });
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(e){
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', function(e){
+    if (!lightbox.classList.contains('is-open')) return;
+    if (e.key === 'Escape'){
+      closeLightbox();
+    } else if (e.key === 'ArrowRight'){
+      e.preventDefault();
+      showAtIndex(currentWrapIndex + 1);
+    } else if (e.key === 'ArrowLeft'){
+      e.preventDefault();
+      showAtIndex(currentWrapIndex - 1);
+    } else if (e.key === 'Tab'){
+      // only the close button is focusable inside the dialog — trap focus on it
+      e.preventDefault();
+      lightboxClose.focus();
+    }
+  });
+
+  /* ---------------------------------------------------------
+     EXHIBITION TIMELINE — wheel → horizontal scroll assist
+     --------------------------------------------------------- */
+  var track = document.getElementById('timelineTrack');
+  if (track){
+    track.addEventListener('wheel', function(e){
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)){
+        track.scrollLeft += e.deltaY;
+        e.preventDefault();
+      }
+    }, { passive:false });
+  }
+
+  /* ---------------------------------------------------------
+     CUSTOM INK-DOT CURSOR (fine pointer only)
+     --------------------------------------------------------- */
+  if (fineHover){
+    html.classList.add('cursor-ready');
+    var dot = document.querySelector('.cursor-dot');
+    window.addEventListener('mousemove', function(e){
+      dot.style.left = e.clientX + 'px';
+      dot.style.top = e.clientY + 'px';
+    }, { passive:true });
+    var interactiveSel = 'a, button, .lens-wrap, [role="button"], input, textarea';
+    document.addEventListener('mouseover', function(e){
+      if (e.target.closest(interactiveSel)) dot.classList.add('is-active');
+    });
+    document.addEventListener('mouseout', function(e){
+      if (e.target.closest(interactiveSel)) dot.classList.remove('is-active');
+    });
+  }
+
+  /* ---------------------------------------------------------
+     LOADER
+     --------------------------------------------------------- */
+  var loader = document.getElementById('loader');
+  if (loader){
+    document.body.style.overflow = 'hidden';
+    window.requestAnimationFrame(function(){
+      window.setTimeout(function(){ loader.classList.add('is-inked'); }, 60);
+    });
+    var finish = function(){
+      loader.classList.add('is-done');
+      document.body.style.overflow = '';
+      window.setTimeout(function(){ loader.style.display = 'none'; }, 900);
+    };
+    window.setTimeout(finish, reduceMotion ? 400 : 1700);
+  }
+
+  /* ---------------------------------------------------------
+     INIT LANGUAGE
+     --------------------------------------------------------- */
+  applyLang(currentLang, false);
+
+})();
+</script>
+</body>
+</html>

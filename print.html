@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>이다미 · Dami Lee — MINHWA WORKS 2025–2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* ==========================================================
+     이다미 (Dami Lee) — 민화 MINHWA WORKS 2025–2026
+     PRINT SOURCE  (print.html -> portfolio.pdf)
+     Trim: 210mm x 280mm portrait / 420mm x 280mm spreads
+     Same design system as index.html: colors + 3 Google Fonts
+     ========================================================== */
+
+  :root{
+    --paper:#F6F1E6;
+    --ink:#1F1D1A;
+    --caption:#8A8378;
+    --cool:#DCDCD8;
+    --c-moran:#E8A08A;
+    --c-bloom:#2E4B3F;
+    --c-lotus:#D77E9B;
+    --c-untitled:#5E8078;
+    --c-garden:#C96F3B;
+    --c-hedge:#7A8B4C;
+    --c-teal:#3E6E6A;
+  }
+
+  @page{ size:210mm 280mm; margin:0; }
+  @page spread{ size:420mm 280mm; margin:0; }
+
+  *{ box-sizing:border-box; margin:0; padding:0; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  html,body{ background:#999; }
+  body{ font-family:'Noto Serif KR',serif; }
+
+  .kr{ font-family:'Noto Serif KR',serif; }
+  .en{ font-family:'Cormorant Garamond',serif; font-style:italic; }
+  .meta{ font-family:'Noto Sans KR',sans-serif; }
+
+  /* ---------- page shell ---------- */
+  .page{
+    position:relative;
+    width:210mm; height:280mm;
+    overflow:hidden;
+    background:var(--paper);
+    color:var(--ink);
+    page-break-after:always; break-after:page;
+  }
+  .page.spread{ width:420mm; page:spread; }
+  .page.grey{ background:var(--cool); }
+  .page:last-of-type{ page-break-after:auto; break-after:auto; }
+
+  .ghost-num{
+    position:absolute;
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+    font-size:230pt;
+    line-height:1;
+    color:var(--ink);
+    opacity:.055;
+    top:6mm; left:8mm;
+    user-select:none;
+  }
+
+  .rule{ height:1px; width:16mm; background:currentColor; }
+
+  .meta-row{
+    display:flex; gap:9mm;
+    font-family:'Noto Sans KR',sans-serif;
+    font-size:7.6pt; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--caption);
+  }
+  .meta-row b{ color:var(--ink); font-weight:500; letter-spacing:.05em; text-transform:none; }
+
+  .desc-kr{
+    font-family:'Noto Sans KR',sans-serif; font-weight:300;
+    font-size:9.6pt; line-height:1.9; color:var(--ink);
+    max-width:78mm;
+  }
+  .desc-en{
+    font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:500;
+    font-size:10.5pt; line-height:1.65; color:var(--caption);
+    max-width:78mm; margin-top:3mm;
+  }
+
+  /* ---------- footer / folio ---------- */
+  .foot{
+    position:absolute; bottom:11mm;
+    font-family:'Noto Sans KR',sans-serif;
+    font-size:7pt; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--caption);
+    display:flex; align-items:center; gap:4mm;
+  }
+  .foot.l{ left:20mm; }
+  .foot.r{ right:20mm; }
+  .foot .chip{
+    background:var(--paper); padding:1.4mm 3mm; border-radius:1mm;
+  }
+
+  /* ============ 1. COVER ============ */
+  .cover{ display:flex; align-items:center; justify-content:center; }
+  .cover-accent{
+    position:absolute; width:62mm; height:62mm; border-radius:50%;
+    right:26mm; bottom:32mm; overflow:hidden;
+    background-image:url('assets/print/moran.jpg');
+    background-size:440% auto; background-position:34% 58%;
+    box-shadow:0 3mm 9mm rgba(31,29,26,.16);
+  }
+  .cover-center{ text-align:center; }
+  .cover-kr{
+    font-family:'Noto Serif KR',serif; font-weight:200;
+    font-size:148pt; letter-spacing:.06em; line-height:1;
+  }
+  .cover-en{
+    margin-top:15mm; font-family:'Noto Sans KR',sans-serif;
+    font-size:9.6pt; letter-spacing:.38em; text-transform:uppercase;
+    color:var(--caption);
+  }
+
+  /* ============ 2. STATEMENT SPREAD ============ */
+  .statement{ display:flex; align-items:center; padding:26mm 20mm; gap:18mm; }
+  .statement-kr{
+    flex:1.75; font-family:'Noto Serif KR',serif; font-weight:200;
+    font-size:24.5pt; line-height:2.05; letter-spacing:.015em;
+  }
+  .statement-kr p + p{ margin-top:11mm; }
+  .statement-en{
+    flex:1; border-left:1px solid var(--caption); padding-left:11mm;
+    font-family:'Cormorant Garamond',serif; font-style:italic;
+    font-size:11.5pt; line-height:1.9; color:var(--caption);
+  }
+  .statement-en .label{
+    font-family:'Noto Sans KR',sans-serif; font-style:normal; font-weight:500;
+    font-size:7.6pt; letter-spacing:.28em; text-transform:uppercase;
+    color:var(--ink); margin-bottom:7mm;
+  }
+  .statement-en p + p{ margin-top:7mm; }
+
+  /* ============ WORK 01 — 모란보자기 (full bleed) ============ */
+  .work-moran .bleed-img{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; object-position:48% 45%;
+  }
+  .work-moran .meta-panel{
+    position:absolute; left:20mm; bottom:20mm; width:96mm;
+    background:var(--paper); padding:11mm 12mm;
+    box-shadow:0 3mm 10mm rgba(31,29,26,.22);
+  }
+  .work-moran .num{
+    font-family:'Cormorant Garamond',serif; font-weight:600; font-size:10pt;
+    color:var(--c-moran); letter-spacing:.1em; margin-bottom:3mm;
+  }
+  .work-moran .kr-title{ font-size:30pt; font-weight:600; line-height:1.1; }
+  .work-moran .en-title{ font-size:13pt; color:var(--caption); margin-top:2mm; }
+  .work-moran .rule{ background:var(--c-moran); margin:5mm 0; }
+
+  /* ============ WORK 02 — Blooming Mind ============ */
+  .bloom-wrap{ display:flex; align-items:center; justify-content:center; height:100%; padding:24mm 20mm; gap:10mm; }
+  .bloom-img{ width:92mm; height:auto; aspect-ratio:2409/4200; object-fit:contain; flex:0 0 auto;
+    box-shadow:0 3mm 11mm rgba(31,29,26,.16); }
+  .bloom-meta{ width:68mm; flex:0 0 68mm; }
+  .bloom-meta .num{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:10pt; color:var(--c-bloom); margin-bottom:3mm; }
+  .bloom-meta .kr-title{ font-size:18pt; font-weight:600; line-height:1.35; }
+  .bloom-meta .en-title{ font-size:12.5pt; color:var(--caption); margin-top:2mm; }
+  .bloom-meta .rule{ background:var(--c-bloom); margin:5mm 0; }
+  .bloom-meta .spine{ border-top:1px solid var(--c-bloom); padding-top:2.4mm; margin-top:4mm; }
+
+  /* ============ WORK 03 — Summer Lotus ============ */
+  .lotus-wrap{ display:flex; align-items:center; height:100%; padding:24mm 18mm 24mm 20mm; gap:8mm; }
+  .lotus-kr-vert{
+    writing-mode:vertical-rl; text-orientation:mixed;
+    font-family:'Noto Serif KR',serif; font-weight:600;
+    font-size:46pt; letter-spacing:.14em; height:225mm;
+    color:var(--ink);
+  }
+  .lotus-img-col{ flex:1; display:flex; justify-content:center; }
+  .lotus-img-col img{ height:224mm; width:auto; aspect-ratio:2068/4200; object-fit:contain;
+    box-shadow:0 3mm 11mm rgba(31,29,26,.15); }
+  .lotus-meta{ width:62mm; }
+  .lotus-meta .num{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:10pt; color:var(--c-lotus); margin-bottom:3mm; }
+  .lotus-meta .en-title{ font-size:13pt; color:var(--caption); }
+  .lotus-meta .rule{ background:var(--c-lotus); margin:5mm 0; }
+  .lotus-meta .meta-row{ flex-direction:column; gap:1.6mm; }
+  .lotus-meta .desc-kr, .lotus-meta .desc-en{ max-width:62mm; }
+
+  /* ============ WORK 04/05 — 무제 diptych spread ============ */
+  .diptych{ display:flex; align-items:center; justify-content:center; height:100%; gap:74mm; padding:18mm 20mm; }
+  .scroll-col{ display:flex; flex-direction:column; align-items:center; gap:4mm; }
+  .scroll-col img{ height:182mm; width:auto; object-fit:contain;
+    box-shadow:0 3mm 10mm rgba(31,29,26,.14); }
+  .scroll-col .num{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:10pt; color:var(--c-untitled); }
+  .scroll-col .kr-title{ font-size:15pt; font-weight:600; margin-top:1mm; }
+  .scroll-col .en-title{ font-size:10pt; color:var(--caption); }
+  .scroll-col .rule{ background:var(--c-untitled); margin:2mm 0; width:12mm; }
+  .scroll-col .desc-kr,.scroll-col .desc-en{ max-width:62mm; text-align:center; font-size:7.8pt; line-height:1.65; }
+  .scroll-col .desc-en{ font-size:8.2pt; margin-top:1.6mm; }
+
+  /* ============ WORK 06 — Garden of Prosperous Wishes ============ */
+  .garden-wrap{ display:flex; flex-direction:column; align-items:center; height:100%; padding:18mm 20mm 20mm; gap:6mm; }
+  .garden-wrap img{ flex:1 1 auto; max-height:168mm; width:auto; aspect-ratio:2123/4200; object-fit:contain;
+    box-shadow:0 3mm 12mm rgba(31,29,26,.16); }
+  .garden-meta{ width:100%; max-width:150mm; text-align:center; }
+  .garden-meta .num{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:10pt; color:var(--c-garden); }
+  .garden-meta .kr-title{ font-size:22pt; font-weight:600; margin-top:1mm; }
+  .garden-meta .en-title{ font-size:12pt; color:var(--caption); }
+  .garden-meta .rule{ background:var(--c-garden); margin:4mm auto; }
+  .garden-meta .desc-kr,.garden-meta .desc-en{ max-width:150mm; margin-left:auto; margin-right:auto; text-align:center; }
+
+  /* ============ WORK 07 — Hedgehog ============ */
+  .hedge-wrap{ position:relative; height:100%; padding:24mm 20mm; }
+  .hedge-title{
+    font-size:47pt; font-weight:600; line-height:1.28; max-width:132mm; margin-top:18mm;
+  }
+  .hedge-img{ position:absolute; right:26mm; bottom:46mm; height:82mm; width:auto;
+    aspect-ratio:2763/4200; object-fit:contain; box-shadow:0 3mm 10mm rgba(31,29,26,.15); }
+  .hedge-meta{ position:absolute; left:20mm; bottom:22mm; width:82mm; }
+  .hedge-meta .num{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:10pt; color:var(--c-hedge); margin-bottom:2mm; }
+  .hedge-meta .en-title{ font-size:12.5pt; color:var(--caption); }
+  .hedge-meta .rule{ background:var(--c-hedge); margin:4mm 0; }
+
+  /* ============ WORK 08 — Teal Prelude ============ */
+  .teal-wrap{ display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:6mm; padding:0 20mm; }
+  .teal-wrap .num{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:10pt; color:var(--c-teal); }
+  .teal-wrap img{ width:112mm; height:auto; aspect-ratio:1326/1440; object-fit:contain;
+    box-shadow:0 3mm 11mm rgba(31,29,26,.12); }
+  .teal-wrap .kr-title{ font-size:22pt; font-weight:600; margin-top:1mm; }
+  .teal-wrap .en-title{ font-size:12pt; color:var(--caption); }
+  .teal-wrap .rule{ background:var(--c-teal); margin:4mm auto; }
+  .teal-wrap .meta-row{ justify-content:center; }
+  .teal-wrap .desc-kr,.teal-wrap .desc-en{ max-width:120mm; text-align:center; margin-left:auto; margin-right:auto; }
+
+  /* ============ EXHIBITIONS ============ */
+  .exhib{ padding:26mm 20mm 20mm; }
+  .section-title{ font-size:19pt; font-weight:600; margin-bottom:14mm; }
+  .section-title .en{ display:block; font-size:11pt; color:var(--caption); margin-top:2mm; }
+  .timeline{ position:relative; padding-left:9mm; border-left:1px solid var(--caption); }
+  .tl-row{ position:relative; display:flex; align-items:center; gap:7mm; padding:5.2mm 0; }
+  .tl-row::before{
+    content:''; position:absolute; left:-11.5mm; top:50%; margin-top:-1.4mm;
+    width:2.8mm; height:2.8mm; border-radius:50%; background:var(--ink);
+  }
+  .tl-date{ width:34mm; flex:none; font-family:'Noto Sans KR',sans-serif; font-size:7.6pt; letter-spacing:.08em; color:var(--caption); }
+  .tl-body{ flex:1; }
+  .tl-venue{ font-family:'Noto Serif KR',serif; font-size:10.6pt; line-height:1.4; }
+  .tl-work{ font-family:'Noto Sans KR',sans-serif; font-size:7.6pt; color:var(--caption); margin-top:1mm; letter-spacing:.03em; }
+  .tl-city{ font-family:'Cormorant Garamond',serif; font-style:italic; font-size:8.6pt; color:var(--caption); }
+  .tl-chip{ width:15mm; height:15mm; object-fit:cover; flex:none; box-shadow:0 1mm 3mm rgba(31,29,26,.18); }
+
+  /* ============ ABOUT ============ */
+  .about{ display:flex; padding:24mm 20mm; gap:16mm; align-items:center; }
+  .about-photo{ position:relative; width:78mm; height:auto; aspect-ratio:1062/1480; flex:none; overflow:hidden; }
+  .about-photo img{ width:100%; height:100%; object-fit:cover; filter:grayscale(1) sepia(.12) contrast(1.03); display:block; }
+  .about-photo .tone{ position:absolute; inset:0; background:var(--paper); mix-blend-mode:color; opacity:.55; }
+  .about-text{ flex:1; }
+  .about-text .kr-title{ font-size:26pt; font-weight:600; }
+  .about-text .en-title{ font-size:13pt; color:var(--caption); margin-top:2mm; }
+  .about-text .rule{ background:var(--ink); margin:6mm 0; }
+  .about-block{ margin-top:6mm; }
+  .about-block .label{ font-family:'Noto Sans KR',sans-serif; font-size:7.6pt; letter-spacing:.24em; text-transform:uppercase; color:var(--caption); margin-bottom:2.6mm; }
+  .about-block p, .about-block li{ font-family:'Noto Sans KR',sans-serif; font-weight:300; font-size:9.4pt; line-height:1.85; list-style:none; }
+  .about-block ul{ display:flex; flex-direction:column; gap:1.6mm; }
+
+  /* ============ BACK COVER ============ */
+  .backcover{ display:flex; align-items:center; justify-content:center; }
+  .contact-line{
+    font-family:'Noto Sans KR',sans-serif; font-size:9.4pt; letter-spacing:.14em;
+    color:var(--ink);
+  }
+  .hedgehog-sil{ position:absolute; right:-26mm; bottom:56mm; width:70mm; opacity:.92; }
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     1. COVER — near-empty hanji field. No full artwork.
+     ========================================================= -->
+<div class="page cover">
+  <div class="cover-accent"></div>
+  <div class="cover-center">
+    <div class="cover-kr">이다미</div>
+    <div class="cover-en">DAMI LEE — 민화 · MINHWA WORKS 2025–2026</div>
+  </div>
+</div>
+
+<!-- =========================================================
+     2. STATEMENT SPREAD (420x280) — KR typography-as-art,
+     EN translation in narrow side column.
+     ========================================================= -->
+<div class="page spread statement">
+  <div class="statement-kr">
+    <p>나의 작업은 전통의 흔적 속에서 현재의 호흡을 찾는 여정이다.
+    꽃과 새, 책과 기물, 그리고 연잎과 원앙은 오래전부터 길상과 삶의 지혜를
+    상징해 왔다. 나는 이 상징들을 빌려 오늘을 살아가는 우리가 여전히
+    꿈꾸는 풍요와 평안, 아름다움을 이야기하고자 한다.</p>
+    <p>나는 전통 회화의 문법을 따르면서도, 그것을 단순한 복원이 아니라
+    동시대적 시선 속에서 재해석하려 한다. 이는 과거와 현재가 서로
+    대화하고, 그 속에서 새로운 미감을 피워내는 과정이다.</p>
+    <p>나의 그림은 '현재의 나'를 비추는 거울이다. 익숙하면서도 낯선,
+    풍성한 이 그림 속에서 보는 이 또한 자신의 이야기를 발견하길 바란다.</p>
+  </div>
+  <!-- EN translation authored for the design — DRAFT pending artist review -->
+  <div class="statement-en">
+    <p class="label">Artist Statement — EN</p>
+    <p>My work is a journey to find the breath of the present within the
+    traces of tradition. Flowers and birds, books and vessels, lotus leaves
+    and mandarin ducks have long symbolized good fortune and the wisdom of
+    life. Through these symbols I want to speak of the abundance, peace,
+    and beauty we, living today, still dream of.</p>
+    <p>I follow the grammar of traditional painting, yet try to reinterpret
+    it not as mere restoration but through a contemporary gaze — a process
+    in which past and present converse, and from that conversation a new
+    sensibility blooms.</p>
+    <p>My paintings are a mirror reflecting the "self of the present."
+    Familiar yet unfamiliar, abundant in this way, I hope the viewer, too,
+    discovers their own story within them.</p>
+  </div>
+  <div class="foot l"><span class="chip">DAMI LEE — MINHWA</span></div>
+  <div class="foot r"><span class="chip">02</span></div>
+</div>
+
+<!-- =========================================================
+     WORK 01 — 모란보자기 · Peony Bojagi (full bleed)
+     ========================================================= -->
+<div class="page work work-moran">
+  <img class="bleed-img" src="assets/print/moran.jpg" alt="모란보자기">
+  <div class="meta-panel">
+    <div class="num">01</div>
+    <div class="kr-title">모란보자기</div>
+    <div class="en-title en">Peony Bojagi</div>
+    <div class="rule"></div>
+    <div class="meta-row">
+      <span>크기/SIZE <b>54 × 57cm</b></span>
+      <span>년도/YEAR <b>2025</b></span>
+    </div>
+    <div class="meta-row" style="margin-top:2mm;"><span>재료/MEDIUM <b>순지에 수간분채·봉채</b></span></div>
+    <!-- DRAFT description authored from brief seed — pending artist approval -->
+    <p class="desc-kr" style="margin-top:5mm;">모란과 새들이 화면 가득 보자기처럼 펼쳐진다. 모란은 민화에서
+    부귀와 영예를 상징하는 꽃으로, 이 그림 속에서는 하나의 소망이 아니라
+    삶 전체를 감싸는 무늬로 증식한다.</p>
+    <p class="desc-en">An allover field of peonies and birds spreads edge
+    to edge, like a bojagi wrapping cloth pulled taut across the page —
+    the peony's old promise of wealth multiplied into a pattern dense
+    enough to wrap a life in.</p>
+  </div>
+  <div class="foot l"><span class="chip">DAMI LEE — MINHWA</span></div>
+  <div class="foot r"><span class="chip">03</span></div>
+</div>
+
+<!-- =========================================================
+     WORK 02 — 생각이 피어나는 자리 · Blooming Mind
+     ========================================================= -->
+<div class="page work work-bloom">
+  <div class="ghost-num">02</div>
+  <div class="bloom-wrap">
+    <img class="bloom-img" src="assets/print/blooming-mind.jpg" alt="생각이 피어나는 자리">
+    <div class="bloom-meta">
+      <div class="num">02</div>
+      <div class="kr-title">생각이 피어나는<br>자리</div>
+      <div class="en-title en">Blooming Mind</div>
+      <div class="rule"></div>
+      <div class="meta-row"><span>크기/SIZE <b>50 × 100cm</b></span></div>
+      <div class="meta-row" style="margin-top:2mm;"><span>년도/YEAR <b>2025</b></span></div>
+      <div class="spine">
+        <span class="meta-row"><span>재료/MEDIUM <b>순지에 수간분채·봉채</b></span></span>
+      </div>
+      <!-- DRAFT description authored from brief seed — pending artist approval -->
+      <p class="desc-kr" style="margin-top:5mm;">책과 붓, 호박과 연봉오리 그릇이 층층이 쌓인 문방의 풍경.
+      책거리는 조선 선비의 서재를 채우던 그림이었으나, 이 그림에서는
+      여전히 자라나고 있는 생각의 초상이 된다.</p>
+      <p class="desc-en">A scholar's cabinet rises in tiers — books,
+      brushes, pumpkins, a lotus-bud vessel — each object a small,
+      living idea, still taking shape.</p>
+    </div>
+  </div>
+  <div class="foot l"><span class="chip">DAMI LEE — MINHWA</span></div>
+  <div class="foot r"><span class="chip">04</span></div>
+</div>
+
+<!-- =========================================================
+     WORK 03 — 연못위의 대화 · Summer Lotus
+     ========================================================= -->
+<div class="page work work-lotus">
+  <div class="ghost-num" style="left:auto; right:8mm;">03</div>
+  <div class="lotus-wrap">
+    <div class="lotus-kr-vert">연못위의 대화</div>
+    <div class="lotus-img-col">
+      <img src="assets/print/summer-lotus.jpg" alt="연못위의 대화">
+    </div>
+    <div class="lotus-meta">
+      <div class="num">03</div>
+      <div class="en-title en">Summer Lotus</div>
+      <div class="rule"></div>
+      <div class="meta-row"><span>크기/SIZE <b>35 × 65cm</b></span></div>
+      <div class="meta-row" style="margin-top:2mm;"><span>년도/YEAR <b>2025</b></span></div>
+      <div class="meta-row" style="margin-top:2mm;"><span>재료/MEDIUM <b>순지에 수간분채·봉채</b></span></div>
+      <!-- DRAFT description authored from brief seed — pending artist approval -->
+      <p class="desc-kr" style="margin-top:5mm;">연꽃 아래 원앙 한 쌍이 나란히 머문다. 원앙은 전통적으로
+      변치 않는 애정을 상징하며, 이 그림은 말없이 이어지는 대화처럼
+      고요하다. 2025년 갤러리 일백헌 와인라벨 공모에 선정되었다.</p>
+      <p class="desc-en">Two mandarin ducks rest beneath lotus blooms,
+      held in the quiet devotion the birds have long symbolized —
+      a conversation conducted entirely in stillness.</p>
+    </div>
+  </div>
+  <div class="foot l"><span class="chip">DAMI LEE — MINHWA</span></div>
+  <div class="foot r"><span class="chip">05</span></div>
+</div>
+
+<!-- =========================================================
+     WORK 04/05 — 무제-1 / 무제-2 diptych spread (420x280)
+     NOTE: title & description PENDING artist final approval —
+     set as 무제 / Untitled per brief instruction.
+     ========================================================= -->
+<div class="page spread work work-untitled">
+  <div class="ghost-num" style="font-size:150pt; left:14mm;">04 · 05</div>
+  <div class="diptych">
+    <div class="scroll-col">
+      <img src="assets/print/untitled-1.jpg" alt="무제-1">
+      <div class="num">04</div>
+      <div class="kr-title">무제</div>
+      <div class="en-title en">Untitled I</div>
+      <div class="rule"></div>
+      <div class="meta-row" style="justify-content:center;"><span>크기/SIZE <b>120 × 39cm</b></span></div>
+      <div class="meta-row" style="justify-content:center; margin-top:1.4mm;"><span>년도/YEAR <b>2025</b></span></div>
+      <div class="meta-row" style="justify-content:center; margin-top:1.4mm;"><span>재료/MEDIUM <b>순지에 수간분채·봉채</b></span></div>
+      <!-- DRAFT — title & description pending artist approval; text below is seed copy, not final -->
+      <p class="desc-kr">청록빛 괴석과 야생란 위로 분홍과 흰 모란이
+      두루마리 전체를 타고 피어오른다.</p>
+      <p class="desc-en">Pink and white peonies rise over a blue-green
+      scholar's rock and wild orchids, unfurling the scroll's full
+      length.</p>
+    </div>
+    <div class="scroll-col">
+      <img src="assets/print/untitled-2.jpg" alt="무제-2">
+      <div class="num">05</div>
+      <div class="kr-title">무제</div>
+      <div class="en-title en">Untitled II</div>
+      <div class="rule"></div>
+      <div class="meta-row" style="justify-content:center;"><span>크기/SIZE <b>120 × 39cm</b></span></div>
+      <div class="meta-row" style="justify-content:center; margin-top:1.4mm;"><span>재료/MEDIUM <b>순지에 수간분채·봉채</b></span></div>
+      <!-- DRAFT — title & description pending artist approval; text below is seed copy, not final -->
+      <p class="desc-kr">여름 풀 사이로 붉게 타오르는 연꽃과 흰 꽃
+      한 송이가 긴 두루마리를 따라 솟아오른다.</p>
+      <p class="desc-en">Flame-tipped red lotus and a single white bloom
+      rise from summer grass in a tall, breath-held column.</p>
+    </div>
+  </div>
+  <div class="foot l"><span class="chip">DAMI LEE — MINHWA</span></div>
+  <div class="foot r"><span class="chip">06</span></div>
+</div>
+
+<!-- =========================================================
+     WORK 06 — 번영이 피어나는 소망의 정원 · The Garden of
+     Prosperous Wishes (the crescendo — biggest reproduction)
+     ========================================================= -->
+<div class="page work work-garden">
+  <div class="ghost-num" style="left:auto; right:8mm; top:auto; bottom:2mm;">06</div>
+  <div class="garden-wrap">
+    <img src="assets/print/garden-wishes.jpg" alt="번영이 피어나는 소망의 정원">
+    <div class="garden-meta">
+      <div class="num">06</div>
+      <div class="kr-title">번영이 피어나는 소망의 정원</div>
+      <div class="en-title en">The Garden of Prosperous Wishes</div>
+      <div class="rule"></div>
+      <div class="meta-row" style="justify-content:center;">
+        <span>크기/SIZE <b>119 × 60cm</b></span>
+        <span>재료/MEDIUM <b>순지에 수간분채·봉채</b></span>
+      </div>
+      <!-- DRAFT description authored from brief seed — pending artist approval -->
+      <p class="desc-kr">안개 낀 물 위로 흰빛과 산호빛 연꽃이 번지고, 그 아래
+      원앙 한 쌍이 깃든다. 작가의 가장 야심찬 정원으로, 월간민화
+      작가노트에 소개되었고 2026년 주브라질 한국문화원 특별전에 전시되었다.</p>
+      <p class="desc-en">Her most ambitious garden: white and coral lotus
+      drift over misty water while two mandarin ducks shelter below —
+      featured in her <em>Monthly Minhwa</em> artist note and shown at the
+      Korean Cultural Center Brazil, 2026.</p>
+    </div>
+  </div>
+  <div class="foot l"><span class="chip">DAMI LEE — MINHWA</span></div>
+  <div class="foot r"><span class="chip">07</span></div>
+</div>
+
+<!-- =========================================================
+     WORK 07 — 오이를 등에 지고 가는 고슴도치 · A Hedgehog
+     Carrying a Cucumber (the palate cleanser)
+     ========================================================= -->
+<div class="page work work-hedgehog">
+  <div class="ghost-num" style="left:auto; right:8mm;">07</div>
+  <div class="hedge-wrap">
+    <div class="hedge-title">오이를 등에 지고<br>가는 고슴도치</div>
+    <img class="hedge-img" src="assets/print/hedgehog.jpg" alt="오이를 등에 지고 가는 고슴도치">
+    <div class="hedge-meta">
+      <div class="num">07</div>
+      <div class="en-title en">A Hedgehog Carrying a Cucumber</div>
+      <div class="rule"></div>
+      <div class="meta-row"><span>크기/SIZE <b>27 × 40cm</b></span></div>
+      <div class="meta-row" style="margin-top:2mm;"><span>년도/YEAR <b>2026</b></span></div>
+      <div class="meta-row" style="margin-top:2mm;"><span>재료/MEDIUM <b>순지에 수간분채·봉채</b></span></div>
+      <!-- DRAFT description authored from brief seed — pending artist approval -->
+      <p class="desc-kr" style="margin-top:5mm;">고슴도치가 등에 오이를 지고 씩씩하게 길을 나선다. 파란
+      들꽃이 흩날리는 그 곁에서, 민화가 오래전부터 품어온 익살과
+      다정함이 고스란히 되살아난다.</p>
+      <p class="desc-en">A hedgehog hauls a cucumber home on its own
+      spines, undeterred — minhwa's oldest joke, painted with total
+      sincerity.</p>
+    </div>
+  </div>
+  <div class="foot l"><span class="chip">DAMI LEE — MINHWA</span></div>
+  <div class="foot r"><span class="chip">08</span></div>
+</div>
+
+<!-- =========================================================
+     WORK 08 — 청록의 서곡 · The Teal Prelude (quiet coda,
+     the one non-cream background: cool grey)
+     ========================================================= -->
+<div class="page grey work work-teal">
+  <div class="ghost-num" style="color:var(--ink); left:auto; right:8mm;">08</div>
+  <div class="teal-wrap">
+    <div class="num">08</div>
+    <img src="assets/print/teal-prelude.jpg" alt="청록의 서곡">
+    <div class="kr-title">청록의 서곡</div>
+    <div class="en-title en">The Teal Prelude</div>
+    <div class="rule"></div>
+    <div class="meta-row">
+      <span>크기/SIZE <b>30 × 30cm</b></span>
+      <span>년도/YEAR <b>2026</b></span>
+    </div>
+    <div class="meta-row" style="margin-top:1.4mm;"><span>재료/MEDIUM <b>순지에 수간분채·봉채</b></span></div>
+    <!-- DRAFT description authored from brief seed — pending artist approval -->
+    <p class="desc-kr">청록빛 난초가 청자빛 기물 곁에 서늘하게 놓인다. 작가의
+    그림 중 가장 동시대적이고 절제된 톤으로, 2026년 일백헌 소품전에서
+    선보였다.</p>
+    <p class="desc-en">Teal orchids lean beside a celadon-washed vase on
+    cool grey ground — her most contemporary, tonal work, closing the
+    sequence the way a held breath closes a phrase of music.</p>
+  </div>
+  <div class="foot l"><span class="chip">DAMI LEE — MINHWA</span></div>
+  <div class="foot r"><span class="chip">09</span></div>
+</div>
+
+<!-- =========================================================
+     EXHIBITIONS — full 8-row timeline with thumbnail chips
+     ========================================================= -->
+<div class="page exhib">
+  <div class="section-title">전시 이력<span class="en">Exhibitions</span></div>
+  <div class="timeline">
+    <div class="tl-row">
+      <div class="tl-date">2025.03</div>
+      <img class="tl-chip" src="assets/print/moran.jpg" alt="모란보자기">
+      <div class="tl-body">
+        <div class="tl-venue">한국채색화협회 단체전</div>
+        <div class="tl-work">모란보자기 · Peony Bojagi</div>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">2025.03</div>
+      <img class="tl-chip" src="assets/print/moran.jpg" alt="모란보자기">
+      <div class="tl-body">
+        <div class="tl-venue">제주도 레미콘갤러리 전시 (fantastic K-Art 창신이능전)</div>
+        <div class="tl-work">모란보자기 · Peony Bojagi</div>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">2025.03.07<br>–04.30</div>
+      <img class="tl-chip" src="assets/print/blooming-mind.jpg" alt="생각이 피어나는 자리">
+      <div class="tl-body">
+        <div class="tl-venue">콜롬비아 3개 도시 한국민화 특별전 <span class="tl-city">Bogotá · Medellín · Cali</span></div>
+        <div class="tl-work">생각이 피어나는 자리 · Blooming Mind</div>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">2025.06</div>
+      <img class="tl-chip" src="assets/print/blooming-mind.jpg" alt="생각이 피어나는 자리">
+      <div class="tl-body">
+        <div class="tl-venue">Galerie89 — <em class="en" style="font-size:10.4pt;">Minhwa, Fortune from Korea</em> <span class="tl-city">Paris</span></div>
+        <div class="tl-work">책거리 · Blooming Mind</div>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">2025.11</div>
+      <img class="tl-chip" src="assets/print/summer-lotus.jpg" alt="연못위의 대화">
+      <div class="tl-body">
+        <div class="tl-venue">갤러리 일백헌 창작 프로젝트 와인라벨 공모 입상</div>
+        <div class="tl-work">연못위의 대화 · Summer Lotus</div>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">2026.01</div>
+      <img class="tl-chip" src="assets/print/blooming-mind.jpg" alt="생각이 피어나는 자리">
+      <div class="tl-body">
+        <div class="tl-venue">월간민화 × 동덕아트갤러리 세화전 '물렀거라, 세화 나가신다'</div>
+        <div class="tl-work">생각이 피어나는 자리 · Blooming Mind</div>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">2026.03</div>
+      <img class="tl-chip" src="assets/print/garden-wishes.jpg" alt="번영이 피어나는 소망의 정원">
+      <div class="tl-body">
+        <div class="tl-venue">주브라질 한국문화원 초청 한국민화 특별전 <span class="tl-city">Brazil</span></div>
+        <div class="tl-work">번영이 피어나는 소망의 정원 · The Garden of Prosperous Wishes</div>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">2026.04</div>
+      <img class="tl-chip" src="assets/print/teal-prelude.jpg" alt="청록의 서곡">
+      <div class="tl-body">
+        <div class="tl-venue">일백헌 소품전</div>
+        <div class="tl-work">청록의 서곡 · The Teal Prelude</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot l"><span class="chip">DAMI LEE — MINHWA</span></div>
+  <div class="foot r"><span class="chip">10</span></div>
+</div>
+
+<!-- =========================================================
+     ABOUT — profile photo (duotone), education, CV, 사사 credit
+     ========================================================= -->
+<div class="page about">
+  <div class="about-photo">
+    <img src="assets/print/profile.jpg" alt="이다미 작가 프로필">
+    <div class="tone"></div>
+  </div>
+  <div class="about-text">
+    <div class="kr-title">이다미</div>
+    <div class="en-title en">Dami Lee</div>
+    <div class="rule"></div>
+    <div class="about-block">
+      <div class="label">학력 · Education</div>
+      <p>서울대학교 미술대학 산업디자인과 학사<br>
+      <span style="color:var(--caption);">BFA Industrial Design, Seoul National University</span></p>
+      <p style="margin-top:2.4mm;">Rhode Island School of Design, Graphic Design 전공 학사<br>
+      <span style="color:var(--caption);">BFA Graphic Design, RISD</span></p>
+    </div>
+    <div class="about-block">
+      <div class="label">사사 · Studied Under</div>
+      <p>줄리 김수진 작가 사사<br>
+      <span style="color:var(--caption);">Studied minhwa under artist Julie Soojin Kim</span></p>
+    </div>
+    <div class="about-block">
+      <div class="label">경력 · CV</div>
+      <ul>
+        <li>일백헌 마켓민화 소품전, 2026</li>
+        <li>주브라질 한국문화원 초청 한국민화 특별전, 2026</li>
+        <li>세화전 '물렀거라, 세화 나가신다', 동덕아트갤러리, 2026</li>
+        <li>갤러리 일백헌 창작 프로젝트 와인라벨 공모 입상, 2025</li>
+        <li>Galerie89, Paris — <em class="en" style="font-size:9.4pt;">Minhwa, Fortune from Korea</em>, 2025</li>
+        <li>콜롬비아 3개 도시 한국민화 특별전, 2025</li>
+        <li>제주 레미콘 갤러리 &amp; 일백헌 fantastic K-Art 창신이능전, 2025</li>
+        <li>한국 채색화협회 회원전, 2025</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot l"><span class="chip">DAMI LEE — MINHWA</span></div>
+  <div class="foot r"><span class="chip">11</span></div>
+</div>
+
+<!-- =========================================================
+     BACK COVER — hedgehog silhouette walking off the edge
+     + contact line
+     ========================================================= -->
+<div class="page backcover">
+  <svg class="hedgehog-sil" viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#7A8B4C">
+      <path d="M18 100 C 10 78, 22 52, 55 45 C 60 30, 78 14, 100 18 L 96 26 L 112 20 L 106 30 L 124 26 L 116 36 L 132 34 L 122 44 C 128 54, 128 66, 120 76 C 132 78, 142 86, 146 98 L 132 96 C 130 104, 122 110, 112 110 L 30 110 C 22 110, 18 106, 18 100 Z"/>
+      <circle cx="52" cy="60" r="2.6" fill="#F6F1E6"/>
+      <path d="M38 108 L 36 118 L 44 118 L 44 108 Z"/>
+      <path d="M96 108 L 94 120 L 102 120 L 102 108 Z"/>
+    </g>
+  </svg>
+  <div class="contact-line">(+82) 10-3165-1008 · damiee@gmail.com</div>
+  <div class="foot l"><span class="chip">DAMI LEE — MINHWA</span></div>
+  <div class="foot r"><span class="chip">12</span></div>
+</div>
+
+</body>
+</html>
