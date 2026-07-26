@@ -25,8 +25,19 @@ Two deliverables, one visual system:
 
 ### Repo layout — IMPORTANT
 
-The live site is **`~/Documents/GitHub/damiee.github.io`** (remote:
-`chillchoi/damiee.github.io`). Work there.
+Work in **`~/Documents/GitHub/damiee.github.io`**. It has **two remotes and
+both must be pushed together, every time**:
+
+| Remote | Repo | Serves |
+|---|---|---|
+| `damiee-art` | `damiee-art/damiee-art.github.io` | **https://damiee-art.github.io — the final submission link.** |
+| `origin` | `chillchoi/damiee.github.io` | the author's working mirror |
+
+```
+git push damiee-art main && git push origin main
+```
+
+Never push only one. GitHub Pages takes a minute or two to rebuild after a push.
 
 `~/Documents/GitHub/damiee-art.github.io` is a near-empty leftover; the project
 files were moved out of it. A nested `damiee.github.io/damiee-art.github.io/`
