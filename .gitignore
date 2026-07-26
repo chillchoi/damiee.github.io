@@ -1,0 +1,22 @@
+.DS_Store
+
+# Throwaway QA/audit render copies of the page (never part of the site)
+/__audit_*.html
+/_qa_tmp.html
+
+# Backup copy of the original project folder — contains the 324MB source PDF,
+# which exceeds GitHub's 100MB file size limit and would fail to push.
+/damiee-art.github.io/
+
+# Raw source photographs of the artworks — large originals not needed to
+# serve the site (index.html/print.html use the optimized assets/ derivatives).
+# Kept locally only; already backed up in /damiee-art.github.io/ above.
+/모란보자기.JPG
+/생각이 피어나는 자리.JPG
+/연못위의 대화.jpg
+/이다미  120x39cm-0001.jpg
+/이다미  120x39cm-0004.jpg
+/번영이 피어나는 소망의 정원.jpg
+/청록의 서곡.JPG
+/오이를 등에 지고 가는 고슴도치.jpg
+/profile.png

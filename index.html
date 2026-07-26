@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>이다미 · Dami Lee — 민화, 지금 여기 / Minhwa, Present Tense</title>
-<meta name="description" content="이다미(Dami Lee)의 민화 포트폴리오 — 전통 민화를 동시대적 시선으로 재해석한 작품들. Dami Lee's contemporary reinterpretation of Korean folk painting (minhwa).">
+<title>이다미 · Dami Lee · 민화 Minhwa</title>
+<meta name="description" content="이다미(Dami Lee)의 민화 포트폴리오 · 전통 민화를 동시대적 시선으로 재해석한 작품들. Dami Lee's contemporary reinterpretation of Korean folk painting (minhwa).">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
@@ -39,81 +39,34 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;pad
   --a-teal:#3E6E6A;
 
   --ease: cubic-bezier(0.22,1,0.36,1);
+  --ease-veil: cubic-bezier(0.16,1,0.3,1);
   --font-kr: 'Noto Serif KR', serif;
-  --font-en: 'Cormorant Garamond', serif;
+  --font-en: 'Cormorant Garamond', 'Noto Serif KR', serif;
   --font-meta: 'Noto Sans KR', sans-serif;
 
   /* ---- hanji texture layers (client mandate) ----
-     All inline data-URI SVG — feTurbulence fiber grain, hand-placed
+     All inline data-URI SVG · feTurbulence fiber grain, hand-placed
      mulberry flecks, whisper-opacity 문양 watermarks. Zero external
      requests. Applied as element BACKGROUND layers only, so texture
      can never sit on top of an artwork. */
   --tex-grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch' seed='7'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.19 0 0 0 0 0.17 0 0 0 0 0.13 0 0 0 0.055 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23g)'/%3E%3C/svg%3E");
   --tex-grain-light:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='gl'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch' seed='11'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.96 0 0 0 0 0.94 0 0 0 0 0.9 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23gl)'/%3E%3C/svg%3E");
-  --tex-fleck:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cg fill='none' stroke='%231F1D1A' stroke-width='.8' stroke-linecap='round'%3E%3Cpath d='M42 66q16-9 30-2' opacity='.05'/%3E%3Cpath d='M180 30q10 12 24 10' opacity='.04'/%3E%3Cpath d='M330 84q-14 6-22 18' opacity='.05'/%3E%3Cpath d='M90 190q18 4 28-8' opacity='.04'/%3E%3Cpath d='M250 170q8-14 22-14' opacity='.05'/%3E%3Cpath d='M60 320q14-10 30-6' opacity='.045'/%3E%3Cpath d='M210 300q-12 10-10 24' opacity='.05'/%3E%3Cpath d='M350 260q12 8 10 22' opacity='.04'/%3E%3Cpath d='M150 398q16-6 26 2' opacity='.05'/%3E%3Cpath d='M385 380q-10-10-24-8' opacity='.045'/%3E%3C/g%3E%3Cg fill='%231F1D1A'%3E%3Ccircle cx='120' cy='120' r='1.1' opacity='.05'/%3E%3Ccircle cx='300' cy='40' r='.9' opacity='.06'/%3E%3Ccircle cx='40' cy='250' r='1' opacity='.05'/%3E%3Ccircle cx='390' cy='160' r='1.2' opacity='.04'/%3E%3Ccircle cx='230' cy='240' r='.8' opacity='.06'/%3E%3Ccircle cx='310' cy='350' r='1' opacity='.05'/%3E%3Ccircle cx='100' cy='360' r='1.1' opacity='.04'/%3E%3C/g%3E%3C/svg%3E");
-  --motif-cloud:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='120'%3E%3Cg fill='none' stroke='%231F1D1A' stroke-opacity='.05' stroke-width='1.2'%3E%3Cpath d='M20 100c0-30 22-52 50-52s50 22 50 52'/%3E%3Cpath d='M36 100c0-20 15-36 34-36s34 16 34 36'/%3E%3Cpath d='M52 100c0-11 8-20 18-20s18 9 18 20'/%3E%3Cpath d='M120 100c0-26 18-44 40-44'/%3E%3C/g%3E%3C/svg%3E");
-  --motif-lattice:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cg fill='none' stroke='%231F1D1A' stroke-opacity='.05' stroke-width='1'%3E%3Cpath d='M0 30h60v60h60V30h60v60h60'/%3E%3Cpath d='M30 0v60h60v60H30v60h60v60'/%3E%3Cpath d='M150 120v60h60v60'/%3E%3Cpath d='M210 90V30h30'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 /* ============================================================
    HANJI MATERIAL SYSTEM (client mandate)
    Every background reads as real paper: fiber grain via inline
    feTurbulence, mulberry flecks, faint traditional motifs in the
-   corners, deckled dividers. Subliminal at arm's length, alive up
-   close. Texture lives strictly UNDER content — never on a painting.
+   Subliminal at arm's length, alive up
+   close. Texture lives strictly UNDER content · never on a painting.
    ============================================================ */
 .paper{
   background-color:var(--cream);
-  background-image:var(--tex-fleck), var(--tex-grain);
-  background-size:420px 420px, 240px 240px;
+  background-image:var(--tex-grain);
+  background-size:240px 240px;
 }
 .paper--grey{ background-color:var(--grey-cool); }
-.paper--cloud-tr{
-  background-image:var(--motif-cloud), var(--tex-fleck), var(--tex-grain);
-  background-repeat:no-repeat, repeat, repeat;
-  background-position:right 4% top 7%, 0 0, 0 0;
-  background-size:200px auto, 420px 420px, 240px 240px;
-}
-.paper--cloud-bl{
-  background-image:var(--motif-cloud), var(--tex-fleck), var(--tex-grain);
-  background-repeat:no-repeat, repeat, repeat;
-  background-position:left 4% bottom 8%, 0 0, 0 0;
-  background-size:200px auto, 420px 420px, 240px 240px;
-}
-.paper--lattice-tr{
-  background-image:var(--motif-lattice), var(--tex-fleck), var(--tex-grain);
-  background-repeat:no-repeat, repeat, repeat;
-  background-position:right 3% top 5%, 0 0, 0 0;
-  background-size:240px 240px, 420px 420px, 240px 240px;
-}
-.paper--lattice-bl{
-  background-image:var(--motif-lattice), var(--tex-fleck), var(--tex-grain);
-  background-repeat:no-repeat, repeat, repeat;
-  background-position:left 3% bottom 6%, 0 0, 0 0;
-  background-size:240px 240px, 420px 420px, 240px 240px;
-}
 
-/* deckled paper-edge divider between chapters */
-.deckle{ display:block; width:100%; height:26px; color:var(--grey); opacity:.55; }
-.deckle svg{ display:block; width:100%; height:100%; }
-.deckle path{ fill:none; stroke:currentColor; stroke-width:1; }
-
-/* 낙관 seal-stamp folio */
-.seal{
-  display:inline-flex; align-items:center; justify-content:center;
-  min-width:2.4em; height:2.4em; padding:.2em .35em;
-  border:2px solid var(--accent, var(--ink));
-  border-radius:.3em;
-  font-family:var(--font-en); font-weight:600; font-size:.95rem;
-  letter-spacing:.08em; color:var(--accent, var(--ink));
-  transform:rotate(-4deg);
-  opacity:.9; user-select:none;
-}
-.seal--stamp{
-  background:var(--ink); color:var(--cream); border-color:transparent;
-  font-family:var(--font-kr); font-weight:600; letter-spacing:.14em;
-  border-radius:.25em; padding:.45em .5em; height:auto;
-}
 
 html{background:var(--cream);scroll-behavior:smooth;}
 @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
@@ -126,7 +79,19 @@ body{
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
+  /* No word is ever split across two lines. `keep-all` is the correct
+     rule for Korean (it forbids breaking inside a 단어 / Latin word and
+     wraps at spaces instead); `break-word` is the escape hatch only for
+     a single word genuinely wider than its container. */
+  word-break:keep-all;
+  overflow-wrap:break-word;
+  hyphens:none;
+  -webkit-hyphens:none;
 }
+
+/* a kinetic-title word: glyphs animate individually, but the word itself
+   is one unbreakable unit, so breaks land only on the spaces between */
+.word{ display:inline-block; white-space:nowrap; }
 
 /* section-scoped selection color, default fallback */
 ::selection{ background:var(--ink); color:var(--cream); }
@@ -147,7 +112,17 @@ body{
   opacity:.55;
   width:100%;
   margin:1.1em 0;
+  transform-origin:left center;
 }
+/* the hairline draws itself in, like a brushstroke laid down before
+   the metadata is set beside it */
+.js .work .rule, .js .moran-meta .rule, .js .statement .rule{
+  transform:scaleX(0);
+  transition:transform .9s var(--ease);
+  transition-delay:.15s;
+}
+.js .in-view .rule{ transform:scaleX(1); }
+@media (prefers-reduced-motion: reduce){ .js .work .rule, .js .moran-meta .rule, .js .statement .rule{transform:none;transition:none;} }
 
 .visually-hidden{
   position:absolute!important;
@@ -158,7 +133,7 @@ body{
 }
 
 /* ============================================================
-   PROGRESSIVE ENHANCEMENT — hidden states only apply with .js
+   PROGRESSIVE ENHANCEMENT · hidden states only apply with .js
    (page stays fully visible & composed if JS is disabled)
    ============================================================ */
 .js .reveal{opacity:0; transform:translateY(28px); transition:opacity .9s var(--ease), transform .9s var(--ease);}
@@ -199,8 +174,8 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
   position:fixed; inset:0; z-index:9998;
   align-items:center; justify-content:center;
   background-color:var(--cream);
-  background-image:var(--tex-fleck), var(--tex-grain);
-  background-size:420px 420px, 240px 240px;
+  background-image:var(--tex-grain);
+  background-size:240px 240px;
   transition:opacity .8s var(--ease), visibility .8s var(--ease);
 }
 .js .loader::before,
@@ -208,8 +183,8 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
   content:"";
   position:absolute; top:0; bottom:0; width:52%;
   background-color:var(--cream);
-  background-image:var(--tex-fleck), var(--tex-grain);
-  background-size:420px 420px, 240px 240px;
+  background-image:var(--tex-grain);
+  background-size:240px 240px;
   transition:transform 1s var(--ease);
   transition-delay:.15s;
 }
@@ -290,25 +265,22 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
   min-height:100svh;
   position:relative;
   display:grid;
-  grid-template-columns:1fr auto;
+  /* left: the name.  right: a dense magazine contact sheet.
+     Each column is given a width proportional to 1/(sum of its images'
+     aspect ratios), so all four columns resolve to the SAME height and
+     their bottom edges line up flush with the top ones. Nothing is
+     cropped and no image is distorted. 1.0284 = sum of those inverses. */
+  grid-template-columns:1fr clamp(280px, calc((100svh - 9.4rem) * 1.0284 + 1.2rem), 62vw);
   align-items:center;
-  gap:clamp(1rem,4vw,3rem);
-  padding:clamp(5.5rem,12vh,8rem) clamp(1.4rem,6vw,5.5rem) clamp(3rem,8vh,5rem);
-  overflow:hidden;
+  gap:clamp(1.5rem,4vw,4rem);
+  padding:clamp(5rem,10vh,6.5rem) clamp(1.4rem,4.5vw,4rem) clamp(2.5rem,6vh,4rem);
 }
-.cover-kicker{
-  font-family:var(--font-meta);
-  font-size:.78rem;
-  letter-spacing:.32em;
-  text-transform:uppercase;
-  color:var(--grey);
-  margin-bottom:2rem;
-}
+.cover-inner{ position:relative; z-index:2; }
 .cover-title{
   font-family:var(--font-kr);
   font-weight:200;
-  font-size:clamp(4.6rem,17vw,13rem);
-  line-height:.98;
+  font-size:clamp(3.6rem,11vw,9rem);
+  line-height:1.08;
   letter-spacing:.02em;
   color:var(--ink);
   margin-left:-.04em;
@@ -325,41 +297,45 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
   .cover-title .ch{opacity:1!important; transform:none!important; transition:none!important;}
 }
 .cover-sub{
-  margin-top:1.6rem;
+  margin-top:1.4rem;
   font-family:var(--font-en);
   font-style:italic;
-  font-size:clamp(1rem,2vw,1.4rem);
-  color:var(--grey);
+  font-size:clamp(1rem,1.7vw,1.3rem);
+  color:var(--ink); opacity:.72;
   letter-spacing:.04em;
 }
 .cover-scroll{
   display:inline-block;
-  margin-top:3.2rem;
+  margin-top:clamp(2rem,5vh,3.2rem);
   font-family:var(--font-meta);
-  font-size:.78rem;
-  letter-spacing:.18em;
-  text-transform:uppercase;
+  font-size:.76rem; letter-spacing:.22em; text-transform:uppercase;
   color:var(--ink);
   border-bottom:1px solid var(--ink);
   padding-bottom:.3em;
   transition:opacity .4s var(--ease), letter-spacing .4s var(--ease);
 }
 .cover-scroll:hover, .cover-scroll:focus-visible{letter-spacing:.28em; opacity:.65;}
-.cover-side{
-  display:flex; flex-direction:column; align-items:center; gap:1.8rem;
-  align-self:stretch; justify-content:center;
-  border-left:1px solid rgba(138,131,120,.35);
-  padding-left:clamp(1rem,2.5vw,2rem);
+
+/* ---- the contact sheet: three columns of WHOLE paintings, packed
+   tight with a hairline gutter. Nothing is cropped; the columns are
+   pre-balanced so all three end at the same depth. ---- */
+.cover-sheet{ display:flex; gap:.4rem; align-self:stretch; align-items:flex-start; }
+.sheet-col{ display:flex; flex-direction:column; gap:.4rem; min-width:0; flex-basis:0; }
+.sheet-col figure{
+  margin:0; overflow:hidden; background:var(--cream);
+  opacity:0; transform:translateY(22px);
+  transition:opacity 1s var(--ease), transform 1s var(--ease);
+  transition-delay:var(--d,0s);
 }
-.cover-vertical{
-  writing-mode:vertical-rl; text-orientation:mixed;
-  font-family:var(--font-en); font-style:italic;
-  letter-spacing:.34em; font-size:.8rem;
-  color:var(--grey); text-transform:uppercase;
-}
-@media (max-width:700px){
-  .cover{grid-template-columns:1fr;}
-  .cover-side{display:none;}
+.in-view .sheet-col figure{ opacity:1; transform:translateY(0); }
+@media (prefers-reduced-motion: reduce){ .sheet-col figure{opacity:1;transform:none;transition:none;} }
+.sheet-col img{ display:block; width:100%; height:auto; transition:transform .9s var(--ease-veil), filter .6s var(--ease); }
+.sheet-link{ display:block; overflow:hidden; }
+.sheet-link:hover img, .sheet-link:focus-visible img{ transform:scale(1.045); }
+.sheet-link:focus-visible{ outline:2px solid var(--ink); outline-offset:2px; }
+@media (max-width:820px){
+  .cover{ grid-template-columns:1fr; padding-top:clamp(4.5rem,9vh,6rem); }
+  .cover-sheet{ margin-top:2.2rem; }
 }
 
 /* ============================================================
@@ -390,7 +366,7 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
 .statement-kr p:nth-of-type(2){margin-left:clamp(1.4rem,7vw,6rem);}
 .statement-kr p:nth-of-type(3){margin-left:clamp(2.8rem,14vw,12rem);}
 .statement-en{
-  border-left:1px solid var(--grey);
+  border-left:.5px solid rgba(138,131,120,.42);
   padding-left:clamp(1.2rem,2.5vw,2rem);
   align-self:center;
 }
@@ -409,10 +385,11 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
 }
 
 /* ============================================================
-   WORKS — shared system
+   WORKS · shared system
    ============================================================ */
 #works{position:relative;}
 .work{
+  scroll-margin-top:0;
   position:relative;
   padding:clamp(4rem,9vw,7rem) clamp(1.2rem,5vw,4rem);
   min-height:100svh;
@@ -421,7 +398,7 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
   overflow:hidden;
 }
 .work ::selection{ background:var(--accent); color:var(--cream); }
-/* huge marginal folios — they live in the gutters, never on a painting;
+/* huge marginal folios · they live in the gutters, never on a painting;
    the media layer below is stacked above them as a hard guarantee */
 .ghost-num{
   position:absolute;
@@ -451,17 +428,146 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
     transform:none!important;
   }
 }
-/* CLIENT MANDATE — nothing ever covers a painting: the artwork layer
+/* CLIENT MANDATE · nothing ever covers a painting: the artwork layer
    always paints above numerals, motifs, and grain */
 .work .work-media, .diptych-wipe{position:relative; z-index:1;}
 .work .work-meta{position:relative; z-index:2;}
+
+
+/* ============================================================
+   PER-WORK LINE MOTIFS
+   A thin-line watermark unique to each painting, taken from that
+   work's own subject (books, ripples, scroll rods, duck wakes, a
+   cucumber tendril, an orchid vase). Set at 4-6% opacity in the
+   outer margin so it never competes with, or touches, the artwork.
+   모란보자기 is deliberately left plain: its ground is a different
+   colour and an allover pattern already fills the frame.
+   ============================================================ */
+.motif--bloom{ --work-motif:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'><g fill='none' stroke='%231F1D1A' stroke-width='0.7' stroke-linecap='round' stroke-linejoin='round' opacity='1'><rect x='24' y='30' width='40' height='13' rx='1.5'/><rect x='24' y='47' width='40' height='13' rx='1.5'/><rect x='86' y='84' width='40' height='13' rx='1.5'/><rect x='86' y='101' width='40' height='13' rx='1.5'/><path d='M30 36h28M30 53h28M92 90h28M92 107h28'/></g></svg>"); }
+.motif--lotus{ --work-motif:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='170' height='170' viewBox='0 0 170 170'><g fill='none' stroke='%231F1D1A' stroke-width='0.7' stroke-linecap='round' stroke-linejoin='round' opacity='1'><circle cx='46' cy='52' r='11'/><circle cx='46' cy='52' r='19'/><circle cx='46' cy='52' r='27'/><path d='M108 118a17 17 0 1 0 34 0a17 17 0 1 0-34 0'/><path d='M125 101v34M108 118h34'/></g></svg>"); }
+.motif--untitled{ --work-motif:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'><g fill='none' stroke='%231F1D1A' stroke-width='0.7' stroke-linecap='round' stroke-linejoin='round' opacity='1'><path d='M28 26h44M50 26v58'/><path d='M40 84h20l-10 16z'/><path d='M104 74h44M126 74v58'/><path d='M116 132h20l-10 16z'/></g></svg>"); }
+.motif--garden{ --work-motif:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'><g fill='none' stroke='%231F1D1A' stroke-width='0.7' stroke-linecap='round' stroke-linejoin='round' opacity='1'><path d='M22 54q26-16 52 0'/><path d='M30 66q18-11 36 0'/><path d='M100 122q26-16 52 0'/><path d='M108 134q18-11 36 0'/><path d='M64 96q22-13 44 0'/></g></svg>"); }
+.motif--hedgehog{ --work-motif:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='165' height='165' viewBox='0 0 165 165'><g fill='none' stroke='%231F1D1A' stroke-width='0.7' stroke-linecap='round' stroke-linejoin='round' opacity='1'><path d='M26 40q22 6 26 28t22 26'/><path d='M74 94q10 8 4 18t-16 4'/><path d='M110 44q16 4 18 20t14 18'/><path d='M120 118q12 2 14 14'/></g></svg>"); }
+.motif--teal{ --work-motif:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='170' height='170' viewBox='0 0 170 170'><g fill='none' stroke='%231F1D1A' stroke-width='0.7' stroke-linecap='round' stroke-linejoin='round' opacity='1'><path d='M52 44h30l-5 14q12 10 12 24t-16 22h-22q-16-8-16-22t12-24z'/><path d='M120 120q4-24 20-32'/><path d='M140 88q6 4 5 12'/><path d='M120 120q-8-6-8-16'/></g></svg>"); }
+
+.work[class*="paper--m-"], .paper--m-any{ position:relative; }
+.work-motif{
+  position:absolute; inset:0; z-index:0; pointer-events:none;
+  background-image:var(--work-motif);
+  background-repeat:repeat;
+  /* spread the tile out so the motif reads as an occasional watermark
+     rather than a regular grid, and keep it at a whisper */
+  background-size:clamp(240px, 26vw, 360px) auto;
+  background-position:center;
+  opacity:.05;
+}
+.work--teal .work-motif{ opacity:.07; }
+
+/* ============================================================
+   TEXT CEREMONY · every title, label and paragraph drifts up into
+   place slowly on the same expo-out curve as the paintings, in a
+   deliberate reading order: label, title, subtitle, rule, metadata,
+   body. Nothing snaps in. All of it is gated on `.js` so the page
+   still reads fully composed with scripting off.
+   ============================================================ */
+.js [data-t]{
+  opacity:0;
+  transform:translateY(16px);
+  transition:opacity 1.15s var(--ease-veil), transform 1.25s var(--ease-veil);
+  transition-delay:calc(var(--td,0) * 1ms);
+}
+.js .in-view [data-t]{ opacity:1; transform:translateY(0); }
+@media (prefers-reduced-motion: reduce){
+  .js [data-t]{opacity:1!important;transform:none!important;transition:none!important;}
+}
+/* per-glyph cascade for the vertical scroll inscription, slowed to match */
+.work-title-vertical .ch{
+  display:inline-block;
+  opacity:0; transform:translateY(.3em);
+  transition:opacity .9s var(--ease-veil), transform .9s var(--ease-veil);
+  transition-delay:calc(.25s + var(--i,0) * 70ms);
+}
+.in-view .work-title-vertical .ch{opacity:1; transform:translateY(0);}
+@media (prefers-reduced-motion: reduce){
+  .work-title-vertical .ch{opacity:1!important;transform:none!important;transition:none!important;}
+}
+/* the long-form paragraphs breathe in one after another */
+.js .statement-kr p{ --td:0; }
+.js .statement-kr p:nth-of-type(2){ --td:220; }
+.js .statement-kr p:nth-of-type(3){ --td:440; }
+.js .statement-en p{ --td:340; }
+.js .statement-en p:nth-of-type(2){ --td:480; }
+.js .statement-en p:nth-of-type(3){ --td:620; }
+.js .about-block:nth-of-type(1){ --td:180; }
+.js .about-block:nth-of-type(2){ --td:320; }
+.js .about-block:nth-of-type(3){ --td:460; }
+/* slower, softer section fade so nothing arrives abruptly */
+.js .reveal{transition:opacity 1.25s var(--ease-veil), transform 1.35s var(--ease-veil);}
+
+/* ============================================================
+   THE UNVEILING · how every painting enters
+   A slow vertical veil lifts (clip-path), the image settles down out
+   of an oversize scale, and it resolves from soft to razor sharp,
+   while its cast shadow deepens as it "lands" on the paper. Long,
+   heavy easing (expo-out) so it reads as ceremony, not a UI tween.
+   ============================================================ */
+.js .work-media{
+  clip-path:inset(0 0 100% 0);
+  transform:scale(1.055);
+  filter:blur(9px) saturate(.88);
+  opacity:.001;
+  box-shadow:0 0 0 rgba(31,29,26,0);
+  transition:
+    clip-path 1.55s var(--ease-veil),
+    transform 1.9s var(--ease-veil),
+    filter 1.15s .1s ease-out,
+    opacity .55s ease-out,
+    box-shadow 1.6s .25s var(--ease-veil);
+  will-change:clip-path, transform, filter;
+}
+.js .in-view .work-media{
+  clip-path:inset(0 0 0 0);
+  transform:scale(1);
+  filter:blur(0) saturate(1);
+  opacity:1;
+  box-shadow:0 38px 80px -34px rgba(31,29,26,.42);
+}
+/* the diptych scrolls unroll on the same ceremony, one a beat after
+   the other, like two hanging scrolls being let down */
+.js .diptych-wipe{
+  transform:scale(1.05);
+  filter:blur(8px) saturate(.9);
+  transition:
+    clip-path 1.7s var(--ease-veil),
+    transform 2s var(--ease-veil),
+    filter 1.2s .12s ease-out,
+    box-shadow 1.7s .3s var(--ease-veil);
+  box-shadow:0 0 0 rgba(31,29,26,0);
+}
+.js .diptych-wipe.in-view{
+  transform:scale(1);
+  filter:blur(0) saturate(1);
+  box-shadow:0 34px 74px -32px rgba(31,29,26,.4);
+}
+.js .diptych-panel:nth-of-type(2) .diptych-wipe{ transition-delay:0s, 0s, .26s, .44s; }
+@media (prefers-reduced-motion: reduce){
+  .js .work-media, .js .diptych-wipe{
+    clip-path:none!important; transform:none!important; filter:none!important;
+    opacity:1!important; transition:none!important;
+  }
+}
 .work-title{
   font-family:var(--font-kr);
   font-weight:200;
-  font-size:clamp(3rem,8vw,7rem);
-  line-height:1.03;
+  font-size:clamp(2.6rem,6.4vw,5.6rem);
+  /* generous leading: at display sizes a tight line-height makes
+     descenders from one line hit ascenders on the next */
+  line-height:1.22;
   letter-spacing:.01em;
   color:var(--ink);
+  /* Korean wraps on word boundaries, never inside a word */
+  word-break:keep-all;
+  overflow-wrap:break-word;
 }
 .work-title .ch{
   display:inline-block;
@@ -477,13 +583,26 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
 .work-subtitle{
   font-family:var(--font-en);
   font-style:italic;
-  font-weight:500;
-  font-size:clamp(1rem,1.8vw,1.35rem);
-  color:var(--accent);
+  font-weight:600;
+  font-size:clamp(1.05rem,1.9vw,1.45rem);
+  /* accent pastels read too light as text on cream · darken toward ink
+     while keeping the section's hue, for real readability (client
+     feedback: "letters are hard to read") */
+  color:color-mix(in srgb, var(--accent) 58%, var(--ink) 42%);
+  letter-spacing:.01em;
   margin-top:.5rem;
 }
 .work-specs{display:flex; flex-wrap:wrap; gap:1.6rem 2.2rem; margin:1.1rem 0 1.4rem;}
 .work-specs>div{display:flex; flex-direction:column; gap:.25rem;}
+.js .work-specs>div{
+  opacity:0; transform:translateY(10px);
+  transition:opacity .6s var(--ease), transform .6s var(--ease);
+}
+.js .work-specs>div:nth-child(1){transition-delay:.35s;}
+.js .work-specs>div:nth-child(2){transition-delay:.45s;}
+.js .work-specs>div:nth-child(3){transition-delay:.55s;}
+.js .in-view .work-specs>div{ opacity:1; transform:translateY(0); }
+@media (prefers-reduced-motion: reduce){ .js .work-specs>div{opacity:1;transform:none;transition:none;} }
 .work-specs dt{
   font-size:.66rem; letter-spacing:.22em; text-transform:uppercase; color:var(--grey);
 }
@@ -519,11 +638,11 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
 .lens.is-active{opacity:1;}
 @media (hover:none), (pointer:coarse){ .lens{display:none;} }
 
-/* ---- 01 moran — the unfolded cloth ----
+/* ---- 01 moran · the unfolded cloth ----
    The COMPLETE painting, huge and uncropped, breathing off the edges.
    The v1 knocked-out panel is gone (client mandate): every word now
    lives strictly outside the artwork. The 60s drift survives only as
-   a whisper-opacity pattern echo BEHIND the painting — the primary
+   a whisper-opacity pattern echo BEHIND the painting · the primary
    reproduction never moves, never crops. */
 .work--moran{
   --accent:var(--a-moran);
@@ -549,7 +668,7 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
 @media (prefers-reduced-motion: reduce){ .js .moran-echo{animation:none;} }
 .moran-head{
   /* z-index 0: above the echo layer (DOM order) but always BELOW the
-     painting (z-index 1) — the header can never paint over the artwork */
+     painting (z-index 1) · the header can never paint over the artwork */
   position:relative; z-index:0;
   display:flex; align-items:flex-end; justify-content:space-between; gap:1.5rem;
   padding:0 clamp(1.2rem,5vw,4rem);
@@ -571,7 +690,7 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
 .moran-meta-body{flex:1;}
 .moran-meta .rule{margin-top:0;}
 
-/* ---- 02 blooming-mind — catalog plate at full stature ----
+/* ---- 02 blooming-mind · catalog plate at full stature ----
    The chaekgeori stack runs nearly the whole viewport height; a thin
    spine column of metadata echoes the painted book spines; the folio
    numeral is set vertically in the left gutter like a shelf mark. */
@@ -598,19 +717,20 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
   .work--bloom .work-meta{grid-column:1; border-left:none; padding-left:0; border-top:1px solid var(--grey); padding-top:1.5rem;}
 }
 
-/* ---- 03 summer-lotus — hanging inscription, image bleeding right ----
+/* ---- 03 summer-lotus · hanging inscription, image bleeding right ----
    KR title hangs vertically at the left like a scroll inscription;
    the painting runs to ~90svh and rides the right edge of the page. */
 .work--lotus{
   --accent:var(--a-lotus);
-  display:grid;
-  grid-template-columns:auto minmax(13rem,1fr) auto;
-  gap:clamp(1rem,3vw,3rem);
+  /* was a 3-column grid whose middle 1fr track swallowed every spare
+     pixel, stranding the metadata far from the painting while the image
+     ran into the right trim. Now the inscription, metadata and painting
+     sit as one centred group inside the section's normal side padding. */
+  display:flex;
   align-items:center;
-  padding-right:0;
+  justify-content:center;
+  gap:clamp(1.4rem,3.5vw,3.2rem);
 }
-/* the painting rides the right edge, so the folio lives in the open
-   paper above the metadata column instead */
 .work--lotus .ghost-num{left:clamp(5rem,14vw,12rem);}
 .work--lotus .work-title-vertical{
   writing-mode:vertical-rl;
@@ -623,19 +743,19 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
   height:min(80svh,700px);
   position:relative; z-index:2;
 }
-.work--lotus .work-meta{max-width:24em;}
-.work--lotus .work-media{justify-self:end;}
-.work--lotus .work-media img{height:min(90svh, calc(203vw - 610px), 1500px); width:auto;}
+.work--lotus .work-meta{max-width:22em; flex:0 1 auto;}
+.work--lotus .work-media{flex:0 0 auto;}
+.work--lotus .work-media img{height:min(88svh,1400px); width:auto; max-width:100%;}
 @media (max-width:980px){
-  .work--lotus{grid-template-columns:1fr; padding-right:clamp(1.2rem,5vw,4rem);}
+  .work--lotus{flex-direction:column;}
   .work--lotus .work-title-vertical{writing-mode:horizontal-tb; height:auto;}
-  .work--lotus .work-media{justify-self:center;}
+
   .work--lotus .work-media img{height:auto; max-height:80svh; max-width:88vw;}
 }
 
-/* ---- 04/05 untitled diptych — the canyon speaks ----
+/* ---- 04/05 untitled diptych · the canyon speaks ----
    Two near-full-height scrolls flank a narrow canyon of paper, and the
-   title/metadata live INSIDE that canyon — text as the space between
+   title/metadata live INSIDE that canyon · text as the space between
    paintings, never on them. Scrolls still unroll top→bottom. */
 .work--untitled{
   --accent:var(--a-untitled);
@@ -650,8 +770,7 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
 .untitled-head .ghost-num{font-size:clamp(2.6rem,4.5vw,4.2rem)!important; letter-spacing:.04em;}
 .untitled-head .work-title{font-size:clamp(2.6rem,6vw,5rem);}
 .untitled-head .work-subtitle{display:block; margin-top:.6rem;}
-.untitled-head .seal{margin-top:1.4rem;}
-.untitled-note{
+.untitled-head .untitled-note{
   font-family:var(--font-meta);
   font-size:.78rem;
   color:var(--grey);
@@ -676,7 +795,7 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
   font-family:var(--font-en);
   font-weight:600;
   font-size:.85rem;
-  color:var(--accent);
+  color:color-mix(in srgb, var(--accent) 58%, var(--ink) 42%);
   letter-spacing:.1em;
   margin-bottom:.8rem;
   display:block;
@@ -715,7 +834,7 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
   .diptych-wipe img{height:auto; max-height:82svh; max-width:80vw;}
 }
 
-/* ---- 06 garden-wishes — crescendo: the tallest reproduction ---- */
+/* ---- 06 garden-wishes · crescendo: the tallest reproduction ---- */
 .work--garden{
   --accent:var(--a-garden);
   flex-direction:column;
@@ -728,20 +847,7 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
 .work--garden .work-media img{width:100%; height:auto;}
 .work--garden .work-meta{max-width:44em; margin:0 auto;}
 .work--garden .work-desc{margin:0 auto;}
-.garden-detail{
-  margin-top:2.4rem;
-  display:flex; flex-direction:column; align-items:center; gap:.7rem;
-}
-.garden-detail .detail-frame{
-  width:min(340px,70vw); aspect-ratio:16/10; overflow:hidden;
-  box-shadow:0 20px 45px -15px rgba(31,29,26,.35);
-}
-.garden-detail img{width:100%; height:100%; object-fit:cover; object-position:35% 70%;}
-.garden-detail figcaption{
-  font-family:var(--font-en); font-style:italic; font-size:.85rem; color:var(--grey);
-}
-
-/* ---- 07 hedgehog — the joke, told at full volume ----
+/* ---- 07 hedgehog · the joke, told at full volume ----
    (Artwork-scale mandate overrides the old miniature staging: the
    smallest painting is still reproduced as large as the page allows;
    the wit now lives in the enormous deadpan title beside it.) */
@@ -765,7 +871,7 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
   .work--hedgehog .work-media img{height:auto; max-height:70svh; max-width:85vw;}
 }
 
-/* ---- 08 teal-prelude — quiet coda, cool grey hush ---- */
+/* ---- 08 teal-prelude · quiet coda, cool grey hush ---- */
 .work--teal{
   --accent:var(--a-teal);
   flex-direction:column;
@@ -788,7 +894,7 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
 .lens-wrap img:not(.is-loaded){filter:blur(14px) saturate(1.1);}
 
 /* ============================================================
-   EXHIBITION TIMELINE — vertical (client mandate: no horizontal scroll)
+   EXHIBITION TIMELINE · vertical (client mandate: no horizontal scroll)
    A single spine runs down the page; each exhibition is a row with a
    seal-stamp date on the spine and its content to the right. Reads
    top-to-bottom like a chronicle, not a carousel.
@@ -822,6 +928,15 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
   position:relative;
   padding:0 0 clamp(2.2rem,5vw,3.4rem);
 }
+/* each chronicle entry steps in on its own beat once the section
+   arrives · a chronicle being read down the spine, not a block dump */
+.js .tl-card{
+  opacity:0; transform:translateX(-18px);
+  transition:opacity .7s var(--ease), transform .7s var(--ease);
+  transition-delay:calc(var(--i,0) * 100ms);
+}
+.js .in-view .tl-card{ opacity:1; transform:translateX(0); }
+@media (prefers-reduced-motion: reduce){ .js .tl-card{opacity:1;transform:none;transition:none;} }
 .tl-card:last-child{padding-bottom:0;}
 .tl-card::before{
   content:"";
@@ -845,6 +960,15 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
   color:var(--ink); background:rgba(31,29,26,.06);
   padding:.2em .55em; border-radius:2px; margin:0 .35em .35em 0;
 }
+.tl-chip-link{
+  color:inherit;
+  border-bottom:1px solid transparent;
+  transition:border-color .45s var(--ease), opacity .45s var(--ease);
+}
+.tl-chip-link:hover, .tl-chip-link:focus-visible{
+  border-bottom-color:currentColor;
+}
+.tl-card:hover .tl-chip-link{ opacity:1; }
 .tl-chip{
   margin-top:.5rem;
   font-family:var(--font-en); font-style:italic; font-size:.85rem;
@@ -862,7 +986,7 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
   gap:clamp(2.5rem,6vw,5rem);
   align-items:start;
 }
-/* CLIENT MANDATE — the profile photo is always FULL COLOR:
+/* CLIENT MANDATE · the profile photo is always FULL COLOR:
    no grayscale, no duotone, no sepia, no color-wash overlays, ever.
    A plain hairline frame is the only permitted dressing. */
 .about-portrait{position:relative;}
@@ -880,7 +1004,7 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
 .about-block li{
   font-size:.92rem; line-height:1.8; padding-left:1.1em; position:relative; margin-bottom:.35rem;
 }
-.about-block li::before{content:"—"; position:absolute; left:0; color:var(--grey);}
+.about-block li::before{content:"·"; position:absolute; left:0; color:var(--grey);}
 .cv-list li{display:flex; gap:.8em; align-items:baseline; flex-wrap:wrap;}
 .cv-year{font-family:var(--font-en); font-style:italic; color:var(--grey); font-size:.85rem;}
 @media (max-width:900px){ .about{grid-template-columns:1fr;} .about-portrait{max-width:280px; margin:0 auto;} }
@@ -936,7 +1060,7 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
   position:fixed; inset:0; z-index:9990;
   display:none;
   align-items:center; justify-content:center;
-  /* hanji grain persists even in the dark of the lightbox backdrop —
+  /* hanji grain persists even in the dark of the lightbox backdrop ·
      background layer only, always beneath the enlarged painting */
   background-color:rgba(31,29,26,.94);
   background-image:var(--tex-grain-light);
@@ -1005,74 +1129,89 @@ span.i18n{ display:inline; }
 <!-- ============================================================
      COVER
      ============================================================ -->
-<section id="cover" class="cover reveal paper paper--cloud-tr">
+<section id="cover" class="cover reveal paper">
   <div class="cover-inner">
-    <p class="cover-kicker i18n" data-kr="지금의 민화" data-en="MINHWA, PRESENT TENSE">지금의 민화</p>
-    <h1 class="cover-title kinetic" data-kr="이다미" data-en="DAMI LEE">이다미</h1>
-    <p class="cover-sub i18n" data-kr="민화 · MINHWA WORKS 2025–2026" data-en="DAMI LEE — MINHWA WORKS 2025–2026">민화 · MINHWA WORKS 2025–2026</p>
-    <a href="#works" class="cover-scroll i18n" data-kr="작품 보기" data-en="View the Works">작품 보기</a>
+    <h1 class="cover-title kinetic" data-kr="이다미" data-en="이다미">이다미</h1>
+    <p class="cover-sub i18n" data-t style="--td:1500" data-kr="민화 · MINHWA WORKS" data-en="DAMI LEE · MINHWA WORKS">민화 · MINHWA WORKS</p>
+    <a href="#works" class="cover-scroll i18n" data-t style="--td:1750" data-kr="작품 보기" data-en="View the Works">작품 보기</a>
   </div>
-  <div class="cover-side" aria-hidden="true">
-    <span class="cover-vertical">MINHWA · PRESENT TENSE</span>
-    <span class="seal seal--stamp">이다미</span>
+  <!-- contact sheet: all eight works, whole and uncropped. Column sets are
+       balanced by summed aspect ratio (5.204 each) so the three columns
+       finish level and the sheet fills the page edge to edge. -->
+  <div class="cover-sheet">
+    <div class="sheet-col" style="flex-grow:.23491">
+      <figure style="--d:0.15s"><a href="#w-untitled" class="sheet-link" aria-label="무제-1 작품으로 이동 / Go to 무제-1"><img src="assets/web/untitled-1.webp" alt="무제-1" loading="eager" decoding="async"></a></figure>
+      <figure style="--d:0.45s"><a href="#w-teal" class="sheet-link" aria-label="청록의 서곡 작품으로 이동 / Go to 청록의 서곡"><img src="assets/web/teal-prelude.webp" alt="청록의 서곡" loading="eager" decoding="async"></a></figure>
+    </div>
+    <div class="sheet-col" style="flex-grow:.24282">
+      <figure style="--d:0.22s"><a href="#w-untitled" class="sheet-link" aria-label="무제-2 작품으로 이동 / Go to 무제-2"><img src="assets/web/untitled-2.webp" alt="무제-2" loading="eager" decoding="async"></a></figure>
+      <figure style="--d:0.5s"><a href="#w-moran" class="sheet-link" aria-label="모란보자기 작품으로 이동 / Go to 모란보자기"><img src="assets/web/moran.webp" alt="모란보자기" loading="eager" decoding="async"></a></figure>
+    </div>
+    <div class="sheet-col" style="flex-grow:.26489">
+      <figure style="--d:0.29s"><a href="#w-lotus" class="sheet-link" aria-label="연못위의 대화 작품으로 이동 / Go to 연못위의 대화"><img src="assets/web/summer-lotus.webp" alt="연못위의 대화" loading="eager" decoding="async"></a></figure>
+      <figure style="--d:0.55s"><a href="#w-bloom" class="sheet-link" aria-label="생각이 피어나는 자리 작품으로 이동 / Go to 생각이 피어나는 자리"><img src="assets/web/blooming-mind.webp" alt="생각이 피어나는 자리" loading="eager" decoding="async"></a></figure>
+    </div>
+    <div class="sheet-col" style="flex-grow:.28582">
+      <figure style="--d:0.36s"><a href="#w-garden" class="sheet-link" aria-label="번영이 피어나는 소망의 정원 작품으로 이동 / Go to 번영이 피어나는 소망의 정원"><img src="assets/web/garden-wishes.webp" alt="번영이 피어나는 소망의 정원" loading="eager" decoding="async"></a></figure>
+      <figure style="--d:0.6s"><a href="#w-hedgehog" class="sheet-link" aria-label="오이를 등에 지고 가는 고슴도치 작품으로 이동 / Go to 오이를 등에 지고 가는 고슴도치"><img src="assets/web/hedgehog.webp" alt="오이를 등에 지고 가는 고슴도치" loading="eager" decoding="async"></a></figure>
+    </div>
   </div>
 </section>
 
 <!-- ============================================================
      ARTIST STATEMENT
      (KR set large as typography; EN translation in a fixed side
-     column per the print-mirroring spread design — always shown
+     column per the print-mirroring spread design · always shown
      together rather than toggled, to match the museum-catalog
      bilingual convention used throughout this site)
      ============================================================ -->
-<section id="statement" class="statement reveal paper paper--lattice-bl" aria-labelledby="statement-label">
-  <h2 class="section-label" id="statement-label" style="text-align:center;">
+<section id="statement" class="statement reveal paper" aria-labelledby="statement-label">
+  <h2 class="section-label" id="statement-label" data-t style="text-align:center;">
     <span class="i18n" data-kr="작가노트" data-en="ARTIST STATEMENT">작가노트</span>
   </h2>
   <div class="statement-grid">
-    <div class="statement-kr" lang="ko">
-      <p>나의 작업은 전통의 흔적 속에서 현재의 호흡을 찾는 여정이다. 꽃과 새, 책과 기물, 그리고 연잎과 원앙은 오래전부터 길상과 삶의 지혜를 상징해 왔다. 나는 이 상징들을 빌려 오늘을 살아가는 우리가 여전히 꿈꾸는 풍요와 평안, 아름다움을 이야기하고자 한다.</p>
-      <p>나는 전통 회화의 문법을 따르면서도, 그것을 단순한 복원이 아니라 동시대적 시선 속에서 재해석하려 한다. 이는 과거와 현재가 서로 대화하고, 그 속에서 새로운 미감을 피워내는 과정이다.</p>
-      <p>나의 그림은 '현재의 나'를 비추는 거울이다. 익숙하면서도 낯선, 풍성한 이 그림 속에서 보는 이 또한 자신의 이야기를 발견하길 바란다.</p>
+    <div class="statement-kr" lang="ko" data-tgroup>
+      <p data-t>나의 작업은 전통의 흔적 속에서 현재의 호흡을 찾는 여정이다. 꽃과 새, 책과 기물, 그리고 연잎과 원앙은 오래전부터 길상과 삶의 지혜를 상징해 왔다. 나는 이 상징들을 빌려 오늘을 살아가는 우리가 여전히 꿈꾸는 풍요와 평안, 아름다움을 이야기하고자 한다.</p>
+      <p data-t>나는 전통 회화의 문법을 따르면서도, 그것을 단순한 복원이 아니라 동시대적 시선 속에서 재해석하려 한다. 이는 과거와 현재가 서로 대화하고, 그 속에서 새로운 미감을 피워내는 과정이다.</p>
+      <p data-t>나의 그림은 '현재의 나'를 비추는 거울이다. 익숙하면서도 낯선, 풍성한 이 그림 속에서 보는 이 또한 자신의 이야기를 발견하길 바란다.</p>
     </div>
     <aside class="statement-en" lang="en">
-      <p>My work is a journey to find the breath of the present within the traces of tradition. Flowers and birds, books and vessels, lotus leaves and mandarin ducks have long symbolized good fortune and the wisdom of life. Through these symbols I want to speak of the abundance, peace, and beauty we, living today, still dream of.</p>
-      <p>I follow the grammar of traditional painting, yet try to reinterpret it not as mere restoration but through a contemporary gaze — a process in which past and present converse, and from that conversation a new sensibility blooms.</p>
-      <p>My paintings are a mirror reflecting the "self of the present." Familiar yet unfamiliar, abundant in this way, I hope the viewer, too, discovers their own story within them.</p>
+      <p data-t>My work is a journey to find the breath of the present within the traces of tradition. Flowers and birds, books and vessels, lotus leaves and mandarin ducks have long symbolized good fortune and the wisdom of life. Through these symbols I want to speak of the abundance, peace, and beauty we, living today, still dream of.</p>
+      <p data-t>I follow the grammar of traditional painting, yet try to reinterpret it not as mere restoration but through a contemporary gaze · a process in which past and present converse, and from that conversation a new sensibility blooms.</p>
+      <p data-t>My paintings are a mirror reflecting the "self of the present." Familiar yet unfamiliar, abundant in this way, I hope the viewer, too, discovers their own story within them.</p>
     </aside>
   </div>
 </section>
 
-<div class="deckle" aria-hidden="true"><svg viewBox="0 0 1440 28" preserveAspectRatio="none"><path d="M0 15 43 12 89 16 141 10 197 15 251 11 305 16 356 12 404 17 469 11 521 15 578 12 634 16 690 10 742 15 799 12 851 16 907 11 963 15 1016 12 1068 17 1123 11 1179 15 1236 12 1288 16 1341 11 1393 15 1440 13"/></svg></div>
 
 <!-- ============================================================
-     WORKS 01 – 08
+     WORKS 01 - 08
      ============================================================ -->
 <div id="works">
 
-  <!-- 01 · 모란보자기 · Peony Bojagi — restaged per client mandate:
+  <!-- 01 · 모란보자기 · restaged per client mandate:
        the COMPLETE painting huge and uncropped, metadata fully outside it;
        the v1 knocked-out panel is removed; drift lives only in the
        whisper-opacity echo layer behind the artwork -->
-  <section class="work work--moran reveal paper" aria-labelledby="w01-title">
+  <section id="w-moran" class="work work--moran reveal paper" aria-labelledby="w01-title">
     <div class="moran-echo" aria-hidden="true"></div>
     <header class="moran-head">
       <div class="moran-head-text">
-        <h2 class="work-title kinetic" id="w01-title" data-kr="모란보자기" data-en="Peony Bojagi">모란보자기</h2>
-        <p class="work-subtitle i18n" data-kr="Peony Bojagi" data-en="모란보자기">Peony Bojagi</p>
+        <!-- no English title for this work exists in the artist's source document,
+             so the Korean title is used in both languages and no EN subtitle is set -->
+        <h2 class="work-title kinetic" id="w01-title" data-kr="모란보자기" data-en="모란보자기">모란보자기</h2>
       </div>
       <span class="ghost-num ghost-num--inline" aria-hidden="true">01</span>
     </header>
-    <div class="work-media lens-wrap" data-lightbox="assets/web/moran.jpg" data-cap-kr="모란보자기 · Peony Bojagi" data-cap-en="Peony Bojagi · 모란보자기" tabindex="0" role="button" aria-label="모란보자기 확대 보기 / View Peony Bojagi enlarged">
+    <div class="work-media lens-wrap" data-lightbox="assets/web/moran.jpg" data-cap-kr="모란보자기" data-cap-en="모란보자기" tabindex="0" role="button" aria-label="모란보자기 확대 보기 / View 모란보자기 enlarged">
       <picture>
         <source srcset="assets/web/moran.webp" type="image/webp">
         <img src="assets/web/moran.jpg" width="2400" height="2273" loading="lazy"
              style="background-image:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAXABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC5tbYQwwM5zjpQxwAAFZT0J603I4DH+HjBp5KByAv8PPPHBrIoYXOwbxyx6mil2gbgxJwCORRQAofAXACsehFKRtY7j8w5wPeiigCMsWZjtK55wD1FFFFF7Af/2Q==');"
-             alt="모란보자기, 순지에 수간분채·봉채, 54×57cm, 2025 / Peony Bojagi, natural pigment and gum-based color on Korean sunji paper, 54×57cm, 2025">
+             alt="모란보자기, 순지에 수간분채·봉채, 54×57cm, 2025 / 모란보자기, natural pigment and gum-based color on Korean sunji paper, 54×57cm, 2025">
       </picture>
     </div>
     <footer class="moran-meta">
-      <span class="seal" aria-hidden="true">01</span>
       <div class="moran-meta-body">
         <hr class="rule">
         <dl class="work-specs">
@@ -1084,10 +1223,9 @@ span.i18n{ display:inline; }
     </footer>
   </section>
 
-  <div class="deckle" aria-hidden="true"><svg viewBox="0 0 1440 28" preserveAspectRatio="none"><path d="M0 15 43 12 89 16 141 10 197 15 251 11 305 16 356 12 404 17 469 11 521 15 578 12 634 16 690 10 742 15 799 12 851 16 907 11 963 15 1016 12 1068 17 1123 11 1179 15 1236 12 1288 16 1341 11 1393 15 1440 13"/></svg></div>
-
   <!-- 02 · 생각이 피어나는 자리 · Blooming Mind -->
-  <section class="work work--bloom reveal paper" aria-labelledby="w02-title">
+  <section id="w-bloom" class="work work--bloom reveal paper motif--bloom" aria-labelledby="w02-title">
+    <div class="work-motif" aria-hidden="true"></div>
     <span class="ghost-num" aria-hidden="true">02</span>
     <div class="work-media lens-wrap" data-lightbox="assets/web/blooming-mind.jpg" data-cap-kr="생각이 피어나는 자리 · Blooming Mind" data-cap-en="Blooming Mind · 생각이 피어나는 자리" tabindex="0" role="button" aria-label="생각이 피어나는 자리 확대 보기 / View Blooming Mind enlarged">
       <picture>
@@ -1099,7 +1237,7 @@ span.i18n{ display:inline; }
     </div>
     <div class="work-meta">
       <h2 class="work-title kinetic" id="w02-title" data-kr="생각이 피어나는 자리" data-en="Blooming Mind">생각이 피어나는 자리</h2>
-      <p class="work-subtitle i18n" data-kr="Blooming Mind" data-en="생각이 피어나는 자리">Blooming Mind</p>
+      <p class="work-subtitle i18n" data-t style="--td:420" data-kr="Blooming Mind" data-en="생각이 피어나는 자리">Blooming Mind</p>
       <hr class="rule">
       <dl class="work-specs">
         <div><dt class="i18n" data-kr="크기" data-en="SIZE">크기</dt><dd>50 × 100 cm</dd></div>
@@ -1110,11 +1248,12 @@ span.i18n{ display:inline; }
   </section>
 
   <!-- 03 · 연못위의 대화 · Summer Lotus -->
-  <section class="work work--lotus reveal paper paper--cloud-bl" aria-labelledby="w03-title">
+  <section id="w-lotus" class="work work--lotus reveal paper motif--lotus" aria-labelledby="w03-title">
+    <div class="work-motif" aria-hidden="true"></div>
     <span class="ghost-num" aria-hidden="true">03</span>
     <h2 class="work-title-vertical kinetic" id="w03-title" data-kr="연못위의 대화" data-en="Summer Lotus">연못위의 대화</h2>
     <div class="work-meta">
-      <p class="work-subtitle i18n" data-kr="Summer Lotus" data-en="연못위의 대화" style="margin-top:0;">Summer Lotus</p>
+      <p class="work-subtitle i18n" data-t style="--td:420" data-kr="Summer Lotus" data-en="연못위의 대화" style="margin-top:0;">Summer Lotus</p>
       <hr class="rule">
       <dl class="work-specs">
         <div><dt class="i18n" data-kr="크기" data-en="SIZE">크기</dt><dd>35 × 65 cm</dd></div>
@@ -1132,64 +1271,62 @@ span.i18n{ display:inline; }
     </div>
   </section>
 
-  <!-- 04/05 · 무제-1 / 무제-2 · Untitled I / II — DIPTYCH, signature moment
+  <!-- 04/05 · 무제-1 / 무제-2 · DIPTYCH, signature moment
        ============================================================
        PENDING: title & description for both works are still being
        decided by the artist. Placeholder "무제 / Untitled" is used
        below. This entire block is isolated and clearly marked so it
        is trivial to swap once final titles/copy are approved.
        ============================================================ -->
-  <section class="work work--untitled reveal paper paper--lattice-tr" aria-labelledby="w04-title">
+  <section id="w-untitled" class="work work--untitled reveal paper motif--untitled" aria-labelledby="w04-title">
+    <div class="work-motif" aria-hidden="true"></div>
     <div class="diptych">
       <div class="diptych-panel">
         <span class="panel-num">04</span>
-        <div class="diptych-wipe lens-wrap" data-lightbox="assets/web/untitled-1.jpg" data-cap-kr="무제-1 · Untitled I" data-cap-en="Untitled I · 무제-1" tabindex="0" role="button" aria-label="무제-1 확대 보기 / View Untitled I enlarged">
+        <div class="diptych-wipe lens-wrap" data-lightbox="assets/web/untitled-1.jpg" data-cap-kr="무제-1" data-cap-en="무제-1" tabindex="0" role="button" aria-label="무제-1 확대 보기 / View 무제-1 enlarged">
           <picture>
             <source srcset="assets/web/untitled-1.webp" type="image/webp">
             <img src="assets/web/untitled-1.jpg" width="757" height="2400" loading="lazy"
                  style="background-image:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCABMABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDoqSmzSiJckFucYFQpdCUMUjkOO2OazLLNFQQpNuDvIdpH3COfxooEL9nP2gys24dlI6GqkjSLKSAyj72eladQS7ZlwuGKsDyeKAIWuGjjXeG3FhuyMY+lFSXVzHGrK33ivA7UUrBcknlWJOcEnoPWq3mtFEjLGCjDj29quFQTkgE4xnFZdxqrpM8USLlGxkntQF7C3DPvYMxBzwfU/Siq9zdxTvhI2Em7BbqPwoo16C0ZtbgM+vpXOMzNdys425Jzjt6g1vythT1z2wKqSLb3CnzYlLHIJ7j8aBsyrZg8gdTnI5JH6UVJfwxQSxJFIzY5xu5FFPcRtTyIuN/TPNYi3M292VQAW+76VNPcSTN854z0HSmEFSuCct3rLnKsRzrumEnG/vxRVsIseMDk9SaKE5Dsj//Z');"
-                 alt="무제-1, 순지에 수간분채·봉채, 120×39cm, 2025 / Untitled I, natural pigment and gum-based color on Korean sunji paper, 120×39cm, 2025">
+                 alt="무제-1, 순지에 수간분채·봉채, 120×39cm, 2025 / 무제-1, natural pigment and gum-based color on Korean sunji paper, 120×39cm, 2025">
           </picture>
         </div>
         <hr class="rule panel-rule">
-        <p class="panel-caption i18n" data-kr="무제-1 · 120 × 39cm · 2025" data-en="Untitled I · 120 × 39cm · 2025">무제-1 · 120 × 39cm · 2025</p>
+        <p class="panel-caption i18n" data-t style="--td:520" data-kr="무제-1 · 120 × 39cm · 2025" data-en="무제-1 · 120 × 39cm · 2025">무제-1 · 120 × 39cm · 2025</p>
       </div>
       <!-- the canyon speaks: title & pending note live in the paper
            between the two scrolls, touching neither painting -->
       <div class="untitled-head">
         <span class="ghost-num ghost-num--inline" aria-hidden="true" style="position:static; display:inline-block; opacity:.1;">04 · 05</span>
-        <h2 class="work-title kinetic" id="w04-title" data-kr="무제" data-en="Untitled">무제</h2>
-        <p class="work-subtitle i18n" data-kr="Untitled" data-en="무제">Untitled</p>
-        <p class="untitled-note i18n"
-           data-kr="무제-1 · 무제-2 — 120×39cm 세로 두루마리 한 쌍. 최종 제목과 설명은 작가 확정 후 게시됩니다."
-           data-en="Untitled I · Untitled II — a pair of 120×39cm vertical scrolls. Final titles and descriptions pending the artist's approval.">무제-1 · 무제-2 — 120×39cm 세로 두루마리 한 쌍. 최종 제목과 설명은 작가 확정 후 게시됩니다.</p>
-        <span class="seal" aria-hidden="true">04·05</span>
+        <h2 class="work-title kinetic" id="w04-title" data-kr="무제" data-en="무제">무제</h2>
+        <p class="untitled-note i18n" data-t style="--td:640"
+           data-kr="무제-1 · 무제-2 · 120×39cm 세로 두루마리 한 쌍. 최종 제목과 설명은 작가 확정 후 게시됩니다."
+           data-en="무제-1 · 무제-2 · a pair of 120×39cm vertical scrolls. Final titles and descriptions pending the artist's approval.">무제-1 · 무제-2 · 120×39cm 세로 두루마리 한 쌍. 최종 제목과 설명은 작가 확정 후 게시됩니다.</p>
       </div>
       <div class="diptych-panel">
         <span class="panel-num">05</span>
-        <div class="diptych-wipe lens-wrap" data-lightbox="assets/web/untitled-2.jpg" data-cap-kr="무제-2 · Untitled II" data-cap-en="Untitled II · 무제-2" tabindex="0" role="button" aria-label="무제-2 확대 보기 / View Untitled II enlarged">
+        <div class="diptych-wipe lens-wrap" data-lightbox="assets/web/untitled-2.jpg" data-cap-kr="무제-2" data-cap-en="무제-2" tabindex="0" role="button" aria-label="무제-2 확대 보기 / View 무제-2 enlarged">
           <picture>
             <source srcset="assets/web/untitled-2.webp" type="image/webp">
             <img src="assets/web/untitled-2.jpg" width="757" height="2400" loading="lazy"
                  style="background-image:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCABMABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDosUmQelVBczCQqygsOqgVPCwfJUAeo71jdF2ZJRS0UwKVzmO4WZFb0Ye1JFIftGIwAG7HtU1vcRzSMqOJOPXtUUUtrHeGEMwlHADDA/Co5eo+Z7FxW3Dpg9xRS45oqxGJpt6lnamOWKTJZnXAzk9MfX609rd7nUvPkZY9uBjvgepzVcab5SrKXYuGySDwDUl1qs0cIIt06gM2QR+VTzXdkJRSj7xrw3Uc8kkahwyddy4z9KKh0+5+0w+ZjbuPTHeiqAoxF4Z1EhJCk7W9R6GtC5sYLuMKwwODleM02KBZRufPbpxVupitBvsMiiWGJY0GFUYFFPoqhFCG6+RgmC3Y9hU0FxlAJXQv/s9K59ZHJ+8Rn0qRUIOd7Vnewk7nSZyKKp6cSYDkk896KtO6Gf/Z');"
-                 alt="무제-2, 순지에 수간분채·봉채, 120×39cm / Untitled II, natural pigment and gum-based color on Korean sunji paper, 120×39cm">
+                 alt="무제-2, 순지에 수간분채·봉채, 120×39cm, 2025 / 무제-2, natural pigment and gum-based color on Korean sunji paper, 120×39cm, 2025">
           </picture>
         </div>
         <hr class="rule panel-rule">
-        <p class="panel-caption i18n" data-kr="무제-2 · 120 × 39cm" data-en="Untitled II · 120 × 39cm">무제-2 · 120 × 39cm</p>
+        <p class="panel-caption i18n" data-t style="--td:520" data-kr="무제-2 · 120 × 39cm · 2025" data-en="무제-2 · 120 × 39cm · 2025">무제-2 · 120 × 39cm · 2025</p>
       </div>
     </div>
   </section>
   <!-- END PENDING BLOCK 04/05 -->
 
-  <div class="deckle" aria-hidden="true"><svg viewBox="0 0 1440 28" preserveAspectRatio="none"><path d="M0 15 43 12 89 16 141 10 197 15 251 11 305 16 356 12 404 17 469 11 521 15 578 12 634 16 690 10 742 15 799 12 851 16 907 11 963 15 1016 12 1068 17 1123 11 1179 15 1236 12 1288 16 1341 11 1393 15 1440 13"/></svg></div>
-
   <!-- 06 · 번영이 피어나는 소망의 정원 · The Garden of Prosperous Wishes -->
-  <section class="work work--garden reveal paper" aria-labelledby="w06-title">
+  <section id="w-garden" class="work work--garden reveal paper motif--garden" aria-labelledby="w06-title">
+    <div class="work-motif" aria-hidden="true"></div>
     <span class="ghost-num" aria-hidden="true">06</span>
     <div class="work-meta">
       <h2 class="work-title kinetic" id="w06-title" data-kr="번영이 피어나는 소망의 정원" data-en="The Garden of Prosperous Wishes">번영이 피어나는 소망의 정원</h2>
-      <p class="work-subtitle i18n" data-kr="The Garden of Prosperous Wishes" data-en="번영이 피어나는 소망의 정원">The Garden of Prosperous Wishes</p>
+      <p class="work-subtitle i18n" data-t style="--td:420" data-kr="The Garden of Prosperous Wishes" data-en="번영이 피어나는 소망의 정원">The Garden of Prosperous Wishes</p>
       <hr class="rule" style="max-width:20em; margin-left:auto; margin-right:auto;">
       <dl class="work-specs" style="justify-content:center;">
         <div><dt class="i18n" data-kr="크기" data-en="SIZE">크기</dt><dd>119 × 60 cm</dd></div>
@@ -1204,20 +1341,15 @@ span.i18n{ display:inline; }
              alt="번영이 피어나는 소망의 정원, 순지에 수간분채·봉채, 119×60cm / The Garden of Prosperous Wishes, natural pigment and gum-based color on Korean sunji paper, 119×60cm">
       </picture>
     </div>
-    <figure class="garden-detail">
-      <div class="detail-frame">
-        <img src="assets/web/garden-wishes.jpg" width="1213" height="2400" loading="lazy" style="background-image:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAvABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDoqQnnHenVBKyQI0r52jrgZP6VmUS0VUTUrd5Qil8HoxXiikAlxd3H2iSG3hB2AEsfQ+gqleXuyIAXSrM4wQGxt9eB3+tbR9Kz7SxisjL8vmFjksV5I9KLdRGZZW8Ed6Lq3unW2j++zn75+vpRTtQsZLiWUxgLwBFFjAHqR2zRT0Ytuhuyq7KQkmzPcDmmrvDYyNgHcksaSVZmP7p1Ue65owwXMm0/QUDK9xMIiPmA5ziimySW2fniUn6UVNguf//Z');" alt="번영이 피어나는 소망의 정원, 원앙 부분 세부 / The Garden of Prosperous Wishes, detail of the mandarin duck pair">
-      </div>
-      <figcaption class="i18n" data-kr="세부 · 원앙 한 쌍" data-en="Detail · the mandarin duck pair">세부 · 원앙 한 쌍</figcaption>
-    </figure>
   </section>
 
-  <!-- 07 · 오이를 등에 지고 가는 고슴도치 · A Hedgehog Carrying a Cucumber -->
-  <section class="work work--hedgehog reveal paper paper--cloud-tr" aria-labelledby="w07-title">
+  <!-- 07 · 오이를 등에 지고 가는 고슴도치 -->
+  <section id="w-hedgehog" class="work work--hedgehog reveal paper motif--hedgehog" aria-labelledby="w07-title">
+    <div class="work-motif" aria-hidden="true"></div>
     <span class="ghost-num" aria-hidden="true">07</span>
     <div class="work-meta">
-      <h2 class="work-title kinetic" id="w07-title" data-kr="오이를 등에 지고 가는 고슴도치" data-en="A Hedgehog Carrying a Cucumber" style="letter-spacing:-.01em;">오이를 등에 지고 가는 고슴도치</h2>
-      <p class="work-subtitle i18n" data-kr="A Hedgehog Carrying a Cucumber" data-en="오이를 등에 지고 가는 고슴도치">A Hedgehog Carrying a Cucumber</p>
+      <!-- no English title for this work exists in the artist's source document -->
+      <h2 class="work-title kinetic" id="w07-title" data-kr="오이를 등에 지고 가는 고슴도치" data-en="오이를 등에 지고 가는 고슴도치" style="letter-spacing:-.01em;">오이를 등에 지고 가는 고슴도치</h2>
       <hr class="rule">
       <dl class="work-specs">
         <div><dt class="i18n" data-kr="크기" data-en="SIZE">크기</dt><dd>27 × 40 cm</dd></div>
@@ -1225,22 +1357,23 @@ span.i18n{ display:inline; }
         <div><dt class="i18n" data-kr="재료" data-en="MEDIUM">재료</dt><dd class="i18n" data-kr="순지에 수간분채·봉채" data-en="Natural pigment & gum-based color on Korean sunji paper">순지에 수간분채·봉채</dd></div>
       </dl>
     </div>
-    <div class="work-media lens-wrap" data-lightbox="assets/web/hedgehog.jpg" data-cap-kr="오이를 등에 지고 가는 고슴도치" data-cap-en="A Hedgehog Carrying a Cucumber" tabindex="0" role="button" aria-label="오이를 등에 지고 가는 고슴도치 확대 보기 / View A Hedgehog Carrying a Cucumber enlarged">
+    <div class="work-media lens-wrap" data-lightbox="assets/web/hedgehog.jpg" data-cap-kr="오이를 등에 지고 가는 고슴도치" data-cap-en="오이를 등에 지고 가는 고슴도치" tabindex="0" role="button" aria-label="오이를 등에 지고 가는 고슴도치 확대 보기 / View 오이를 등에 지고 가는 고슴도치 enlarged">
       <picture>
         <source srcset="assets/web/hedgehog.webp" type="image/webp">
         <img src="assets/web/hedgehog.jpg" width="1579" height="2400" loading="lazy"
              style="background-image:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAkABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDo6gV3M7Kdu3HAAyfzqK4vFhZm+dgnDADj60sEymMuqk5PHGCayKLNFRLOrAEnaT2PWigCnesyPJHHbli/O7GVzTIp23sA4cRpyqL0PcE09JvOlm81XSJjsAPBI9fapUimgTbGRIo/vDDfie9AiKzu2MixSRopJ4KjFFWAC5DsgSQdzRSuMlEESuXCKHPJOOabKm4g5YYPY0UUMB+BnNFFFAz/2Q==');"
-             alt="오이를 등에 지고 가는 고슴도치, 순지에 수간분채·봉채, 27×40cm, 2026 / A Hedgehog Carrying a Cucumber, natural pigment and gum-based color on Korean sunji paper, 27×40cm, 2026">
+             alt="오이를 등에 지고 가는 고슴도치, 순지에 수간분채·봉채, 27×40cm, 2026 / 오이를 등에 지고 가는 고슴도치, natural pigment and gum-based color on Korean sunji paper, 27×40cm, 2026">
       </picture>
     </div>
   </section>
 
   <!-- 08 · 청록의 서곡 · The Teal Prelude -->
-  <section class="work work--teal reveal paper paper--grey paper--lattice-bl" aria-labelledby="w08-title">
+  <section id="w-teal" class="work work--teal reveal paper paper--grey motif--teal" aria-labelledby="w08-title">
+    <div class="work-motif" aria-hidden="true"></div>
     <span class="ghost-num" aria-hidden="true">08</span>
     <div class="work-meta">
       <h2 class="work-title kinetic" id="w08-title" data-kr="청록의 서곡" data-en="The Teal Prelude">청록의 서곡</h2>
-      <p class="work-subtitle i18n" data-kr="The Teal Prelude" data-en="청록의 서곡">The Teal Prelude</p>
+      <p class="work-subtitle i18n" data-t style="--td:420" data-kr="The Teal Prelude" data-en="청록의 서곡">The Teal Prelude</p>
       <hr class="rule" style="max-width:16em; margin-left:auto; margin-right:auto;">
       <dl class="work-specs" style="justify-content:center;">
         <div><dt class="i18n" data-kr="크기" data-en="SIZE">크기</dt><dd>30 × 30 cm</dd></div>
@@ -1260,86 +1393,84 @@ span.i18n{ display:inline; }
 
 </div><!-- /#works -->
 
-<div class="deckle" aria-hidden="true"><svg viewBox="0 0 1440 28" preserveAspectRatio="none"><path d="M0 15 43 12 89 16 141 10 197 15 251 11 305 16 356 12 404 17 469 11 521 15 578 12 634 16 690 10 742 15 799 12 851 16 907 11 963 15 1016 12 1068 17 1123 11 1179 15 1236 12 1288 16 1341 11 1393 15 1440 13"/></svg></div>
 
 <!-- ============================================================
      EXHIBITION TIMELINE
      ============================================================ -->
-<section id="exhibitions" class="exhibitions reveal paper paper--cloud-tr" aria-labelledby="exh-title">
+<section id="exhibitions" class="exhibitions reveal paper" aria-labelledby="exh-title">
   <div class="section-head">
-    <h2 id="exh-title"><span class="i18n" data-kr="전시 이력" data-en="Exhibition History">전시 이력</span></h2>
+    <h2 id="exh-title" data-t><span class="i18n" data-kr="전시 이력" data-en="Exhibition History">전시 이력</span></h2>
   </div>
   <div class="timeline-list" role="region" aria-label="전시 이력 / Exhibition history">
 
-    <article class="tl-card" style="--accent:var(--a-moran);">
+    <article class="tl-card" style="--i:0; --accent:var(--a-moran);">
       <span class="tl-date">2025.03</span>
-      <p class="tl-title i18n" data-kr="한국채색화협회 단체전" data-en="Korean Society of Chaesaekhwa Artists — Group Exhibition">한국채색화협회 단체전</p>
-      <p class="tl-chip i18n" data-kr="모란보자기" data-en="Peony Bojagi">모란보자기</p>
+      <p class="tl-title i18n" data-kr="한국채색화협회 단체전" data-en="Korean Society of Chaesaekhwa Artists · Group Exhibition">한국채색화협회 단체전</p>
+      <p class="tl-chip"><a class="tl-chip-link i18n" href="#w-moran" data-kr="모란보자기" data-en="모란보자기" aria-label="모란보자기 작품으로 이동 / Go to 모란보자기">모란보자기</a></p>
     </article>
 
-    <article class="tl-card" style="--accent:var(--a-moran);">
+    <article class="tl-card" style="--i:1; --accent:var(--a-moran);">
       <span class="tl-date">2025.03</span>
       <span class="tl-city">Jeju</span>
       <p class="tl-title i18n" data-kr="제주도 레미콘갤러리 전시 (fantastic K-Art 창신이능전)" data-en="Jeju Remicon Gallery Exhibition (\"Fantastic K-Art\" Chang-sin-i-neung Exhibition)" style="margin-top:.5rem;">제주도 레미콘갤러리 전시 (fantastic K-Art 창신이능전)</p>
-      <p class="tl-chip i18n" data-kr="모란보자기" data-en="Peony Bojagi">모란보자기</p>
+      <p class="tl-chip"><a class="tl-chip-link i18n" href="#w-moran" data-kr="모란보자기" data-en="모란보자기" aria-label="모란보자기 작품으로 이동 / Go to 모란보자기">모란보자기</a></p>
     </article>
 
-    <article class="tl-card" style="--accent:var(--a-bloom);">
-      <span class="tl-date">2025.03.07–04.30</span>
+    <article class="tl-card" style="--i:2; --accent:var(--a-bloom);">
+      <span class="tl-date">2025.03.07-04.30</span>
       <div><span class="tl-city">Bogotá</span><span class="tl-city">Medellín</span><span class="tl-city">Cali</span></div>
-      <p class="tl-title i18n" data-kr="콜롬비아 3개 도시 한국민화 특별전" data-en="Korean Minhwa Special Exhibition — Colombia (3 cities)" style="margin-top:.5rem;">콜롬비아 3개 도시 한국민화 특별전</p>
-      <p class="tl-chip i18n" data-kr="생각이 피어나는 자리" data-en="Blooming Mind">생각이 피어나는 자리</p>
+      <p class="tl-title i18n" data-kr="콜롬비아 3개 도시 한국민화 특별전" data-en="Korean Minhwa Special Exhibition · Colombia (3 cities)" style="margin-top:.5rem;">콜롬비아 3개 도시 한국민화 특별전</p>
+      <p class="tl-chip"><a class="tl-chip-link i18n" href="#w-bloom" data-kr="생각이 피어나는 자리" data-en="Blooming Mind" aria-label="생각이 피어나는 자리 작품으로 이동 / Go to 생각이 피어나는 자리">생각이 피어나는 자리</a></p>
     </article>
 
-    <article class="tl-card" style="--accent:var(--a-bloom);">
+    <article class="tl-card" style="--i:3; --accent:var(--a-bloom);">
       <span class="tl-date">2025.06</span>
       <span class="tl-city">Paris</span>
-      <p class="tl-title i18n" data-kr="파리 Galerie89 — Minhwa, Fortune from Korea" data-en="Galerie89, Paris — Minhwa, Fortune from Korea" style="margin-top:.5rem;">파리 Galerie89 — Minhwa, Fortune from Korea</p>
-      <p class="tl-chip i18n" data-kr="책거리 (생각이 피어나는 자리)" data-en="Chaekgeori (Blooming Mind)">책거리 (생각이 피어나는 자리)</p>
+      <p class="tl-title i18n" data-kr="파리 Galerie89 · Minhwa, Fortune from Korea" data-en="Galerie89, Paris · Minhwa, Fortune from Korea" style="margin-top:.5rem;">파리 Galerie89 · Minhwa, Fortune from Korea</p>
+      <p class="tl-chip"><a class="tl-chip-link i18n" href="#w-bloom" data-kr="책거리 (생각이 피어나는 자리)" data-en="Chaekgeori (Blooming Mind)" aria-label="책거리 (생각이 피어나는 자리) 작품으로 이동 / Go to 책거리 (생각이 피어나는 자리)">책거리 (생각이 피어나는 자리)</a></p>
     </article>
 
-    <article class="tl-card" style="--accent:var(--a-lotus);">
+    <article class="tl-card" style="--i:4; --accent:var(--a-lotus);">
       <span class="tl-date">2025.11</span>
-      <p class="tl-title i18n" data-kr="갤러리 일백헌 창작 프로젝트 와인라벨 공모 입상" data-en="Gallery Ilbaekheon Creative Project — Wine Label Competition, Selected">갤러리 일백헌 창작 프로젝트 와인라벨 공모 입상</p>
-      <p class="tl-chip i18n" data-kr="연못위의 대화" data-en="Summer Lotus">연못위의 대화</p>
+      <p class="tl-title i18n" data-kr="갤러리 일백헌 창작 프로젝트 와인라벨 공모 입상" data-en="Gallery Ilbaekheon Creative Project · Wine Label Competition, Selected">갤러리 일백헌 창작 프로젝트 와인라벨 공모 입상</p>
+      <p class="tl-chip"><a class="tl-chip-link i18n" href="#w-lotus" data-kr="연못위의 대화" data-en="Summer Lotus" aria-label="연못위의 대화 작품으로 이동 / Go to 연못위의 대화">연못위의 대화</a></p>
     </article>
 
-    <article class="tl-card" style="--accent:var(--a-bloom);">
+    <article class="tl-card" style="--i:5; --accent:var(--a-bloom);">
       <span class="tl-date">2026.01</span>
-      <p class="tl-title i18n" data-kr="월간민화 × 동덕아트갤러리 세화전 '물렀거라, 세화 나가신다'" data-en="Monthly Minhwa × Dongduk Art Gallery — \"Move Aside, Sehwa is Coming Through\"">월간민화 × 동덕아트갤러리 세화전 '물렀거라, 세화 나가신다'</p>
-      <p class="tl-chip i18n" data-kr="생각이 피어나는 자리" data-en="Blooming Mind">생각이 피어나는 자리</p>
+      <p class="tl-title i18n" data-kr="월간민화 × 동덕아트갤러리 세화전 '물렀거라, 세화 나가신다'" data-en="Monthly Minhwa × Dongduk Art Gallery · \"Move Aside, Sehwa is Coming Through\"">월간민화 × 동덕아트갤러리 세화전 '물렀거라, 세화 나가신다'</p>
+      <p class="tl-chip"><a class="tl-chip-link i18n" href="#w-bloom" data-kr="생각이 피어나는 자리" data-en="Blooming Mind" aria-label="생각이 피어나는 자리 작품으로 이동 / Go to 생각이 피어나는 자리">생각이 피어나는 자리</a></p>
     </article>
 
-    <article class="tl-card" style="--accent:var(--a-garden);">
+    <article class="tl-card" style="--i:6; --accent:var(--a-garden);">
       <span class="tl-date">2026.03</span>
       <span class="tl-city">Brazil</span>
-      <p class="tl-title i18n" data-kr="주브라질 한국문화원 초청 한국민화 특별전" data-en="Korean Cultural Center Brazil — Invitational Minhwa Exhibition" style="margin-top:.5rem;">주브라질 한국문화원 초청 한국민화 특별전</p>
-      <p class="tl-chip i18n" data-kr="번영이 피어나는 소망의 정원" data-en="The Garden of Prosperous Wishes">번영이 피어나는 소망의 정원</p>
+      <p class="tl-title i18n" data-kr="주브라질 한국문화원 초청 한국민화 특별전" data-en="Korean Cultural Center Brazil · Invitational Minhwa Exhibition" style="margin-top:.5rem;">주브라질 한국문화원 초청 한국민화 특별전</p>
+      <p class="tl-chip"><a class="tl-chip-link i18n" href="#w-garden" data-kr="번영이 피어나는 소망의 정원" data-en="The Garden of Prosperous Wishes" aria-label="번영이 피어나는 소망의 정원 작품으로 이동 / Go to 번영이 피어나는 소망의 정원">번영이 피어나는 소망의 정원</a></p>
     </article>
 
-    <article class="tl-card" style="--accent:var(--a-teal);">
+    <article class="tl-card" style="--i:7; --accent:var(--a-teal);">
       <span class="tl-date">2026.04</span>
       <p class="tl-title i18n" data-kr="일백헌 소품전" data-en="Ilbaekheon Small Works Exhibition">일백헌 소품전</p>
-      <p class="tl-chip i18n" data-kr="청록의 서곡" data-en="The Teal Prelude">청록의 서곡</p>
+      <p class="tl-chip"><a class="tl-chip-link i18n" href="#w-teal" data-kr="청록의 서곡" data-en="The Teal Prelude" aria-label="청록의 서곡 작품으로 이동 / Go to 청록의 서곡">청록의 서곡</a></p>
     </article>
 
   </div>
 </section>
 
-<div class="deckle" aria-hidden="true"><svg viewBox="0 0 1440 28" preserveAspectRatio="none"><path d="M0 15 43 12 89 16 141 10 197 15 251 11 305 16 356 12 404 17 469 11 521 15 578 12 634 16 690 10 742 15 799 12 851 16 907 11 963 15 1016 12 1068 17 1123 11 1179 15 1236 12 1288 16 1341 11 1393 15 1440 13"/></svg></div>
 
 <!-- ============================================================
      ABOUT
      ============================================================ -->
-<section id="about" class="about reveal paper paper--lattice-bl" aria-labelledby="about-title">
+<section id="about" class="about reveal paper" aria-labelledby="about-title">
   <figure class="about-portrait">
     <img src="assets/web/profile.jpg" width="1062" height="1480" loading="lazy" style="background-image:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAhABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDLxURuIgeW49ccVLKpaIqpwzYUH68VrzaLafYfKFs4deBJnk+/0qG7FqLZkYoqGyYmEqTko22imIfePsh4OCTxWjcX0o0pbjDhzHjr8uTXPzMZpGLE9eOe1OM0phERlcxjopbgUnG44ysS6exEkkZOcjdRVVT5bAqcEc5oqiQXqadRRQAw/e/CiiigD//Z');" alt="이다미 작가 초상 / Portrait of the artist, Dami Lee">
   </figure>
   <div>
     <h2 id="about-title">이다미</h2>
-    <span class="about-en-name">Dami Lee</span>
+    <span class="about-en-name" data-t style="--td:200">Dami Lee</span>
 
-    <div class="about-block">
+    <div class="about-block" data-t>
       <h3 class="i18n" data-kr="학력" data-en="Education">학력</h3>
       <ul>
         <li class="i18n" data-kr="서울대학교 미술대학 산업디자인과 학사" data-en="BFA Industrial Design, Seoul National University">서울대학교 미술대학 산업디자인과 학사</li>
@@ -1347,24 +1478,24 @@ span.i18n{ display:inline; }
       </ul>
     </div>
 
-    <div class="about-block">
+    <div class="about-block" data-t>
       <h3 class="i18n" data-kr="사사" data-en="Studied Under">사사</h3>
       <ul>
         <li class="i18n" data-kr="줄리 김수진 작가 사사" data-en="Studied minhwa under artist Julie Soojin Kim">줄리 김수진 작가 사사</li>
       </ul>
     </div>
 
-    <div class="about-block">
+    <div class="about-block" data-t>
       <h3 class="i18n" data-kr="전시 이력" data-en="Exhibitions (CV)">전시 이력</h3>
       <ul class="cv-list">
         <li><span class="cv-year">2026</span><span class="i18n" data-kr="일백헌 마켓민화 소품전" data-en="Ilbaekheon Market Minhwa Small Works Exhibition">일백헌 마켓민화 소품전</span></li>
-        <li><span class="cv-year">2026</span><span class="i18n" data-kr="주브라질 한국문화원 초청 한국민화 특별전" data-en="Korean Cultural Center Brazil — Invitational Special Exhibition">주브라질 한국문화원 초청 한국민화 특별전</span></li>
+        <li><span class="cv-year">2026</span><span class="i18n" data-kr="주브라질 한국문화원 초청 한국민화 특별전" data-en="Korean Cultural Center Brazil · Invitational Special Exhibition">주브라질 한국문화원 초청 한국민화 특별전</span></li>
         <li><span class="cv-year">2026</span><span class="i18n" data-kr="세화전 '물렀거라, 세화 나가신다', 동덕아트갤러리" data-en="\"Move Aside, Sehwa is Coming Through,\" Dongduk Art Gallery">세화전 '물렀거라, 세화 나가신다', 동덕아트갤러리</span></li>
-        <li><span class="cv-year">2025</span><span class="i18n" data-kr="갤러리 일백헌 창작 프로젝트 와인라벨 공모 입상" data-en="Gallery Ilbaekheon Creative Project — Wine Label Competition, Selected">갤러리 일백헌 창작 프로젝트 와인라벨 공모 입상</span></li>
-        <li><span class="cv-year">2025</span><span class="i18n" data-kr="Galerie89, 파리 — Minhwa, Fortune from Korea" data-en="Galerie89, Paris — Minhwa, Fortune from Korea">Galerie89, 파리 — Minhwa, Fortune from Korea</span></li>
-        <li><span class="cv-year">2025</span><span class="i18n" data-kr="콜롬비아 3개 도시 한국민화 특별전" data-en="Korean Minhwa Special Exhibition — Bogotá, Medellín, Cali, Colombia">콜롬비아 3개 도시 한국민화 특별전</span></li>
-        <li><span class="cv-year">2025</span><span class="i18n" data-kr="제주 레미콘 갤러리 & 일백헌 fantastic K-Art 창신이능전" data-en="Jeju Remicon Gallery & Ilbaekheon — \"Fantastic K-Art\" Exhibition">제주 레미콘 갤러리 & 일백헌 fantastic K-Art 창신이능전</span></li>
-        <li><span class="cv-year">2025</span><span class="i18n" data-kr="한국 채색화협회 회원전" data-en="Korean Society of Chaesaekhwa Artists — Member Exhibition">한국 채색화협회 회원전</span></li>
+        <li><span class="cv-year">2025</span><span class="i18n" data-kr="갤러리 일백헌 창작 프로젝트 와인라벨 공모 입상" data-en="Gallery Ilbaekheon Creative Project · Wine Label Competition, Selected">갤러리 일백헌 창작 프로젝트 와인라벨 공모 입상</span></li>
+        <li><span class="cv-year">2025</span><span class="i18n" data-kr="Galerie89, 파리 · Minhwa, Fortune from Korea" data-en="Galerie89, Paris · Minhwa, Fortune from Korea">Galerie89, 파리 · Minhwa, Fortune from Korea</span></li>
+        <li><span class="cv-year">2025</span><span class="i18n" data-kr="콜롬비아 3개 도시 한국민화 특별전" data-en="Korean Minhwa Special Exhibition · Bogotá, Medellín, Cali, Colombia">콜롬비아 3개 도시 한국민화 특별전</span></li>
+        <li><span class="cv-year">2025</span><span class="i18n" data-kr="제주 레미콘 갤러리 & 일백헌 fantastic K-Art 창신이능전" data-en="Jeju Remicon Gallery & Ilbaekheon · \"Fantastic K-Art\" Exhibition">제주 레미콘 갤러리 & 일백헌 fantastic K-Art 창신이능전</span></li>
+        <li><span class="cv-year">2025</span><span class="i18n" data-kr="한국 채색화협회 회원전" data-en="Korean Society of Chaesaekhwa Artists · Member Exhibition">한국 채색화협회 회원전</span></li>
       </ul>
     </div>
   </div>
@@ -1377,8 +1508,8 @@ span.i18n{ display:inline; }
      ============================================================ -->
 <footer class="site-footer" id="siteFooter">
   <div class="footer-inner">
-    <div class="footer-mark">이다미</div>
-    <div class="footer-contact">
+    <div class="footer-mark" data-t>이다미</div>
+    <div class="footer-contact" data-t style="--td:220">
       <div><a href="tel:+821031651008">(+82) 10-3165-1008</a></div>
       <div><a href="mailto:damiee@gmail.com">damiee@gmail.com</a></div>
     </div>
@@ -1394,7 +1525,7 @@ span.i18n{ display:inline; }
   </div>
   <div class="footer-meta">
     <span class="i18n" data-kr="© 2026 이다미. 모든 이미지의 저작권은 작가에게 있습니다." data-en="© 2026 Dami Lee. All artwork images copyright the artist.">© 2026 이다미. 모든 이미지의 저작권은 작가에게 있습니다.</span>
-    <span class="i18n" data-kr="지금의 민화 — 순지에 수간분채·봉채" data-en="Minhwa, Present Tense — Natural pigment on Korean sunji paper">지금의 민화 — 순지에 수간분채·봉채</span>
+    <span class="i18n" data-kr="순지에 수간분채·봉채" data-en="Natural pigment on Korean sunji paper">순지에 수간분채·봉채</span>
   </div>
 </footer>
 
@@ -1466,15 +1597,35 @@ span.i18n{ display:inline; }
   /* ---------------------------------------------------------
      KINETIC PER-GLYPH TITLE STAGGER
      --------------------------------------------------------- */
+  /* Per-glyph stagger, but grouped BY WORD so a line can only ever break
+     at a real space · never inside a word. Each word is an inline-block
+     with white-space:nowrap; the --i cascade index still runs continuously
+     across the whole title so the animation timing is unchanged.
+     (The previous version emitted every glyph as a standalone inline-block
+     and replaced spaces with U+00A0, which made the space the ONLY
+     unbreakable spot · forcing breaks mid-word, e.g. "The Teal P/relude".) */
   function buildKinetic(el, text){
     el.textContent = '';
     var frag = document.createDocumentFragment();
-    Array.from(text).forEach(function(ch, i){
-      var span = document.createElement('span');
-      span.className = 'ch';
-      span.style.setProperty('--i', i);
-      span.textContent = ch === ' ' ? ' ' : ch;
-      frag.appendChild(span);
+    var words = String(text).split(' ');
+    var i = 0;
+    words.forEach(function(word, w){
+      if (word.length){
+        var wordSpan = document.createElement('span');
+        wordSpan.className = 'word';
+        Array.from(word).forEach(function(ch){
+          var span = document.createElement('span');
+          span.className = 'ch';
+          span.style.setProperty('--i', i++);
+          span.textContent = ch;
+          wordSpan.appendChild(span);
+        });
+        frag.appendChild(wordSpan);
+      }
+      if (w < words.length - 1){
+        // a real, breakable space, living OUTSIDE any .word
+        frag.appendChild(document.createTextNode(' '));
+      }
     });
     el.appendChild(frag);
     el.dataset.splitDone = '1';
@@ -1501,7 +1652,7 @@ span.i18n{ display:inline; }
           io.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
     document.querySelectorAll('.reveal, .work').forEach(function(el){ io.observe(el); });
     // fallback: also observe diptych panels directly in case a panel is
     // scrolled into view without its parent section re-triggering
@@ -1609,7 +1760,7 @@ span.i18n{ display:inline; }
   }
 
   /* ---------------------------------------------------------
-     LIGHTBOX (tap / click / keyboard) — works on all devices
+     LIGHTBOX (tap / click / keyboard) · works on all devices
      --------------------------------------------------------- */
   var lightbox = document.getElementById('lightbox');
   var lightboxImg = document.getElementById('lightboxImg');
@@ -1672,7 +1823,7 @@ span.i18n{ display:inline; }
       e.preventDefault();
       showAtIndex(currentWrapIndex - 1);
     } else if (e.key === 'Tab'){
-      // only the close button is focusable inside the dialog — trap focus on it
+      // only the close button is focusable inside the dialog · trap focus on it
       e.preventDefault();
       lightboxClose.focus();
     }
