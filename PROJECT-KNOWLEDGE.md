@@ -216,11 +216,15 @@ their bottoms line up flush — with no cropping and no distortion.
 
 Each work has its own thin-line watermark drawn from its own subject: book
 spines (생각이 피어나는 자리), water rings and a lotus pad (연못위의 대화),
-scroll rods and tassels (무제), duck wakes (번영이 피어나는 소망의 정원), a
-cucumber tendril (고슴도치), an orchid vase (청록의 서곡). Set at ~5% opacity at
+duck wakes (번영이 피어나는 소망의 정원), and an orchid vase (청록의 서곡).
+Set at ~5% opacity at
 `z-index: 0`, strictly **below** the artwork layer (`z-index: 1`), so a motif can
-never touch a painting. **모란보자기 is deliberately left plain** — its ground is
-a different colour and it already carries an allover pattern.
+never touch a painting.
+
+**Sections with NO motif — leave them plain:** `모란보자기` (its ground is a
+different colour and it already carries an allover pattern), the `무제`
+diptych (04/05), and `고슴도치` (07). The client rejected the motifs on those
+last two outright.
 
 ---
 
