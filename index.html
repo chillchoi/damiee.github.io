@@ -72,6 +72,7 @@ html{background:var(--cream);scroll-behavior:smooth;}
 @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
 
 body{
+  max-width:100%;
   background:var(--cream);
   color:var(--ink);
   font-family:var(--font-meta);
@@ -231,13 +232,20 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
   pointer-events:none;
 }
 .nav *{pointer-events:auto;}
+@media (max-width:520px){
+  /* keep the whole bar on one line on a phone */
+  .nav{ padding:1rem .9rem; font-size:.64rem; letter-spacing:.1em; gap:.6rem; }
+  .nav-mark{ font-size:.9rem; }
+  .nav-links{ gap:.75rem; }
+  .lang-toggle{ font-size:.6rem; padding:.28em .55em; }
+}
 .nav-mark{
   font-family:var(--font-kr);
   font-size:1rem;
   letter-spacing:.06em;
   text-transform:none;
 }
-.nav-links{display:flex; gap:clamp(1rem,2.5vw,2.2rem); align-items:center;}
+.nav-links{display:flex; gap:clamp(.7rem,2.5vw,2.2rem); align-items:center; min-width:0;}
 .nav-links a{padding:.3em 0; position:relative;}
 .nav-links a::after{
   content:""; position:absolute; left:0; bottom:0; width:0; height:1px;
@@ -334,8 +342,14 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
 .sheet-link:hover img, .sheet-link:focus-visible img{ transform:scale(1.045); }
 .sheet-link:focus-visible{ outline:2px solid var(--ink); outline-offset:2px; }
 @media (max-width:820px){
-  .cover{ grid-template-columns:1fr; padding-top:clamp(4.5rem,9vh,6rem); }
-  .cover-sheet{ margin-top:2.2rem; }
+  /* minmax(0,1fr) not 1fr: a bare 1fr track has a min-content floor, which
+     the sheet's four columns blew past and pushed the page wider than the
+     screen, clipping the nav and the last column. */
+  .cover{ grid-template-columns:minmax(0,1fr); padding-top:clamp(4.5rem,9vh,6rem); }
+  /* wrap 4 narrow columns into a generous 2-up grid so the paintings are
+     actually big enough to read on a phone */
+  .cover-sheet{ margin-top:2.2rem; flex-wrap:wrap; gap:.5rem; }
+  .sheet-col{ flex:0 1 calc(50% - .25rem); min-width:0; gap:.5rem; }
 }
 
 /* ============================================================
