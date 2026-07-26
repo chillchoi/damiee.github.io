@@ -28,6 +28,7 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;pad
   --cream:#F6F1E6;
   --ink:#1F1D1A;
   --grey:#8A8378;
+  --grey-text:#6B655C; /* accessible text grey, ~5.2:1 on cream */
   --grey-cool:#DCDCD8;
 
   --a-moran:#E8A08A;
@@ -44,12 +45,15 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;pad
   --font-en: 'Cormorant Garamond', 'Noto Serif KR', serif;
   --font-meta: 'Noto Sans KR', sans-serif;
 
-  /* ---- hanji texture layers (client mandate) ----
-     All inline data-URI SVG · feTurbulence fiber grain, hand-placed
-     mulberry flecks, whisper-opacity 문양 watermarks. Zero external
-     requests. Applied as element BACKGROUND layers only, so texture
-     can never sit on top of an artwork. */
-  --tex-grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch' seed='7'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.19 0 0 0 0 0.17 0 0 0 0 0.13 0 0 0 0.055 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23g)'/%3E%3C/svg%3E");
+  /* ---- hanji texture layer ----
+     One inline data-URI SVG per surface: feTurbulence fibre grain and
+     nothing else. No flecks, no motifs, no watermarks, no drawn lines.
+     The filter region is pinned to the 240px tile with
+     filterUnits='userSpaceOnUse', so the noise repeats with exactly the
+     tile period and no seam or grid can ever become visible. Zero
+     external requests. Applied as element BACKGROUND layers only, so
+     texture can never sit on top of an artwork. */
+  --tex-grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g' filterUnits='userSpaceOnUse' x='0' y='0' width='240' height='240'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch' seed='7'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.19 0 0 0 0 0.17 0 0 0 0 0.13 0 0 0 0.055 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23g)'/%3E%3C/svg%3E");
   --tex-grain-light:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='gl'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch' seed='11'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.96 0 0 0 0 0.94 0 0 0 0 0.9 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23gl)'/%3E%3C/svg%3E");
 }
 
@@ -146,24 +150,7 @@ body{
 /* ============================================================
    CUSTOM CURSOR (desktop / fine pointer only, JS-enabled)
    ============================================================ */
-.cursor-dot{
-  position:fixed; top:0; left:0; width:10px; height:10px;
-  border-radius:50%;
-  background:var(--ink);
-  pointer-events:none;
-  z-index:9999;
-  transform:translate(-50%,-50%);
-  transition:width .25s var(--ease), height .25s var(--ease), background-color .25s var(--ease), opacity .25s var(--ease);
-  opacity:0;
-  mix-blend-mode:difference;
-  background-color:var(--cream);
-}
-html.cursor-ready .cursor-dot{opacity:1;}
-.cursor-dot.is-active{width:34px;height:34px;}
-html.cursor-ready, html.cursor-ready *{cursor:none;}
 @media (hover:none), (pointer:coarse){
-  .cursor-dot{display:none!important;}
-  html.cursor-ready, html.cursor-ready *{cursor:auto;}
 }
 
 /* ============================================================
@@ -278,12 +265,12 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
      aspect ratios), so all four columns resolve to the SAME height and
      their bottom edges line up flush with the top ones. Nothing is
      cropped and no image is distorted. 1.0284 = sum of those inverses. */
-  grid-template-columns:1fr clamp(280px, calc((100svh - 9.4rem) * 1.0284 + 1.2rem), 62vw);
+  grid-template-columns:minmax(0,1fr) minmax(0, min(52vw, calc((100svh - 9.4rem) * 1.0284 + 1.2rem)));
   align-items:center;
   gap:clamp(1.5rem,4vw,4rem);
   padding:clamp(5rem,10vh,6.5rem) clamp(1.4rem,4.5vw,4rem) clamp(2.5rem,6vh,4rem);
 }
-.cover-inner{ position:relative; z-index:2; }
+.cover-inner{ position:relative; z-index:2; min-width:0; }
 .cover-title{
   font-family:var(--font-kr);
   font-weight:200;
@@ -399,9 +386,9 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
 .statement-en p{
   font-family:var(--font-en);
   font-style:italic;
-  font-size:clamp(.95rem,1.3vw,1.1rem);
-  line-height:1.75;
-  color:var(--grey);
+  font-size:clamp(.98rem,1.35vw,1.12rem);
+  line-height:1.78;
+  color:var(--grey-text);
   margin-bottom:1.3em;
 }
 .statement-en p:last-child{margin-bottom:0;}
@@ -442,9 +429,12 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
   will-change:transform;
 }
 .ghost-num--inline{position:static; display:inline-block; will-change:auto;}
-/* phones have no gutters: folios drop into the flow as quiet chapter
-   numbers and stop moving, so they can never meet a painting */
-@media (max-width:700px){
+/* Below ~1000px the side gutters are gone, so an absolutely positioned folio
+   starts landing on the title or, worse, on the painting itself (measured at
+   834x1112: 06 crossed its title, 07 sat 11x102px over the artwork). From
+   here down the folios drop into the flow as quiet chapter numbers and stop
+   moving, so they can never meet a painting. */
+@media (max-width:1000px){
   .ghost-num{
     position:static;
     writing-mode:horizontal-tb!important;
@@ -483,9 +473,9 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
      rather than a regular grid, and keep it at a whisper */
   background-size:clamp(240px, 26vw, 360px) auto;
   background-position:center;
-  opacity:.05;
+  opacity:.032;
 }
-.work--teal .work-motif{ opacity:.07; }
+.work--teal .work-motif{ opacity:.045; }
 
 /* ============================================================
    TEXT CEREMONY · every title, label and paragraph drifts up into
@@ -628,7 +618,7 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
 .js .in-view .work-specs>div{ opacity:1; transform:translateY(0); }
 @media (prefers-reduced-motion: reduce){ .js .work-specs>div{opacity:1;transform:none;transition:none;} }
 .work-specs dt{
-  font-size:.66rem; letter-spacing:.22em; text-transform:uppercase; color:var(--grey);
+  font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--grey-text);
 }
 .work-specs dd{font-family:var(--font-meta); font-size:.85rem; color:var(--ink);}
 .work-desc{
@@ -651,8 +641,7 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
   position:absolute;
   width:190px; height:190px;
   border-radius:50%;
-  border:1px solid rgba(246,241,230,.85);
-  box-shadow:0 0 0 1px rgba(31,29,26,.25), 0 10px 30px rgba(31,29,26,.35);
+  border:1px solid rgba(246,241,230,.6);
   pointer-events:none;
   opacity:0;
   transition:opacity .25s var(--ease);
@@ -677,19 +666,8 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
   padding:clamp(5rem,9vh,7rem) 0 clamp(3.5rem,7vw,5.5rem);
   gap:0;
 }
-.moran-echo{
-  position:absolute; inset:0;
-  background-image:var(--moran-bg);
-  background-size:clamp(300px,36vw,520px) auto;
-  background-repeat:repeat;
-  opacity:.045;
-  mix-blend-mode:multiply;
-  pointer-events:none;
-  z-index:0;
-}
-.js .moran-echo{animation:moranDrift 60s linear infinite alternate;}
-@keyframes moranDrift{ from{background-position:0 0;} to{background-position:180px 120px;} }
-@media (prefers-reduced-motion: reduce){ .js .moran-echo{animation:none;} }
+.js to{background-position:180px 120px;} }
+@media (prefers-reduced-motion: reduce){ .js }
 .moran-head{
   /* z-index 0: above the echo layer (DOM order) but always BELOW the
      painting (z-index 1) · the header can never paint over the artwork */
@@ -755,7 +733,12 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
   justify-content:center;
   gap:clamp(1.4rem,3.5vw,3.2rem);
 }
-.work--lotus .ghost-num{left:clamp(5rem,14vw,12rem);}
+/* §03's folio is inline in the metadata column: absolutely positioned it
+   shared the left band with the vertical title and the strokes crossed. */
+.work--lotus .ghost-num--inline{
+  display:block; font-size:clamp(3rem,6vw,5rem); line-height:.9;
+  opacity:.12; margin-bottom:.4rem;
+}
 .work--lotus .work-title-vertical{
   writing-mode:vertical-rl;
   text-orientation:mixed;
@@ -768,6 +751,13 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
   position:relative; z-index:2;
 }
 .work--lotus .work-meta{max-width:22em; flex:0 1 auto;}
+/* Latin cannot be set in the vertical scroll column: writing-mode:vertical-rl
+   plus the per-glyph inline-block spans put every letter on its own line
+   ("S / u / m / m / e / r"). Korean is meant to read top-to-bottom, English
+   is not, so EN mode lays this title out horizontally. */
+body[data-lang="en"] .work--lotus .work-title-vertical{
+  writing-mode:horizontal-tb; height:auto; letter-spacing:.01em;
+}
 .work--lotus .work-media{flex:0 0 auto;}
 .work--lotus .work-media img{height:min(88svh,1400px); width:auto; max-width:100%;}
 @media (max-width:980px){
@@ -794,15 +784,7 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
 .untitled-head .ghost-num{font-size:clamp(2.6rem,4.5vw,4.2rem)!important; letter-spacing:.04em;}
 .untitled-head .work-title{font-size:clamp(2.6rem,6vw,5rem);}
 .untitled-head .work-subtitle{display:block; margin-top:.6rem;}
-.untitled-head .untitled-note{
-  font-family:var(--font-meta);
-  font-size:.78rem;
-  color:var(--grey);
-  max-width:34em;
-  margin:1rem auto 0;
-  line-height:1.7;
-}
-.diptych{
+.untitled-head .diptych{
   display:grid;
   grid-template-columns:auto minmax(13rem,19rem) auto;
   gap:clamp(1.4rem,4vw,4.5rem);
@@ -975,7 +957,7 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
 .tl-card:hover::before, .tl-card:focus-within::before{ transform:scale(1.5); }
 .tl-date{
   font-family:var(--font-en); font-style:italic; font-weight:500;
-  color:var(--grey); font-size:.92rem; margin-bottom:.5rem; display:block;
+  color:var(--grey-text); font-size:.92rem; margin-bottom:.5rem; display:block;
 }
 .tl-title{font-family:var(--font-meta); font-size:1.05rem; font-weight:500; line-height:1.55; margin-bottom:.6rem; max-width:46em;}
 .tl-city{
@@ -995,8 +977,8 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
 .tl-card:hover .tl-chip-link{ opacity:1; }
 .tl-chip{
   margin-top:.5rem;
-  font-family:var(--font-en); font-style:italic; font-size:.85rem;
-  color:var(--accent, var(--ink)); opacity:.85;
+  font-family:var(--font-en); font-style:italic; font-size:.92rem;
+  color:var(--ink); opacity:1;
 }
 
 /* ============================================================
@@ -1059,23 +1041,8 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
   border-top:1px solid rgba(246,241,230,.15);
   display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem;
 }
-.hedgehog-track{
-  position:relative; height:56px; max-width:1300px; margin:2.5rem auto 0; overflow:hidden;
-}
-.hedgehog-walk{
-  position:absolute; bottom:0; left:-60px; width:46px; height:46px;
-  opacity:.9;
-  transform:translateX(0);
-}
-.js .hedgehog-walk{ transition:transform 2.6s var(--ease), opacity .3s linear; }
-.js .hedgehog-track:not(.walked) .hedgehog-walk{ transform:translateX(0); }
-.js .hedgehog-track.walked .hedgehog-walk{
-  transform:translateX(calc(100vw));
-}
-@media (prefers-reduced-motion: reduce){
-  .js .hedgehog-walk{transition:none;}
-  .js .hedgehog-track.walked .hedgehog-walk{transform:translateX(40px);}
-}
+.js .js .js @media (prefers-reduced-motion: reduce){
+  .js .js }
 
 /* ============================================================
    LIGHTBOX
@@ -1122,7 +1089,6 @@ span.i18n{ display:inline; }
 <!-- ============================================================
      CUSTOM CURSOR
      ============================================================ -->
-<div class="cursor-dot" aria-hidden="true"></div>
 
 <!-- ============================================================
      LOADER
@@ -1218,7 +1184,6 @@ span.i18n{ display:inline; }
        the v1 knocked-out panel is removed; drift lives only in the
        whisper-opacity echo layer behind the artwork -->
   <section id="w-moran" class="work work--moran reveal paper" aria-labelledby="w01-title">
-    <div class="moran-echo" aria-hidden="true"></div>
     <header class="moran-head">
       <div class="moran-head-text">
         <!-- no English title for this work exists in the artist's source document,
@@ -1274,10 +1239,10 @@ span.i18n{ display:inline; }
   <!-- 03 · 연못위의 대화 · Summer Lotus -->
   <section id="w-lotus" class="work work--lotus reveal paper motif--lotus" aria-labelledby="w03-title">
     <div class="work-motif" aria-hidden="true"></div>
-    <span class="ghost-num" aria-hidden="true">03</span>
     <h2 class="work-title-vertical kinetic" id="w03-title" data-kr="연못위의 대화" data-en="Summer Lotus">연못위의 대화</h2>
     <div class="work-meta">
-      <p class="work-subtitle i18n" data-t style="--td:420" data-kr="Summer Lotus" data-en="연못위의 대화" style="margin-top:0;">Summer Lotus</p>
+      <span class="ghost-num ghost-num--inline" aria-hidden="true">03</span>
+      <p class="work-subtitle i18n" data-t style="--td:420; margin-top:0;" data-kr="Summer Lotus" data-en="연못위의 대화">Summer Lotus</p>
       <hr class="rule">
       <dl class="work-specs">
         <div><dt class="i18n" data-kr="크기" data-en="SIZE">크기</dt><dd>35 × 65 cm</dd></div>
@@ -1322,9 +1287,6 @@ span.i18n{ display:inline; }
       <div class="untitled-head">
         <span class="ghost-num ghost-num--inline" aria-hidden="true" style="position:static; display:inline-block; opacity:.1;">04 · 05</span>
         <h2 class="work-title kinetic" id="w04-title" data-kr="무제" data-en="무제">무제</h2>
-        <p class="untitled-note i18n" data-t style="--td:640"
-           data-kr="무제-1 · 무제-2 · 120×39cm 세로 두루마리 한 쌍. 최종 제목과 설명은 작가 확정 후 게시됩니다."
-           data-en="무제-1 · 무제-2 · a pair of 120×39cm vertical scrolls. Final titles and descriptions pending the artist's approval.">무제-1 · 무제-2 · 120×39cm 세로 두루마리 한 쌍. 최종 제목과 설명은 작가 확정 후 게시됩니다.</p>
       </div>
       <div class="diptych-panel">
         <span class="panel-num">05</span>
@@ -1434,7 +1396,7 @@ span.i18n{ display:inline; }
     <article class="tl-card" style="--i:1; --accent:var(--a-moran);">
       <span class="tl-date">2025.03</span>
       <span class="tl-city">Jeju</span>
-      <p class="tl-title i18n" data-kr="제주도 레미콘갤러리 전시 (fantastic K-Art 창신이능전)" data-en="Jeju Remicon Gallery Exhibition (\"Fantastic K-Art\" Chang-sin-i-neung Exhibition)" style="margin-top:.5rem;">제주도 레미콘갤러리 전시 (fantastic K-Art 창신이능전)</p>
+      <p class="tl-title i18n" data-kr="제주도 레미콘갤러리 전시 (fantastic K-Art 창신이능전)" data-en="Jeju Remicon Gallery Exhibition (&quot;Fantastic K-Art&quot; Chang-sin-i-neung Exhibition)" style="margin-top:.5rem;">제주도 레미콘갤러리 전시 (fantastic K-Art 창신이능전)</p>
       <p class="tl-chip"><a class="tl-chip-link i18n" href="#w-moran" data-kr="모란보자기" data-en="모란보자기" aria-label="모란보자기 작품으로 이동 / Go to 모란보자기">모란보자기</a></p>
     </article>
 
@@ -1460,7 +1422,7 @@ span.i18n{ display:inline; }
 
     <article class="tl-card" style="--i:5; --accent:var(--a-bloom);">
       <span class="tl-date">2026.01</span>
-      <p class="tl-title i18n" data-kr="월간민화 × 동덕아트갤러리 세화전 '물렀거라, 세화 나가신다'" data-en="Monthly Minhwa × Dongduk Art Gallery · \"Move Aside, Sehwa is Coming Through\"">월간민화 × 동덕아트갤러리 세화전 '물렀거라, 세화 나가신다'</p>
+      <p class="tl-title i18n" data-kr="월간민화 × 동덕아트갤러리 세화전 '물렀거라, 세화 나가신다'" data-en="Monthly Minhwa × Dongduk Art Gallery · &quot;Move Aside, Sehwa is Coming Through&quot;">월간민화 × 동덕아트갤러리 세화전 '물렀거라, 세화 나가신다'</p>
       <p class="tl-chip"><a class="tl-chip-link i18n" href="#w-bloom" data-kr="생각이 피어나는 자리" data-en="Blooming Mind" aria-label="생각이 피어나는 자리 작품으로 이동 / Go to 생각이 피어나는 자리">생각이 피어나는 자리</a></p>
     </article>
 
@@ -1512,11 +1474,11 @@ span.i18n{ display:inline; }
       <ul class="cv-list">
         <li><span class="cv-year">2026</span><span class="i18n" data-kr="일백헌 마켓민화 소품전" data-en="Ilbaekheon Market Minhwa Small Works Exhibition">일백헌 마켓민화 소품전</span></li>
         <li><span class="cv-year">2026</span><span class="i18n" data-kr="주브라질 한국문화원 초청 한국민화 특별전" data-en="Korean Cultural Center Brazil · Invitational Special Exhibition">주브라질 한국문화원 초청 한국민화 특별전</span></li>
-        <li><span class="cv-year">2026</span><span class="i18n" data-kr="세화전 '물렀거라, 세화 나가신다', 동덕아트갤러리" data-en="\"Move Aside, Sehwa is Coming Through,\" Dongduk Art Gallery">세화전 '물렀거라, 세화 나가신다', 동덕아트갤러리</span></li>
+        <li><span class="cv-year">2026</span><span class="i18n" data-kr="세화전 '물렀거라, 세화 나가신다', 동덕아트갤러리" data-en="&quot;Move Aside, Sehwa is Coming Through,&quot; Dongduk Art Gallery">세화전 '물렀거라, 세화 나가신다', 동덕아트갤러리</span></li>
         <li><span class="cv-year">2025</span><span class="i18n" data-kr="갤러리 일백헌 창작 프로젝트 와인라벨 공모 입상" data-en="Gallery Ilbaekheon Creative Project · Wine Label Competition, Selected">갤러리 일백헌 창작 프로젝트 와인라벨 공모 입상</span></li>
         <li><span class="cv-year">2025</span><span class="i18n" data-kr="Galerie89, 파리 · Minhwa, Fortune from Korea" data-en="Galerie89, Paris · Minhwa, Fortune from Korea">Galerie89, 파리 · Minhwa, Fortune from Korea</span></li>
         <li><span class="cv-year">2025</span><span class="i18n" data-kr="콜롬비아 3개 도시 한국민화 특별전" data-en="Korean Minhwa Special Exhibition · Bogotá, Medellín, Cali, Colombia">콜롬비아 3개 도시 한국민화 특별전</span></li>
-        <li><span class="cv-year">2025</span><span class="i18n" data-kr="제주 레미콘 갤러리 & 일백헌 fantastic K-Art 창신이능전" data-en="Jeju Remicon Gallery & Ilbaekheon · \"Fantastic K-Art\" Exhibition">제주 레미콘 갤러리 & 일백헌 fantastic K-Art 창신이능전</span></li>
+        <li><span class="cv-year">2025</span><span class="i18n" data-kr="제주 레미콘 갤러리 & 일백헌 fantastic K-Art 창신이능전" data-en="Jeju Remicon Gallery & Ilbaekheon · &quot;Fantastic K-Art&quot; Exhibition">제주 레미콘 갤러리 & 일백헌 fantastic K-Art 창신이능전</span></li>
         <li><span class="cv-year">2025</span><span class="i18n" data-kr="한국 채색화협회 회원전" data-en="Korean Society of Chaesaekhwa Artists · Member Exhibition">한국 채색화협회 회원전</span></li>
       </ul>
     </div>
@@ -1535,15 +1497,6 @@ span.i18n{ display:inline; }
       <div><a href="tel:+821031651008">(+82) 10-3165-1008</a></div>
       <div><a href="mailto:damiee@gmail.com">damiee@gmail.com</a></div>
     </div>
-  </div>
-  <div class="hedgehog-track" id="hedgehogTrack">
-    <svg class="hedgehog-walk" id="hedgehogWalk" viewBox="0 0 64 48" aria-hidden="true">
-      <g fill="var(--cream)">
-        <path d="M6 34c0-10 8-20 20-20 9 0 16 5 19 12 3-1 6 0 7 3-2 1-5 1-7 0-1 5-6 9-12 10l1 5H29l-1-5c-3 0-5-1-8-3l-2 5H13l2-6c-5-2-9-6-9-10z"/>
-        <path d="M22 15l-3-7 6 4z"/><path d="M28 13l-1-8 6 6z"/><path d="M34 13l2-8 5 7z"/><path d="M39 15l4-6 4 6z"/>
-        <circle cx="16" cy="30" r="1.6" fill="var(--ink)"/>
-      </g>
-    </svg>
   </div>
   <div class="footer-meta">
     <span class="i18n" data-kr="© 2026 이다미. 모든 이미지의 저작권은 작가에게 있습니다." data-en="© 2026 Dami Lee. All artwork images copyright the artist.">© 2026 이다미. 모든 이미지의 저작권은 작가에게 있습니다.</span>
@@ -1679,20 +1632,6 @@ span.i18n{ display:inline; }
     // fallback: also observe diptych panels directly in case a panel is
     // scrolled into view without its parent section re-triggering
     document.querySelectorAll('.diptych-wipe').forEach(function(el){ io.observe(el); });
-
-    // hedgehog footer walk-on, once
-    var hTrack = document.getElementById('hedgehogTrack');
-    if (hTrack){
-      var hIO = new IntersectionObserver(function(entries){
-        entries.forEach(function(entry){
-          if (entry.isIntersecting){
-            hTrack.classList.add('walked');
-            hIO.unobserve(hTrack);
-          }
-        });
-      }, { threshold: 0.3 });
-      hIO.observe(hTrack);
-    }
   } else {
     document.querySelectorAll('.reveal, .work, .diptych-wipe').forEach(function(el){ el.classList.add('in-view'); });
   }
@@ -1732,7 +1671,6 @@ span.i18n{ display:inline; }
      --------------------------------------------------------- */
   var moranSection = document.querySelector('.work--moran');
   if (moranSection){
-    moranSection.style.setProperty('--moran-bg', "url('assets/web/moran.webp')");
   }
 
   /* ---------------------------------------------------------
@@ -1850,25 +1788,6 @@ span.i18n{ display:inline; }
       lightboxClose.focus();
     }
   });
-
-  /* ---------------------------------------------------------
-     CUSTOM INK-DOT CURSOR (fine pointer only)
-     --------------------------------------------------------- */
-  if (fineHover){
-    html.classList.add('cursor-ready');
-    var dot = document.querySelector('.cursor-dot');
-    window.addEventListener('mousemove', function(e){
-      dot.style.left = e.clientX + 'px';
-      dot.style.top = e.clientY + 'px';
-    }, { passive:true });
-    var interactiveSel = 'a, button, .lens-wrap, [role="button"], input, textarea';
-    document.addEventListener('mouseover', function(e){
-      if (e.target.closest(interactiveSel)) dot.classList.add('is-active');
-    });
-    document.addEventListener('mouseout', function(e){
-      if (e.target.closest(interactiveSel)) dot.classList.remove('is-active');
-    });
-  }
 
   /* ---------------------------------------------------------
      LOADER

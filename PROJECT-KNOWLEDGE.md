@@ -278,6 +278,34 @@ These were each a real, diagnosed bug. Reverting any of them reintroduces it.
    it. The in-app Browser pane does **not** fire IntersectionObserver reliably —
    use it for DOM/link assertions, not for reveal states.
 
+9. **Never write `\"` inside an HTML attribute.** HTML has no backslash
+   escaping, so the value terminates at the backslash and the remainder is
+   parsed as bogus attributes — this silently truncated two English exhibition
+   names. Use `&quot;`.
+10. **`writing-mode: vertical-rl` + per-glyph `inline-block` spans puts every
+    Latin letter on its own line** ("S / u / m / m / e / r"). Correct for
+    Korean, which reads top-to-bottom; EN mode must switch to
+    `horizontal-tb`.
+11. **A grid `1fr` track has a min-content floor.** The cover's oversized title
+    could not shrink, so the sheet overflowed and `overflow-x:hidden`
+    guillotined the last column at tall-ish aspect ratios (iPad portrait,
+    1024x900, 1280x1024). Use `minmax(0,1fr)` plus `min-width:0` on the
+    contents, and cap the sheet track by width as well as height.
+12. **Absolutely positioned folios need real gutters.** Below ~1000px the
+    gutters are gone and the numeral lands on the title or on the painting
+    (measured at 834x1112: 07 sat 11x102px over the artwork). Below that width
+    the folios drop into normal flow.
+13. **Tiling a rectangular painting as a background always shows a grid of tile
+    edges** — and turns the artwork into wallpaper. The 모란보자기 drift echo
+    was removed for this reason.
+14. **When checking for collisions programmatically, require real overlap
+    (> ~3px on both axes).** Adjacent boxes that merely touch will otherwise
+    report as false positives.
+15. **Contrast:** the pastel accents are unusable as text on cream (모란 coral
+    ≈1.9:1). Accents are for dots and rules only; text uses `--ink` or
+    `--grey-text` (#6B655C, ≈5.2:1). Never `--grey` (#8A8378, ≈3.3:1) for body
+    copy or small labels.
+
 ---
 
 ## 6. Still open
