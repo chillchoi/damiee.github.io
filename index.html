@@ -349,7 +349,19 @@ html.cursor-ready, html.cursor-ready *{cursor:none;}
   /* wrap 4 narrow columns into a generous 2-up grid so the paintings are
      actually big enough to read on a phone */
   .cover-sheet{ margin-top:2.2rem; flex-wrap:wrap; gap:.5rem; }
-  .sheet-col{ flex:0 1 calc(50% - .25rem); min-width:0; gap:.5rem; }
+  /* Two per row. Equal 50% widths would leave each pair's bottoms uneven,
+     because the columns carry different stacked aspect sums. Within each
+     row the widths are proportional to 1/(aspect sum), so both members of
+     a row resolve to the same height and their bottom edges line up:
+       row 1  4.2571 / 4.1183  ->  49.17% / 50.83%
+       row 2  3.7751 / 3.4987  ->  48.11% / 51.89%
+     flex-grow must be forced to 0 (the desktop grows are inline styles,
+     which would otherwise redistribute the row's slack and undo this). */
+  .sheet-col{ flex-grow:0!important; flex-shrink:1; min-width:0; gap:.5rem; }
+  .sheet-col:nth-child(1){ flex-basis:calc(49.17% - .25rem); }
+  .sheet-col:nth-child(2){ flex-basis:calc(50.83% - .25rem); }
+  .sheet-col:nth-child(3){ flex-basis:calc(48.11% - .25rem); }
+  .sheet-col:nth-child(4){ flex-basis:calc(51.89% - .25rem); }
 }
 
 /* ============================================================

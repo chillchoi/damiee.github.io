@@ -212,6 +212,12 @@ year range. Each collage column's width is proportional to `1/(sum of its
 images' aspect ratios)`, which makes all columns resolve to the *same height* so
 their bottoms line up flush — with no cropping and no distortion.
 
+On phones the sheet wraps to two columns per row, and the **same inverse-aspect
+rule must be applied per row** (row 1 → 49.17% / 50.83%, row 2 → 48.11% /
+51.89%). Equal 50% widths leave each pair's bottoms uneven. `flex-grow` also has
+to be forced to `0` on mobile, because the desktop grow values are inline styles
+that would otherwise redistribute the row's slack and undo the balance.
+
 ### Per-work line motifs (website)
 
 Each work has its own thin-line watermark drawn from its own subject: book
