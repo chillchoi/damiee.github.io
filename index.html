@@ -780,11 +780,13 @@ body[data-lang="en"] .work--lotus .work-title-vertical{
   padding-bottom:clamp(5rem,10vw,7rem);
 }
 .untitled-head{text-align:center; position:relative; z-index:2;}
-/* the canyon folio is sized to the canyon, never to the gutter scale */
-.untitled-head .ghost-num{font-size:clamp(2.6rem,4.5vw,4.2rem)!important; letter-spacing:.04em;}
 .untitled-head .work-title{font-size:clamp(2.6rem,6vw,5rem);}
 .untitled-head .work-subtitle{display:block; margin-top:.6rem;}
-.untitled-head .diptych{
+/* NB: this must be `.diptych`, not `.untitled-head .diptych`. `.diptych` is
+   the PARENT of `.untitled-head`, so the descendant selector never matched
+   and the two scrolls silently stacked at every width instead of hanging
+   side by side. */
+.diptych{
   display:grid;
   grid-template-columns:auto minmax(13rem,19rem) auto;
   gap:clamp(1.4rem,4vw,4.5rem);
@@ -797,15 +799,22 @@ body[data-lang="en"] .work--lotus .work-title-vertical{
 }
 .diptych .untitled-head{grid-column:2;}
 .diptych-panel{position:relative;}
-.diptych-panel .panel-num{
-  font-family:var(--font-en);
-  font-weight:600;
-  font-size:.85rem;
-  color:color-mix(in srgb, var(--accent) 58%, var(--ink) 42%);
-  letter-spacing:.1em;
-  margin-bottom:.8rem;
-  display:block;
-}
+/* The pair reads as one spread: a big 04 anchored in the bottom-left corner
+   and a big 05 in the bottom-right, mirroring the printed page. They live in
+   the outer margin beside the scrolls, never over them. Below 1000px the
+   corners are gone, so they fold back into the flow (see the global folio
+   rule) and these absolute positions are dropped. */
+/* top:auto is required: .ghost-num sets `top`, and when an absolutely
+   positioned box has both top and bottom, top wins and the folio would
+   sit at the top of the section instead of the bottom corner. */
+.gn-dip{ position:absolute; top:auto; bottom:clamp(1rem,3vh,2.6rem); z-index:0;
+         font-size:clamp(4.5rem,8vw,9.5rem); line-height:.82; opacity:.1; }
+.gn-04{ left:clamp(.5rem,1.4vw,2rem); }
+.gn-05{ right:clamp(.5rem,1.4vw,2rem); left:auto; }
+/* Below ~1250px the scrolls migrate outward and reach the corners, so the
+   folios would sit on the paintings (measured 45x751px of overlap at 1001px).
+   They only appear once the margins are genuinely wide enough. */
+@media (max-width:1250px){ .gn-dip{ display:none; } }
 .diptych-wipe{overflow:hidden;}
 .diptych-wipe img{height:min(88svh, calc(158vw - 445px), 1600px); width:auto; margin:0 auto;}
 .js .diptych-wipe{clip-path:inset(0 0 100% 0); transition:clip-path 1.4s var(--ease);}
@@ -1268,9 +1277,10 @@ span.i18n{ display:inline; }
        is trivial to swap once final titles/copy are approved.
        ============================================================ -->
   <section id="w-untitled" class="work work--untitled reveal paper" aria-labelledby="w04-title">
+    <span class="ghost-num gn-dip gn-04" aria-hidden="true">04</span>
+    <span class="ghost-num gn-dip gn-05" aria-hidden="true">05</span>
     <div class="diptych">
       <div class="diptych-panel">
-        <span class="panel-num">04</span>
         <div class="diptych-wipe lens-wrap" data-lightbox="assets/web/untitled-1.jpg" data-cap-kr="무제-1" data-cap-en="무제-1" tabindex="0" role="button" aria-label="무제-1 확대 보기 / View 무제-1 enlarged">
           <picture>
             <source srcset="assets/web/untitled-1.webp" type="image/webp">
@@ -1285,11 +1295,9 @@ span.i18n{ display:inline; }
       <!-- the canyon speaks: title & pending note live in the paper
            between the two scrolls, touching neither painting -->
       <div class="untitled-head">
-        <span class="ghost-num ghost-num--inline" aria-hidden="true" style="position:static; display:inline-block; opacity:.1;">04 · 05</span>
         <h2 class="work-title kinetic" id="w04-title" data-kr="무제" data-en="무제">무제</h2>
       </div>
       <div class="diptych-panel">
-        <span class="panel-num">05</span>
         <div class="diptych-wipe lens-wrap" data-lightbox="assets/web/untitled-2.jpg" data-cap-kr="무제-2" data-cap-en="무제-2" tabindex="0" role="button" aria-label="무제-2 확대 보기 / View 무제-2 enlarged">
           <picture>
             <source srcset="assets/web/untitled-2.webp" type="image/webp">

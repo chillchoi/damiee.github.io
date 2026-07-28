@@ -306,6 +306,17 @@ These were each a real, diagnosed bug. Reverting any of them reintroduces it.
     `--grey-text` (#6B655C, ≈5.2:1). Never `--grey` (#8A8378, ≈3.3:1) for body
     copy or small labels.
 
+16. **Watch descendant vs parent in selectors.** `.untitled-head .diptych`
+    never matched, because `.diptych` is the *parent* of `.untitled-head` —
+    so the 무제 pair silently stacked at every width instead of hanging side
+    by side. The diptych must be `.diptych{display:grid}`.
+17. **An absolutely positioned box with both `top` and `bottom` obeys `top`.**
+    `.ghost-num` sets `top`, so a corner folio needs an explicit `top:auto`
+    to actually sit at the bottom.
+18. **Regenerate the QA/probe copy after every edit.** A stale probe reports
+    the previous build and will happily "confirm" a fix that was never
+    applied.
+
 ---
 
 ## 6. Still open
